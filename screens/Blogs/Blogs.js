@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./BlogsStyle.js";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Platform } from "react-native";
 import { Dimensions } from "react-native";
 import { ScrollView } from "react-native";
+import { SafeAreaView } from "react-native";
 
 const Blogs = () => {
   const windowWidth = Dimensions.get("window").width;
@@ -39,29 +40,31 @@ const Blogs = () => {
     },
   ];
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <Text style={[styles.h1, styles.textCenter]}>
-          Saving Lives Through Donation
-        </Text>
-        {imgsPrag.map((img, index) => {
-          return (
-            <View style={styles.row} key={img.id}>
-              <View style={styles.imageContainer}>
-                <Image
-                  source={img.src}
-                  style={{ width: windowWidth }}
-                  resizeMode="contain"
-                />
+    <SafeAreaView
+      style={Platform.OS === "android" ? { marginTop: 50 } : { marginTop: 0 }}
+    >
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.h1}>Saving Lives Through Donation</Text>
+          {imgsPrag.map((img, index) => {
+            return (
+              <View style={styles.row} key={img.id}>
+                <View>
+                  <Image
+                    source={img.src}
+                    style={{ width: windowWidth }}
+                    resizeMode="contain"
+                  />
+                </View>
+                <View style={styles.textContainer}>
+                  <Text style={styles.description}>{img.description}</Text>
+                </View>
               </View>
-              <View style={styles.textContainer}>
-                <Text style={styles.description}>{img.description}</Text>
-              </View>
-            </View>
-          );
-        })}
-      </View>
-    </ScrollView>
+            );
+          })}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
