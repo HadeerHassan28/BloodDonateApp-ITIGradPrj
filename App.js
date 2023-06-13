@@ -1,9 +1,8 @@
-import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import Root from "./Src/Navigations/root";
-
+import colors from "./Src/Common/Colors";
 export default function App() {
   // useEffect(() => {
   //   const loadFonts = async () => {
@@ -15,17 +14,16 @@ export default function App() {
   //   loadFonts();
   // }, []);
   return (
-    <NavigationContainer>
-      <Root></Root>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <NavigationContainer>
+        <Root></Root>
+      </NavigationContainer>
+    </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "red",
     flex: 1,
-    backgroundColor: "#fbf1f0",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

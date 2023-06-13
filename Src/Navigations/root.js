@@ -77,4 +77,10 @@ const Root = () => {
 };
 
 export default Root;
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fbf1f0",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
