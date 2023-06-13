@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    width: "100%",
+    // width: "100%",
     height: undefined,
     aspectRatio: 1,
     borderRadius: 8,

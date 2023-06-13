@@ -4,6 +4,7 @@ import { MyTabs } from "./component/buttonBar/ButtonBar";
 import About from "./screens/About/AboutStyle";
 import Blogs from "./screens/Blogs/Blogs";
 import * as Font from "expo-font";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   // useEffect(() => {
@@ -16,9 +17,11 @@ export default function App() {
   //   loadFonts();
   // }, []);
   return (
-    <SafeAreaView style={styles.container}>
-      <Blogs />
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <Blogs />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 }
 
