@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./BlogsStyle.js";
 import { View, Text, Image } from "react-native";
+import { Dimensions } from "react-native";
+import { ScrollView } from "react-native";
+
 const Blogs = () => {
+  const windowWidth = Dimensions.get("window").width;
   const imgsPrag = [
     {
       id: 1,
@@ -35,28 +39,29 @@ const Blogs = () => {
     },
   ];
   return (
-    <View style={styles.container}>
-      <Text style={[styles.h1, styles.textCenter]}>
-        Saving Lives Through Donation
-      </Text>
-      {imgsPrag.map((img, index) => {
-        console.warn(img.src);
-        return (
-          <View style={styles.row} key={img.id}>
-            <View style={styles.imageContainer}>
-              <Image
-                source={img.src}
-                style={styles.image}
-                resizeMode="contain"
-              />
+    <ScrollView>
+      <View style={styles.container}>
+        <Text style={[styles.h1, styles.textCenter]}>
+          Saving Lives Through Donation
+        </Text>
+        {imgsPrag.map((img, index) => {
+          return (
+            <View style={styles.row} key={img.id}>
+              <View style={styles.imageContainer}>
+                <Image
+                  source={img.src}
+                  style={{ width: windowWidth }}
+                  resizeMode="contain"
+                />
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={styles.description}>{img.description}</Text>
+              </View>
             </View>
-            <View style={styles.textContainer}>
-              <Text style={styles.description}>{img.description}</Text>
-            </View>
-          </View>
-        );
-      })}
-    </View>
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
 
