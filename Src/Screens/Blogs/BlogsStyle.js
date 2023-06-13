@@ -1,12 +1,10 @@
 import { StyleSheet } from "react-native";
-import { Dimensions } from "react-native";
-
+import colors from "../../Common/Colors";
 const styles = StyleSheet.create({
   h1: {
     fontSize: 24,
-    color: "red",
+    color: colors.mainColor,
     marginTop: 16,
-    //marginBottom: ,
     //fontFamily: "Montserrat Alternates",
     textAlign: "center",
   },
@@ -14,15 +12,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 16,
-  },
-  imageContainer: {
-    borderRadius: 8,
-    marginBottom: 5,
-  },
-  image: {
-    flex: 1,
-    borderRadius: 8,
   },
   textContainer: {
     alignItems: "center",

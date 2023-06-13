@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 // import SiQuantconnect from "react-icons/si/Quantconnect";
 // import FaRegLightbulb from "react-icons/fa/RegLightbulb";
 // import BsGlobe2 from "react-icons/bs/Globe2";
@@ -11,11 +11,20 @@ import { View, Text, Image, ScrollView } from "react-native";
 // import BsDroplet from "react-icons/bs/Droplet";
 
 import styles from "./AboutStyle";
-//import aboutimg from "../../assets/About-head.svg";
+// import aboutimg from "../../assets/About-head.svg";
 
 const About = () => {
   return (
-    <ScrollView>
+    <View>
+      <Text>Hello About</Text>
+    </View>
+  );
+};
+export default About;
+
+/* 
+
+<View>
       <View style={styles.container}>
         <View style={styles.rowContainer}>
           <View style={styles.columnContainer}>
@@ -154,7 +163,6 @@ const About = () => {
           </View>
         </View>
       </View>
-    </ScrollView>
-  );
-};
-export default About;
+    </View>
+
+*/
