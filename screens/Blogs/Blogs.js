@@ -39,16 +39,23 @@ const Blogs = () => {
       <Text style={[styles.h1, styles.textCenter]}>
         Saving Lives Through Donation
       </Text>
-      {imgsPrag.map((img, index) => (
-        <View style={styles.row} key={img.id}>
-          <View style={styles.imageContainer}>
-            <Image source={img.src} style={styles.image} resizeMode="contain" />
+      {imgsPrag.map((img, index) => {
+        console.warn(img.src);
+        return (
+          <View style={styles.row} key={img.id}>
+            <View style={styles.imageContainer}>
+              <Image
+                source={img.src}
+                style={styles.image}
+                resizeMode="contain"
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={styles.description}>{img.description}</Text>
+            </View>
           </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.description}>{img.description}</Text>
-          </View>
-        </View>
-      ))}
+        );
+      })}
     </View>
   );
 };
