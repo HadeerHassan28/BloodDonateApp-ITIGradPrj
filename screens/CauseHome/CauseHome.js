@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./CauseHome.module.css";
+// import styles from "./CauseHome.module.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { TiGroupOutline } from "react-icons/ti";

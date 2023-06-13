@@ -41,14 +41,14 @@ const Blogs = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={styles.container}>
+        <View>
           <Text style={[styles.h1, styles.textCenter]}>
             Saving Lives Through Donation
           </Text>
           {imgsPrag.map((img, index) => {
             return (
               <View style={styles.row} key={img.id}>
-                <View style={styles.imageContainer}>
+                <View>
                   <Image
                     source={img.src}
                     style={{ width: windowWidth }}

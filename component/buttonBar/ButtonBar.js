@@ -12,7 +12,6 @@ export function MyTabs() {
     <Tab.Navigator>
       <Tab.Screen name="Blogs" component={Blogs} />
       <Tab.Screen name="About" component={About} />
-      <Tab.Screen name="Blogs" component={Blogs} />
     </Tab.Navigator>
   );
 }
