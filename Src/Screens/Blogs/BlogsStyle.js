@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
-import { Dimensions } from "react-native";
-const { width } = Dimensions.get("window");
+import colors from "../../Common/Colors";
 const styles = StyleSheet.create({
   h1: {
     fontSize: 24,
-    color: "red",
+    color: colors.mainColor,
     marginTop: 16,
     //fontFamily: "Montserrat Alternates",
     textAlign: "center",

@@ -16,6 +16,15 @@ import styles from "./AboutStyle";
 const About = () => {
   return (
     <View>
+      <Text>Hello About</Text>
+    </View>
+  );
+};
+export default About;
+
+/* 
+
+<View>
       <View style={styles.container}>
         <View style={styles.rowContainer}>
           <View style={styles.columnContainer}>
@@ -155,6 +164,5 @@ const About = () => {
         </View>
       </View>
     </View>
-  );
-};
-export default About;
+
+*/
