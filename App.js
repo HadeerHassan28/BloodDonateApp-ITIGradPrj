@@ -16,7 +16,7 @@ export default function App() {
   //   loadFonts();
   // }, []);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Blogs />
     </SafeAreaView>
   );
@@ -25,7 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fbf1f0",
     alignItems: "center",
     justifyContent: "center",
   },

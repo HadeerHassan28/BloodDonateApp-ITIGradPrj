@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./BlogsStyle.js";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
+
 const Blogs = () => {
   const imgsPrag = [
     {
@@ -35,12 +36,12 @@ const Blogs = () => {
     },
   ];
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={[styles.h1, styles.textCenter]}>
         Saving Lives Through Donation
       </Text>
       {imgsPrag.map((img, index) => {
-        console.warn(img.src);
+        // console.warn(img.src);
         return (
           <View style={styles.row} key={img.id}>
             <View style={styles.imageContainer}>
@@ -56,7 +57,7 @@ const Blogs = () => {
           </View>
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 

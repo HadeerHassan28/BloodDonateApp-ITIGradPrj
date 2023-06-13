@@ -1,46 +1,40 @@
-// import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
+const { width } = Dimensions.get("window");
+const styles = StyleSheet.create({
+  h1: {
+    fontSize: 24,
+    color: "red",
+    marginTop: 16,
+    marginBottom: 16,
+    //fontFamily: "Montserrat Alternates",
+    textAlign: "center",
+  },
+  row: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 16,
+  },
+  imageContainer: {
+    width: width,
+    aspectRatio: 1.5,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  image: {
+    flex: 1,
+    borderRadius: 8,
+  },
+  textContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 20,
+  },
+  description: {
+    textAlign: "justify",
+    fontSize: 20,
+  },
+});
 
-// const styles = StyleSheet.create({
-//   // container: {
-//   //   flex: 1,
-//   //   backgroundColor: "#fff",
-//   // },
-//   h1: {
-//     fontSize: 24,
-//     color: "red",
-//     marginTop: 16,
-//     marginBottom: 16,
-//     //fontFamily: "Montserrat Alternates",
-//   },
-//   textCenter: {
-//     textAlign: "center",
-//   },
-//   row: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     justifyContent: "flex-end",
-//     marginBottom: 16,
-//     marginHorizontal: 16,
-//   },
-//   imageContainer: {
-//     flex: 1,
-//   },
-//   image: {
-//     width: "100%",
-//     height: "100%",
-//     aspectRatio: 1,
-//     borderRadius: 8,
-//   },
-//   textContainer: {
-//     flex: 2,
-//     marginLeft: 20,
-//   },
-//   description: {
-//     textAlign: "justify",
-//     fontSize: 20,
-//   },
-//   p: {
-//     marginLeft: 20,
-//   },
-// });
-// export default styles;
+export default styles;
