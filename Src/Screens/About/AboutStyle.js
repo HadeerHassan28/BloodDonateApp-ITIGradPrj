@@ -1,4 +1,8 @@
 import { StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
+import colors from "../../Common/Colors";
+
+const windowWidth = Dimensions.get("window").width;
 export const styles = StyleSheet.create({
   container: {
     padding: 16,
@@ -11,88 +15,66 @@ export const styles = StyleSheet.create({
   },
   columnContainer: {
     flex: 1,
+    alignItems: "center",
   },
   aboutContent: {
     alignItems: "center",
   },
   title: {
-    color: "red",
-    fontSize: 24,
-    marginBottom: 8,
+    color: colors.mainColor,
+    fontSize: 16,
+    marginBottom: 16,
+    textAlign: "center",
+    fontWeight: "bold",
   },
   description: {
-    fontSize: 18,
+    fontSize: 14,
     marginBottom: 8,
     textAlign: "center",
+    color: "rgba(0, 0, 0, 0.5)",
   },
   button: {
-    backgroundColor: "red",
+    backgroundColor: colors.mainColor,
     padding: 8,
+    marginBottom: 16,
+    marginTop: 16,
     borderRadius: 8,
   },
   buttonText: {
     color: "white",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
   },
-  image: {
-    // width: "100%",
-    height: undefined,
-    aspectRatio: 1,
-    borderRadius: 8,
-  },
-  sectionTitle: {
-    color: "red",
-    fontSize: 20,
-    textAlign: "center",
-    marginBottom: 16,
-  },
   card: {
-    backgroundColor: "#f8f8f8",
+    backgroundColor: colors.backgroundColor,
     borderRadius: 8,
-    padding: 16,
+    height: 170,
+    padding: 8,
+    width: windowWidth,
     marginBottom: 16,
     alignItems: "center",
   },
   cardTitle: {
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 8,
-    fontWeight: "bold",
+    color: colors.mainColor,
   },
-  cardDescription: {
-    textAlign: "center",
-  },
-  secondaryColor: {
-    backgroundColor: "#f8f8f8",
-    padding: 16,
-    marginTop: 16,
-  },
+
   textContainer: {
     marginBottom: 16,
-  },
-  secondaryTitle: {
-    color: "red",
-    fontSize: 20,
-    textAlign: "center",
-    marginBottom: 8,
-  },
-  secondaryDescription: {
-    fontSize: 16,
-    textAlign: "center",
   },
   iconContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 8,
   },
   icon: {
     marginRight: 8,
-  },
-  iconText: {
-    fontSize: 18,
-    //fontWeight: "bold",
+    marginBottom: 8,
   },
   iconDescription: {
     textAlign: "center",
+    marginBottom: 16,
+    color: "rgba(0, 0, 0, 0.5)",
   },
 });
+export default styles;

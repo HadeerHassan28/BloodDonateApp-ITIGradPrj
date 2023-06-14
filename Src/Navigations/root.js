@@ -50,9 +50,7 @@ const Root = () => {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            iconName = focused
-              ? "information-circle"
-              : "information-circle-outline";
+            iconName = focused ? "book" : "book-outline";
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -83,4 +81,10 @@ const Root = () => {
 };
 
 export default Root;
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fbf1f0",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
