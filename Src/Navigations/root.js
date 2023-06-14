@@ -44,9 +44,7 @@ const Root = () => {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            iconName = focused
-              ? "information-circle"
-              : "information-circle-outline";
+            iconName = focused ? "book" : "book-outline";
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },

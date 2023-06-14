@@ -3,7 +3,6 @@ import styles from "./BlogsStyle.js";
 import { View, Text, Image, Platform } from "react-native";
 import { Dimensions } from "react-native";
 import { ScrollView } from "react-native";
-import { SafeAreaView } from "react-native";
 
 const Blogs = () => {
   const windowWidth = Dimensions.get("window").width;
