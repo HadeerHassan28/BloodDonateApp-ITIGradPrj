@@ -7,13 +7,19 @@ import colors from "../Common/Colors";
 import About from "../Screens/About/About";
 import Home from "../Screens/Home/Home";
 import Blogs from "../Screens/Blogs/Blogs";
+import OrganizationSignUp from "../Screens/SignUp/Organization/Organization";
+import UserSignUp from "../Screens/SignUp/User/User";
+import LogUser from "../Screens/LogIn/User/LogUser";
+import LogOrg from "../Screens/LogIn/Organizations/LogOrg";
+import TermsAndConditions from "../Screens/Terms/Terms";
+import ContactUs from "../Screens/ContactUs/ContactUs";
 const Tab = createBottomTabNavigator();
 
 const Root = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name={routes.home}
+        name={routes.Home}
         component={Home}
         options={{
           tabBarLabel: "Home",

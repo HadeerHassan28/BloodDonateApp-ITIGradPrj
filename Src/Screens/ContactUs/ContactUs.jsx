@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import styles from "./ContactUs.module.css";
 import emailjs from "@emailjs/browser";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -54,54 +61,105 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="container py-5">
-      <div className="text-center p-3 mb-3">
-        <h3 className="text-danger">Connect With Us</h3>
-        <p className="text-muted ">
+    <ScrollView style={styles.container}>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>Connect With Us</Text>
+        <Text style={styles.subtitle}>
           Whether you want some help or just to ask us a question, you are
           welcome to do it using the form below.
-        </p>
-      </div>
-      <form className={styles.customForm} onSubmit={sendEmail}>
-        <input
-          type="text"
+        </Text>
+      </View>
+      <View style={styles.formContainer}>
+        <TextInput
+          style={styles.input}
           placeholder="Full Name"
           name="name"
-          className="form-control mb-2"
           value={name}
-          onChange={handleChange}
+          onChangeText={(value) => handleChange(value, "name")}
         />
-        <input
-          type="email"
+        <TextInput
+          style={styles.input}
           placeholder="Email"
           name="email"
-          className="form-control mb-2"
           value={email}
-          onChange={handleChange}
+          onChangeText={(value) => handleChange(value, "email")}
         />
-        <input
-          type="text"
+        <TextInput
+          style={styles.input}
           placeholder="Phone Number"
           name="phone"
-          className="form-control mb-2"
           value={phone}
-          onChange={handleChange}
+          onChangeText={(value) => handleChange(value, "phone")}
         />
-        <textarea
-          className="form-control mb-3"
-          name="message"
-          cols="30"
-          rows="10"
+        <TextInput
+          style={styles.textarea}
+          multiline
           placeholder="Your Message"
+          name="message"
           value={message}
-          onChange={handleChange}
-        ></textarea>
-        <button type="submit" className="btn btn-outline-danger d-flex ms-auto">
-          Send
-        </button>
-      </form>
-    </div>
+          onChangeText={(value) => handleChange(value, "message")}
+        />
+        <TouchableOpacity style={styles.button} onPress={sendEmail}>
+          <Text style={styles.buttonText}>Send</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    backgroundColor: "#fbf1f0",
+  },
+  textContainer: {
+    alignItems: "center",
+    padding: 20,
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "red",
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#999",
+    textAlign: "center",
+  },
+  formContainer: {
+    marginBottom: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginBottom: 10,
+  },
+  textarea: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 5,
+    padding: 15,
+    marginBottom: 10,
+    height: 100,
+    textAlignVertical: "top",
+  },
+  button: {
+    backgroundColor: "red",
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    alignItems: "center",
+    alignSelf: "flex-end",
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+});
 export default ContactUs;

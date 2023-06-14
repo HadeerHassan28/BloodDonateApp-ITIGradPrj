@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import styles from "./Organization.module.css";
-import { v4 as uuid } from "uuid";
-import { Link } from "react-router-dom";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import uuid from "react-native-uuid";
 import axios from "axios";
-const Organization = () => {
-  const [data, SetData] = useState({
-    id: uuid(),
+import { useNavigation } from "@react-navigation/native";
+const OrganizationSignUp = () => {
+  const [data, setData] = useState({
+    id: uuid,
     oName: "",
     email: "",
     password: "",
@@ -15,7 +23,6 @@ const Organization = () => {
     pNumber: "",
     sector: "",
   });
-
   const [isOrgNameIsValid, setIsOrgNameIsValid] = useState(false);
   const [isOrgNameIsFocused, setIsOrgNameIsFocused] = useState(false);
 
@@ -40,9 +47,8 @@ const Organization = () => {
   const [isPnumberValid, setIsPnumberValid] = useState(false);
   const [isPnumberFocused, setIsPnumberFocused] = useState(false);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
+  const navigation = useNavigation();
+  const handleChange = (name, value) => {
     const lettersRegex = /^[A-Za-z]+$/;
     const emailRegex = /^[\w\\.-]+@\w+\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2})?$/;
     const passwordRegex = /^\w{6,}$/;
@@ -58,15 +64,15 @@ const Organization = () => {
     const isEnteredAddressValid = addressRegex.test(value);
     const isEnteredPhoneNumberValid = phoneNumberRegex.test(value);
 
-    SetData((prevFormData) => ({
+    setData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
+
     if (name === "oName") {
       setIsOrgNameIsValid(isValid);
     } else if (name === "email") {
       setIsEmailValid(isMailValid);
-      console.log(true);
     } else if (name === "password") {
       setIsPasswordValid(isEnteredPasswordValid);
     } else if (name === "oCode") {
@@ -79,296 +85,258 @@ const Organization = () => {
       setIsPnumberValid(isEnteredPhoneNumberValid);
     }
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    e.preventDefault();
-    axios.get(" http://localhost:3002/org").then((res) => {
-      const users = res.data;
-      // console.log(users);
-      const user = users.find(
-        (user) =>
-          user.OrganizationCode === data.OrganizationCode &&
-          user.password === data.password
-      );
-      if (user) {
-        console.log("this account is existed");
-      } else {
-        if (
-          isOrgNameIsValid &&
-          isPasswordValid &&
-          isConfirmedPasswordValid &&
-          isAddressValid &&
-          isOrganiationCodeValid
-        ) {
-          //! get data from thr form and add it to the json data:
-          const newUser = {
-            id: uuid(),
-            orgName: data.oName,
-            password: data.password,
-            confirmPassword: data.confirmPassword,
-            OrganizationCode: data.oCode,
-            Address: data.Address,
-            sector: data.sector,
-            pNumber: data.pNumber,
-          };
-          axios
-            .post("http://localhost:3002/org", newUser)
-            .then((res) => {
-              console.log(res.data);
-              console.log("Done post");
-            })
-            .catch((err) => console.log("error post"));
+  const handlePickerChange = (name, value) => {
+    handleChange(name, value);
+  };
+  const handleSubmit = () => {
+    axios
+      .get("http://localhost:3000/org")
+      .then((res) => {
+        const users = res.data;
+        //console.warn(users);
+        const user = users.find(
+          (user) =>
+            user.OrganizationCode === data.OrganizationCode &&
+            user.password === data.password
+        );
+        if (user) {
+          console.log("this account is existed");
         } else {
-          console.log("Your Form Is Not Valid");
+          if (
+            isOrgNameIsValid &&
+            isPasswordValid &&
+            isConfirmedPasswordValid &&
+            isAddressValid &&
+            isOrganiationCodeValid
+          ) {
+            //! get data from thr form and add it to the json data:
+            const newUser = {
+              id: uuid,
+              orgName: data.oName,
+              password: data.password,
+              confirmPassword: data.confirmPassword,
+              OrganizationCode: data.oCode,
+              Address: data.Address,
+              sector: data.sector,
+              pNumber: data.pNumber,
+            };
+            axios
+              .post("http://localhost:3000/org", newUser)
+              .then((res) => {
+                // console.log(res.data);
+                console.warn("Done post");
+                //navigation.navigate("LogOrg");
+              })
+              .catch((err) => console.warn("err"));
+          } else console.warn("Your Form Is Not Valid");
         }
-      }
-    });
+      })
+      .catch((err) => console.warn("get", err));
   };
 
   return (
-    <div className="">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-6">
-            <h2 className="text-center text-danger my-5">
-              Sign Up Your Organization To Save a Life
-            </h2>
-            <form className="row g-3" onSubmit={handleSubmit}>
-              <div className="col-lg-12">
-                <label htmlFor="oName" className="form-label">
-                  Organization Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="oName"
-                  id="oName"
-                  aria-describedby="emailHelp"
-                  onChange={handleChange}
-                  value={data.oName}
-                  style={
-                    !isOrgNameIsFocused
-                      ? {}
-                      : isOrgNameIsValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsOrgNameIsFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsOrgNameIsFocused(false);
-                  }}
-                />
-              </div>
-              <div className="col-lg-12">
-                <label htmlFor="email" className="form-label">
-                  Organization Email
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  id="email"
-                  aria-describedby="emailHelp"
-                  onChange={handleChange}
-                  value={data.email}
-                  style={
-                    !isEmailFocused
-                      ? {}
-                      : isEmailValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsEmailFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsEmailFocused(false);
-                  }}
-                />
-              </div>
-              <div className="col-lg-6">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  id="password"
-                  aria-describedby="password"
-                  onChange={handleChange}
-                  value={data.password}
-                  style={
-                    !isPasswordFocused
-                      ? {}
-                      : isPasswordValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsPasswordFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsPasswordFocused(false);
-                  }}
-                />
-              </div>
-              <div className="col-lg-6">
-                <label htmlFor="confirmPassword" className="form-label">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  aria-describedby="confirmPassword"
-                  onChange={handleChange}
-                  value={data.confirmPassword}
-                  style={
-                    !isConfirmedPasswordFocused
-                      ? {}
-                      : isConfirmedPasswordValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsConfirmedPasswordFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsConfirmedPasswordFocused(false);
-                  }}
-                />
-              </div>
-              <div className="col-lg-6">
-                <label for="oCode" className="form-label">
-                  Organization Code
-                </label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="oCode"
-                  name="oCode"
-                  aria-describedby="oCode"
-                  onChange={handleChange}
-                  value={data.oCode}
-                  style={
-                    !isOrganiationCodeFocused
-                      ? {}
-                      : isOrganiationCodeValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsOrganiationCodeFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsOrganiationCodeFocused(false);
-                  }}
-                />
-              </div>
-              <div className="col-lg-6">
-                <label for="Address" className="form-label">
-                  Address
-                </label>
-                <input
-                  type="text"
-                  className="form-control w-100"
-                  id="Address"
-                  name="Address"
-                  aria-describedby="Address"
-                  onChange={handleChange}
-                  value={data.Address}
-                  style={
-                    !isAddressFocused
-                      ? {}
-                      : isAddressValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsAddressFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsAddressFocused(false);
-                  }}
-                />
-              </div>
-              <div className="col-lg-12">
-                <label for="pNumber" className="form-label">
-                  Phone Number
-                </label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="pNumber"
-                  name="pNumber"
-                  aria-describedby="pNumber"
-                  onChange={handleChange}
-                  value={data.pNumber}
-                  style={
-                    !isPnumberFocused
-                      ? {}
-                      : isPnumberValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsPnumberFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsPnumberFocused(false);
-                  }}
-                />
-              </div>
-              <div className="col-lg-4">
-                <select
-                  className="form-select"
-                  name="gender"
-                  onChange={handleChange}
-                  required
-                >
-                  <option selected hidden value="">
-                    Sector
-                  </option>
-                  <option value="governmental">governmental</option>
-                  <option value="Private">Private</option>
-                </select>
-              </div>
-              <p>
-                Have an Account?{" "}
-                <Link
-                  to="signin-org"
-                  className="text-decoration-none text-danger fw-bold"
-                >
-                  <span>Sign in Here</span>
-                </Link>
-              </p>
-              <button className="btn btn-danger py-3">Sign Up</button>
-            </form>
-          </div>
-          <div className="col-lg-6 mt-5 d-flex align-items-center">
-            <img
-              src={process.env.PUBLIC_URL + "/assets/images/hospital.jpg"}
-              className="img-fluid mt-5"
-              alt=""
-            />
-          </div>
-        </div>
-        <div className="col-lg-6 mt-5 d-flex align-items-center">
-          <img
-            src={process.env.PUBLIC_URL + "/assets/images/hospital.jpg"}
-            className="img-fluid mt-5"
-            alt=""
+    <ScrollView style={{ flex: 1, backgroundColor: "#fbf1f0" }}>
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <Text
+          style={{
+            textAlign: "center",
+            color: "red",
+            marginVertical: 20,
+            fontSize: 24,
+          }}
+        >
+          Sign Up Your Organization To Save a Life
+        </Text>
+        <View style={{ marginHorizontal: 20 }}>
+          <TextInput
+            style={[
+              {
+                borderWidth: 1,
+                borderColor:
+                  isOrgNameIsFocused && isOrgNameIsValid ? "green" : "red",
+                padding: 10,
+              },
+              { marginBottom: 10 },
+            ]}
+            placeholder="Organization Name"
+            onChangeText={(value) => handleChange("oName", value)}
+            value={data.oName}
+            onFocus={() => setIsOrgNameIsFocused(true)}
+            onBlur={() => setIsOrgNameIsFocused(false)}
           />
-        </div>
-      </div>
-    </div>
+          <TextInput
+            style={[
+              {
+                borderWidth: 1,
+                borderColor: isEmailFocused && isEmailValid ? "green" : "red",
+                padding: 10,
+              },
+              { marginBottom: 10 },
+            ]}
+            placeholder="Organization Email"
+            onChangeText={(value) => handleChange("email", value)}
+            value={data.email}
+            onFocus={() => setIsEmailFocused(true)}
+            onBlur={() => setIsEmailFocused(false)}
+          />
+          <TextInput
+            style={[
+              {
+                borderWidth: 1,
+                borderColor:
+                  isPasswordFocused && isPasswordValid ? "green" : "red",
+                padding: 10,
+              },
+              { marginBottom: 10 },
+            ]}
+            placeholder="Password"
+            secureTextEntry
+            onChangeText={(value) => handleChange("password", value)}
+            value={data.password}
+            onFocus={() => setIsPasswordFocused(true)}
+            onBlur={() => setIsPasswordFocused(false)}
+          />
+          <TextInput
+            style={[
+              {
+                borderWidth: 1,
+                borderColor:
+                  isConfirmedPasswordFocused && isConfirmedPasswordValid
+                    ? "green"
+                    : "red",
+                padding: 10,
+              },
+              { marginBottom: 10 },
+            ]}
+            placeholder="Confirm Password"
+            secureTextEntry
+            onChangeText={(value) => handleChange("confirmPassword", value)}
+            value={data.confirmPassword}
+            onFocus={() => setIsConfirmedPasswordFocused(true)}
+            onBlur={() => setIsConfirmedPasswordFocused(false)}
+          />
+          <TextInput
+            style={[
+              {
+                borderWidth: 1,
+                borderColor:
+                  isOrganiationCodeFocused && isOrganiationCodeValid
+                    ? "green"
+                    : "red",
+                padding: 10,
+              },
+              { marginBottom: 10 },
+            ]}
+            placeholder="Organization Code"
+            keyboardType="number-pad"
+            onChangeText={(value) => handleChange("oCode", value)}
+            value={data.oCode}
+            onFocus={() => setIsOrganiationCodeFocused(true)}
+            onBlur={() => setIsOrganiationCodeFocused(false)}
+          />
+          <TextInput
+            style={[
+              {
+                borderWidth: 1,
+                borderColor:
+                  isAddressFocused && isAddressValid ? "green" : "red",
+                padding: 10,
+              },
+              { marginBottom: 10 },
+            ]}
+            placeholder="Address"
+            onChangeText={(value) => handleChange("Address", value)}
+            value={data.Address}
+            onFocus={() => setIsAddressFocused(true)}
+            onBlur={() => setIsAddressFocused(false)}
+          />
+          <TextInput
+            style={[
+              {
+                borderWidth: 1,
+                borderColor:
+                  isPnumberFocused && isPnumberValid ? "green" : "red",
+                padding: 10,
+              },
+              { marginBottom: 10 },
+            ]}
+            placeholder="Phone Number"
+            keyboardType="phone-pad"
+            onChangeText={(value) => handleChange("pNumber", value)}
+            value={data.pNumber}
+            onFocus={() => setIsPnumberFocused(true)}
+            onBlur={() => setIsPnumberFocused(false)}
+          />
+          <View
+            style={{ borderWidth: 1, borderColor: "gray", marginBottom: 10 }}
+          >
+            <Picker
+              selectedValue={data.gender}
+              onValueChange={(value) => handlePickerChange("gender", value)}
+            >
+              <Picker.Item label="Sector" value="" />
+              <Picker.Item label="Governmental" value="governmental" />
+              <Picker.Item label="Private" value="Private" />
+            </Picker>
+          </View>
+          <Text>
+            Have an Account?{" "}
+            <Text style={{ color: "red", fontWeight: "bold" }}>
+              Sign in Here
+            </Text>
+          </Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "red",
+              paddingVertical: 10,
+              marginTop: 10,
+            }}
+            onPress={handleSubmit}
+          >
+            <Text style={{ color: "white", textAlign: "center", fontSize: 18 }}>
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
-export default Organization;
+const styles = StyleSheet.create({
+  title: {
+    textAlign: "center",
+    color: "red",
+    marginTop: 50,
+    fontSize: 20,
+    backgroundColor: "#fbf1f0",
+  },
+  form: {
+    marginHorizontal: 20,
+    marginTop: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "gray",
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    height: 40,
+  },
+  button: {
+    backgroundColor: "red",
+    alignItems: "center",
+    padding: 15,
+    borderRadius: 5,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  imageContainer: {
+    alignItems: "center",
+    marginTop: 20,
+  },
+});
+
+export default OrganizationSignUp;

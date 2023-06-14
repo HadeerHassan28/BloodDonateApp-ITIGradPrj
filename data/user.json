@@ -128,7 +128,7 @@
       "id": "92152090-db4c-4926-a073-3a47f541e3b1",
       "firstName": "ahmed",
       "lastName": "saaed",
-      "email": "ahmed@gmail.com",
+      "email": "Ahmed@gmail.com",
       "password": "123456",
       "confirmPassword": "123456",
       "Address": "Mohamed ",
@@ -137,6 +137,32 @@
       "bloodType": "A+",
       "gender": "Male",
       "isVolunteer": false
+    },
+    {
+      "password": "nada123",
+      "confirmPassword": "nada123",
+      "Address": "Cairo",
+      "pNumber": "01222222222"
+    },
+    {
+      "id": {
+        "NIL": "00000000-0000-0000-0000-000000000000",
+        "DNS": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+        "URL": "6ba7b811-9dad-11d1-80b4-00c04fd430c8",
+        "OID": "6ba7b812-9dad-11d1-80b4-00c04fd430c8",
+        "X500": "6ba7b814-9dad-11d1-80b4-00c04fd430c8"
+      },
+      "password": "saaed123",
+      "confirmPassword": "saaed123",
+      "Address": "Cairo",
+      "pNumber": "01222222222"
+    },
+    {
+      "id": "d113af14-5984-4818-a54d-967ab1d1ec96",
+      "password": "saaed123456789",
+      "confirmPassword": "saaed123456789",
+      "Address": "Cairo",
+      "pNumber": "01222222222"
     }
   ]
 }

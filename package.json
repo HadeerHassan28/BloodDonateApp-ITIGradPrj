@@ -9,14 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-picker/picker": "^2.4.10",
     "@react-navigation/bottom-tabs": "^6.5.7",
+    "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
-<<<<<<< HEAD
-    "axios": "^1.4.0",
-=======
     "@react-navigation/stack": "^6.3.16",
->>>>>>> f601aed40b83b0f74c8f0f120775ce0dda2af6e0
+    "axios": "^1.4.0",
     "expo": "~48.0.18",
     "expo-font": "~11.1.1",
     "expo-status-bar": "~1.4.4",
@@ -27,7 +27,8 @@
     "react-native-google-fonts": "^0.0.0",
     "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "4.5.0",
-    "react-native-screens": "~3.20.0"
+    "react-native-screens": "~3.20.0",
+    "react-native-uuid": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

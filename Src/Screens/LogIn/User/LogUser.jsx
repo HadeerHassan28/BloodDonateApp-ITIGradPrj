@@ -56,7 +56,7 @@ const LogUser = () => {
   const handleSubmit = () => {
     setIsSubmitted(true);
 
-    axios.get("http://localhost:3001/users").then((res) => {
+    axios.get("http://localhost:3002/users").then((res) => {
       const users = res.data;
       const user = users.find(
         (user) => user.email === data.email && user.password === data.password
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#fbf1f0",
   },
   login_user_content: {
     width: "80%",

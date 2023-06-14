@@ -7,7 +7,6 @@ import {
   StyleSheet,
 } from "react-native";
 import axios from "axios";
-import { v4 as uuid } from "uuid";
 
 const LogOrg = () => {
   const [orgCode, setOrgCode] = useState("");
@@ -81,6 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#fbf1f0",
   },
   login_org_content: {
     width: "80%",
