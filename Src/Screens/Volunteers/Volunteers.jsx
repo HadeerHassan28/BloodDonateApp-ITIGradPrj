@@ -1,97 +1,125 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, TextInput, Picker, Button } from "react-native";
 import styles from "./Volunteers.module.css";
 import { useRef } from "react";
 import { v4 as uuid } from "uuid";
-
+import axios from "axios";
 
 const Volunteers = () => {
-  const volunteers = [
-    { img: "assets/images/user.jpeg", name: "Rehab", location: "Giza", bloodGroup: "A+" },
-    { img: "assets/images/user.jpeg", name: "Hadeer", location: "Cairo", bloodGroup: "A-" },
-    { img: "assets/images/user.jpeg", name: "Hossam", location: "Alexandria", bloodGroup: "B+" },
-    { img: "assets/images/user.jpeg", name: "Mohamed", location: "Cairo", bloodGroup: "B-" },
-    { img: "assets/images/user.jpeg", name: "Ahmed", location: "Cairo", bloodGroup: "AB+" },
-    { img: "assets/images/user.jpeg", name: "Doaa", location: "Cairo", bloodGroup: "AB-" },
-    { img: "assets/images/user.jpeg", name: "Sara", location: "Cairo", bloodGroup: "O+" },
-    { img: "assets/images/user.jpeg", name: "Nora", location: "Cairo", bloodGroup: "O-" }
-  ]
-
+  const searchResStep = 9;
+  const [volunteers, setVolunteers] = useState(null);
   const [searchRes, setSearchRes] = useState(volunteers);
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(searchResStep);
   const bloodGroup = useRef();
   const location = useRef();
+  useEffect(()=>{
+    axios.get("http://localhost:3000/users").then(res => {
+      setVolunteers(res.data)
+      setSearchRes(res.data)
+    })
+  },[])
+
   const searchBloodGroupLocation = () => {
-    if (bloodGroup.current.value !== 'All' && bloodGroup.current.value !== '' && location.current.value !== '') {
-      setSearchRes(volunteers.filter(vol => vol.bloodGroup === bloodGroup.current.value && vol.location.toLowerCase().includes(location.current.value.toLowerCase())))
+    if(volunteers !== null){
+      if (bloodGroup.current.value !== 'All' && bloodGroup.current.value !== '' && location.current.value !== '') {
+        setSearchRes(volunteers.filter(vol => vol.bloodType === bloodGroup.current.value && vol.city.toLowerCase().includes(location.current.value.toLowerCase())))
+      }
+      else if (bloodGroup.current.value !== 'All' && bloodGroup.current.value !== '') {
+        setSearchRes(volunteers.filter(vol => vol.bloodType === bloodGroup.current.value))
+      }
+      else if (location.current.value !== '') {
+        setSearchRes(volunteers.filter(vol => vol.city.toLowerCase().includes(location.current.value.toLowerCase())))
+      }
+      else {
+        setSearchRes(volunteers)
+      }
     }
-    else if (bloodGroup.current.value !== 'All' && bloodGroup.current.value !== '') {
-      setSearchRes(volunteers.filter(vol => vol.bloodGroup === bloodGroup.current.value))
+    else{
+      location.current.value = '';
+      bloodGroup.current.value = '';
     }
-    else if (location.current.value !== '') {
-      setSearchRes(volunteers.filter(vol => vol.location.toLowerCase().includes(location.current.value.toLowerCase())))
-    }
-    else {
-      setSearchRes(volunteers)
-    }
+
+    setStartIndex(0);
+    setEndIndex(searchResStep);
   }
 
   const resetSearch = () => {
     setSearchRes(volunteers);
+    setStartIndex(0);
+    setEndIndex(searchResStep);
     location.current.value = '';
     bloodGroup.current.value = '';
   }
 
+  const handlePrev = ()=>{
+    if(startIndex > 0){
+      setStartIndex(oldStart => oldStart - searchResStep)
+      setEndIndex(oldEnd => oldEnd - searchResStep)
+    }
+  }
+  const handleNext = ()=>{
+    if(endIndex < searchRes.length){
+      setStartIndex(oldStart => oldStart + searchResStep)
+      setEndIndex(oldEnd => oldEnd + searchResStep)
+    }
+  }
+
   return (
-    <>
-      <div className="text-center p-5">
+    <View>
+      <View className="text-center p-5">
         <h2 style={{ color: "#ee394a" }}>Volunteers</h2>
-        <p>Search our Super Hero Volunteers</p>
-      </div>
-      <div className={`${styles.searchBox} py-4`}>
-        <span>Filter with:</span>
-        <select className={`${styles.select}`} ref={bloodGroup} onChange={searchBloodGroupLocation}>
-          <option label="Blood Type" hidden></option>
-          <option>All</option>
-          <option name="A+" value="A+">A+</option>
-          <option name="A-" value="A-">A-</option>
-          <option name="B+" value="B+">B+</option>
-          <option name="B-" value="B-">B-</option>
-          <option name="AB+" value="AB+">AB+</option>
-          <option name="AB-" value="AB-">AB-</option>
-          <option name="O+" value="O+">O+</option>
-          <option name="O-" value="O-">O-</option>
-        </select>
-        <input className={styles.customInput} type="text" list="locations" name="location" id="location" placeholder="Location" ref={location} onChange={searchBloodGroupLocation} />
-        <datalist id="locations">
-          <option value="Alexandria">Alexandria</option>
-          <option value="Aswan">Aswan</option>
-          <option value="Asyut">Asyut</option>
-          <option value="Beheira">Beheira</option>
-          <option value="Beni Suef">Beni Suef</option>
-          <option value="Cairo">Cairo</option>
-          <option value="Dakahlia">Dakahlia</option>
-          <option value="Damietta">Damietta</option>
-          <option value="Faiyum">Faiyum</option>
-          <option value="Gharbia">Gharbia</option>
-          <option value="Giza">Giza</option>
-          <option value="Ismailia">Ismailia</option>
-          <option value="Kafr El Sheikh">Kafr El Sheikh</option>
-          <option value="Luxor">Luxor</option>
-          <option value="Matruh">Matruh</option>
-          <option value="Minya">Minya</option>
-          <option value="Monufia">Monufia</option>
-          <option value="New Valley">New Valley</option>
-          <option value="North Sinai">North Sinai</option>
-          <option value="Port Said">Port Said</option>
-          <option value="Qalyubia">Qalyubia</option>
-          <option value="Qena">Qena</option>
-          <option value="Red Sea">Red Sea</option>
-          <option value="Sharqia">Sharqia</option>
-          <option value="Sohag">Sohag</option>
-          <option value="South Sinai">South Sinai</option>
-          <option value="Suez">Suez</option>
-        </datalist>
-        <button className="btn btn-outline-danger" onClick={resetSearch}>Reset</button>
-      </div>
+        <Text>Search our Super Hero Volunteers</Text>
+      </View>
+      <View className={`${styles.searchBox} py-4`}>
+        <Text className={styles.filterWith}>Filter with:</Text>
+        <Picker className={`${styles.select}`} ref={bloodGroup} onChange={searchBloodGroupLocation}>
+          <Picker.Item label="Blood Type" hidden></Picker.Item>
+          <Picker.Item>All</Picker.Item>
+          <Picker.Item name="A+" value="A+">A+</Picker.Item>
+          <Picker.Item name="A-" value="A-">A-</Picker.Item>
+          <Picker.Item name="B+" value="B+">B+</Picker.Item>
+          <Picker.Item name="B-" value="B-">B-</Picker.Item>
+          <Picker.Item name="AB+" value="AB+">AB+</Picker.Item>
+          <Picker.Item name="AB-" value="AB-">AB-</Picker.Item>
+          <Picker.Item name="O+" value="O+">O+</Picker.Item>
+          <Picker.Item name="O-" value="O-">O-</Picker.Item>
+        </Picker>
+        {/* <input className={styles.customInput} type="text" list="locations" name="location" id="location" placeholder="Location" ref={location} onChange={searchBloodGroupLocation} /> */}
+        <TextInput ref={location} onChange={searchBloodGroupLocation} placeholder="Location" />
+        <Picker id="locations" ref={location}>
+          <Picker.Item value="Alexandria">Alexandria</Picker.Item>
+          <Picker.Item value="Aswan">Aswan</Picker.Item>
+          <Picker.Item value="Asyut">Asyut</Picker.Item>
+          <Picker.Item value="Beheira">Beheira</Picker.Item>
+          <Picker.Item value="Beni Suef">Beni Suef</Picker.Item>
+          <Picker.Item value="Cairo">Cairo</Picker.Item>
+          <Picker.Item value="Dakahlia">Dakahlia</Picker.Item>
+          <Picker.Item value="Damietta">Damietta</Picker.Item>
+          <Picker.Item value="Faiyum">Faiyum</Picker.Item>
+          <Picker.Item value="Gharbia">Gharbia</Picker.Item>
+          <Picker.Item value="Giza">Giza</Picker.Item>
+          <Picker.Item value="Ismailia">Ismailia</Picker.Item>
+          <Picker.Item value="Kafr El Sheikh">Kafr El Sheikh</Picker.Item>
+          <Picker.Item value="Luxor">Luxor</Picker.Item>
+          <Picker.Item value="Matruh">Matruh</Picker.Item>
+          <Picker.Item value="Minya">Minya</Picker.Item>
+          <Picker.Item value="Monufia">Monufia</Picker.Item>
+          <Picker.Item value="New Valley">New Valley</Picker.Item>
+          <Picker.Item value="North Sinai">North Sinai</Picker.Item>
+          <Picker.Item value="Port Said">Port Said</Picker.Item>
+          <Picker.Item value="Qalyubia">Qalyubia</Picker.Item>
+          <Picker.Item value="Qena">Qena</Picker.Item>
+          <Picker.Item value="Red Sea">Red Sea</Picker.Item>
+          <Picker.Item value="Sharqia">Sharqia</Picker.Item>
+          <Picker.Item value="Sohag">Sohag</Picker.Item>
+          <Picker.Item value="South Sinai">South Sinai</Picker.Item>
+          <Picker.Item value="Suez">Suez</Picker.Item>
+        </Picker>
+        {/* <button className="btn btn-outline-danger" onClick={resetSearch}>Reset</button> */}
+        <Button title="Reset" onPress={resetSearch} />
+      </View>
+      <View className={searchRes? "d-none text-center text-danger fs-3": "d-block text-center text-danger fs-4"}>Please wait data loading</View>
       <table className={`${styles.tableW} table w-75 mt-5 mx-auto`}>
         <thead>
           <tr>
@@ -116,17 +144,33 @@ const Volunteers = () => {
           </tr>
         </thead>
         <tbody>
-          {searchRes.map(vol => <tr key={uuid()}>
-            <td className="text-start ps-3">
-              <img src={vol.img} alt="profile" style={{ width: "60px", height: "60px", borderRadius: "30px" }} />
-              {vol.name}</td>
-            <td className="text-center">{vol.location}</td>
-            <td className="text-center">{vol.bloodGroup}</td>
-          </tr>)}
+          {searchRes!==null && searchRes.length === 0 ? <tr><td colText={3} className="fs-4">Sorry, no results</td></tr>: searchRes?searchRes.slice(startIndex, endIndex).map(vol => !vol.isVolunteer&&<tr key={uuid()}>
+            <td className={`${styles.volName} text-start ps-3`}>
+              <img src="assets/images/user.jpeg" alt="profile" style={{ width: "8vw", height: "8vw", borderRadius: "4vw" }} />
+              <Text>{vol.firstName} {vol.lastName}</Text></td>
+            <td className="text-center">{vol.Address}, {vol.city}</td>
+            <td className="text-center">{vol.bloodType}</td>
+          </tr>):<tr><td colText={3} className="fs-4">Loading...</td></tr>}
         </tbody>
+        <tfoot>
+          {searchRes&&searchRes.length > searchResStep&& <tr>
+            <td colText={3} className="text-center">
+              <Button onPress={handlePrev} className={`${styles.navigateRes} text-center m-2`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+              </Button>
+              <Button onPress={handleNext} className={`${styles.navigateRes} text-center m-2`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+              </Button>
+            </td>
+          </tr>}
+        </tfoot>
       </table>
-      <button className="btn btn-outline-danger d-block mx-auto">Start saving lifes</button>
-    </>
+      <Button className="btn btn-outline-danger d-block mx-auto fw-bold my-2 mb-5">Start saving lifes</Button>
+    </View>
   );
 };
 
