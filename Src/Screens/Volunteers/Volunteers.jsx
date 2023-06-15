@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TextInput, Picker, Button } from "react-native";
+import { ScrollView, View, Text, TextInput, Picker, Button, Image } from "react-native";
 import { DataTable } from 'react-native-paper';
-import styles from "./Volunteers.module.css";
+import styles from "./VolunteersStyle";
 import { useRef } from "react";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
@@ -15,7 +15,7 @@ const Volunteers = () => {
   const bloodGroup = useRef();
   const location = useRef();
   useEffect(()=>{
-    axios.get("http://localhost:3000/users").then(res => {
+    axios.get("http://localhost:3002/users").then(res => {
       setVolunteers(res.data)
       setSearchRes(res.data)
     })
@@ -67,9 +67,9 @@ const Volunteers = () => {
   }
 
   return (
-    <View>
+    <ScrollView>
       <View className="text-center p-5">
-        <h2 style={{ color: "#ee394a" }}>Volunteers</h2>
+        <Text style={styles.heading}>Volunteers</Text>
         <Text>Search our Super Hero Volunteers</Text>
       </View>
       <View className={`${styles.searchBox} py-4`}>
@@ -145,7 +145,7 @@ const Volunteers = () => {
 
           {searchRes!==null && searchRes.length === 0 ? <DataTable.Row><DataTable.Cell colText={3} className="fs-4">Sorry, no results</DataTable.Cell></DataTable.Row>: searchRes?searchRes.slice(startIndex, endIndex).map(vol => !vol.isVolunteer&&<DataTable.Row key={uuid()}>
             <DataTable.Cell className={`${styles.volName} text-start ps-3`}>
-              <img src="assets/images/user.jpeg" alt="profile" style={{ width: "8vw", height: "8vw", borderRadius: "4vw" }} />
+              <Image src="assets/images/user.jpeg" alt="profile" style={{ width: "8vw", height: "8vw", borderRadius: "4vw" }} />
               <Text>{vol.firstName} {vol.lastName}</Text></DataTable.Cell>
             <DataTable.Cell className="text-center">{vol.Address}, {vol.city}</DataTable.Cell>
             <DataTable.Cell className="text-center">{vol.bloodType}</DataTable.Cell>
@@ -168,7 +168,7 @@ const Volunteers = () => {
 
       </DataTable>
       <Button className="btn btn-outline-danger d-block mx-auto fw-bold my-2 mb-5">Start saving lifes</Button>
-    </View>
+    </ScrollView>
   );
 };
 
