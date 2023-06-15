@@ -10,6 +10,7 @@ import Blogs from "../Screens/Blogs/Blogs";
 import OrganizationSignUp from "../Screens/SignUp/Organization/Organization";
 import UserSignUp from "../Screens/SignUp/User/User";
 import LogUser from "../Screens/LogIn/User/LogUser";
+import Volunteers from "../Screens/Volunteers/Volunteers"
 import LogOrg from "../Screens/LogIn/Organizations/LogOrg";
 import TermsAndConditions from "../Screens/Terms/Terms";
 import ContactUs from "../Screens/ContactUs/ContactUs";
@@ -57,10 +58,10 @@ const Root = () => {
         }}
       />
       <Tab.Screen
-        name={routes.blogs}
-        component={Blogs}
+        name={routes.Volunteers}
+        component={Volunteers}
         options={{
-          tabBarLabel: "Blogs",
+          tabBarLabel: "Volunteers",
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",
           tabBarLabelStyle: {

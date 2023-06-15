@@ -1,4 +1,5 @@
 import { Platform, StyleSheet } from "react-native";
+import colors from "../../Common/Colors";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,8 +25,19 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 10,
   },
+  searchBox: {
+    padding: 15,
+    backgroundColor: "#ffffff",
+    marginTop: 50,
+    borderRadius: 5,
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    alignItems: "center",
+    border: "1px solid gray",
+},
   button: {
-    backgroundColor: "red",
+    backgroundColor: colors.mainColor,
     paddingVertical: 15,
     borderRadius: 5,
     marginTop: 20,
