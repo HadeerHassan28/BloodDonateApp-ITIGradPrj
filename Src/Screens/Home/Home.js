@@ -8,17 +8,26 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import InfoHome from "../InfoHome/InfoHome";
+//import { useNavigation } from "@react-navigation/native";
 export default function Home() {
-  const [isSelectionActive, setIsSelectionActive] = useState(false);
+  // const [isSelectionActive, setIsSelectionActive] = useState(false);
+  // const navigation = useNavigation();
+  // const handleSelection = () => {
+  //   setIsSelectionActive(!isSelectionActive);
+  //   console.warn(isSelectionActive);
+  // };
 
-  const handleSelection = () => {
-    setIsSelectionActive(!isSelectionActive);
-    console.log(isSelectionActive);
-  };
-
+  // const openDrawer = () => {
+  //   navigation.openDrawer();
+  // };
   return (
     <ScrollView style={styles.container}>
+      <TouchableOpacity style={styles.drawerLogoContainer}>
+        <Image
+          source={require("../../../assets/images/stock-vector-1.png")}
+          style={styles.hamLogo}
+        />
+      </TouchableOpacity>
       <View style={styles.logoContainer}>
         <Image
           source={require("../../../assets/images/heart.png")}
@@ -37,14 +46,14 @@ export default function Home() {
               Find blood donors near your location and make a blood request in
               less than 5 minutes.
             </Text>
-            <TouchableOpacity style={styles.button} onPress={handleSelection}>
+            <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText}>Donate Now</Text>
             </TouchableOpacity>
           </View>
 
-          {isSelectionActive && (
+          {/* {isSelectionActive && (
             <Selection onSelection={setIsSelectionActive} />
-          )}
+          )} */}
         </View>
       </View>
       <View style={styles.infoContainer}>{/* <InfoHome /> */}</View>
@@ -64,6 +73,15 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === "android" ? 30 : 0,
     flex: 1,
     backgroundColor: "#fbf1f0",
+  },
+  drawerLogoContainer: {
+    marginRight: 10,
+  },
+  hamLogo: {
+    color: "red",
+    width: 30,
+    height: 30,
+    resizeMode: "contain",
   },
   logoContainer: {
     alignItems: "center",

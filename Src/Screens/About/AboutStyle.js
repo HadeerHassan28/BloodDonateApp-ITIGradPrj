@@ -5,6 +5,8 @@ import colors from "../../Common/Colors";
 const windowWidth = Dimensions.get("window").width;
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: "#fbf1f0",
     padding: 16,
   },
   rowContainer: {
