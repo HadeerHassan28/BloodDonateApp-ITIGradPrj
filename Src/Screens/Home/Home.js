@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   View,
@@ -9,20 +8,21 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-
+//import { useNavigation } from "@react-navigation/native";
 export default function Home() {
-  const [isSelectionActive, setIsSelectionActive] = useState(false);
+  // const [isSelectionActive, setIsSelectionActive] = useState(false);
+  // const navigation = useNavigation();
+  // const handleSelection = () => {
+  //   setIsSelectionActive(!isSelectionActive);
+  //   console.warn(isSelectionActive);
+  // };
 
-  const handleSelection = () => {
-    setIsSelectionActive(!isSelectionActive);
-    console.warn(isSelectionActive);
-  };
-  const openDrawer = () => {
-    navigation.openDrawer();
-  };
+  // const openDrawer = () => {
+  //   navigation.openDrawer();
+  // };
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity onPress={openDrawer} style={styles.drawerLogoContainer}>
+      <TouchableOpacity style={styles.drawerLogoContainer}>
         <Image
           source={require("../../../assets/images/stock-vector-1.png")}
           style={styles.hamLogo}
@@ -46,14 +46,14 @@ export default function Home() {
               Find blood donors near your location and make a blood request in
               less than 5 minutes.
             </Text>
-            <TouchableOpacity style={styles.button} onPress={handleSelection}>
+            <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText}>Donate Now</Text>
             </TouchableOpacity>
           </View>
 
-          {isSelectionActive && (
+          {/* {isSelectionActive && (
             <Selection onSelection={setIsSelectionActive} />
-          )}
+          )} */}
         </View>
       </View>
       <View style={styles.infoContainer}>{/* <InfoHome /> */}</View>
