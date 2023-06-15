@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   View,
@@ -8,17 +9,25 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import InfoHome from "../InfoHome/InfoHome";
+
 export default function Home() {
   const [isSelectionActive, setIsSelectionActive] = useState(false);
 
   const handleSelection = () => {
     setIsSelectionActive(!isSelectionActive);
-    console.log(isSelectionActive);
+    console.warn(isSelectionActive);
   };
-
+  const openDrawer = () => {
+    navigation.openDrawer();
+  };
   return (
     <ScrollView style={styles.container}>
+      <TouchableOpacity onPress={openDrawer} style={styles.drawerLogoContainer}>
+        <Image
+          source={require("../../../assets/images/stock-vector-1.png")}
+          style={styles.hamLogo}
+        />
+      </TouchableOpacity>
       <View style={styles.logoContainer}>
         <Image
           source={require("../../../assets/images/heart.png")}
@@ -64,6 +73,15 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === "android" ? 30 : 0,
     flex: 1,
     backgroundColor: "#fbf1f0",
+  },
+  drawerLogoContainer: {
+    marginRight: 10,
+  },
+  hamLogo: {
+    color: "red",
+    width: 30,
+    height: 30,
+    resizeMode: "contain",
   },
   logoContainer: {
     alignItems: "center",

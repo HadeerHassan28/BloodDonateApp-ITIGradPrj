@@ -1,15 +1,21 @@
-import { View, Text } from "react-native";
-import React from "react";
-import "react-native-gesture-handler";
-import routes from "../../Src/Common/routes";
-import About from "../../Src/Screens/About/About";
-import Blogs from "../../Src/Screens/Blogs/Blogs";
-const Drawer = createDrawerNavigator();
-export function MyDrawer() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name={routes.about} component={About} />
-      <Drawer.Screen name={routes.blogs} component={Blogs} />
-    </Drawer.Navigator>
-  );
-}
+// import React from "react";
+// import { createDrawerNavigator } from "@react-navigation/drawer";
+
+// import HomeScreen from "../../Src/Screens/Home/Home";
+// import DrawerContent from "./DrawerConetnt";
+// import routes from "../../Src/Common/routes";
+// import About from "../../Src/Screens/About/About";
+// const Drawer = createDrawerNavigator();
+// const DrawerNavigator = () => {
+//   return (
+//     <Drawer.Navigator
+//       screenOptions={{ headerShowen: false }}
+//       drawerContent={(props) => <DrawerContent {...props} />}
+//     >
+//       <Drawer.Screen name={routes.Home} component={HomeScreen} />
+//       <Drawer.Screen name={routes.about} component={About} />
+//     </Drawer.Navigator>
+//   );
+// };
+
+// export default DrawerNavigator;
