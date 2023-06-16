@@ -9,7 +9,8 @@ const routes = Object.freeze({
   LogOrg: "LogOrg",
   TermsAndConditions: "TermsAndConditions",
   ContactUs: "ContactUs",
-  Volunteers: "Volunteers"
+  Volunteers: "Volunteers",
+  OrgProfile: "OrgProfile",
 });
 
 export default routes;

@@ -8,21 +8,17 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-//import { useNavigation } from "@react-navigation/native";
-export default function Home() {
-  // const [isSelectionActive, setIsSelectionActive] = useState(false);
-  // const navigation = useNavigation();
-  // const handleSelection = () => {
-  //   setIsSelectionActive(!isSelectionActive);
-  //   console.warn(isSelectionActive);
-  // };
+import { useNavigation } from "@react-navigation/native";
 
-  // const openDrawer = () => {
-  //   navigation.openDrawer();
-  // };
+export default function Home() {
+  const navigation = useNavigation();
+
+  const openDrawer = () => {
+    // navigation.openDrawer();
+  };
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity style={styles.drawerLogoContainer}>
+      <TouchableOpacity onPress={openDrawer} style={styles.drawerLogoContainer}>
         <Image
           source={require("../../../assets/images/stock-vector-1.png")}
           style={styles.hamLogo}

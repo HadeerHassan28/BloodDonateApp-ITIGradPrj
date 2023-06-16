@@ -7,11 +7,13 @@ import {
   StyleSheet,
 } from "react-native";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
+import routes from "../../../Common/routes";
 
 const LogOrg = () => {
   const [orgCode, setOrgCode] = useState("");
   const [password, setPassword] = useState("");
-
+  const { navigate } = useNavigation();
   const handleOrgCode = (code) => {
     setOrgCode(code);
   };
@@ -30,11 +32,11 @@ const LogOrg = () => {
         });
         if (orgLogin) {
           console.warn("done");
-          //navigate("orgprofile")
+          navigate(routes.OrgProfile);
         } else {
           console.warn("error");
         }
-        console.log(orgLogin);
+        // console.warn(orgLogin);
       });
     }
   };
