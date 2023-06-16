@@ -11,14 +11,14 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
-  const openDrawer = () => {
-    // navigation.openDrawer();
-  };
+  // const openDrawer = () => {
+  //   navigation.openDrawer();
+  // };
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity onPress={openDrawer} style={styles.drawerLogoContainer}>
+      <TouchableOpacity style={styles.drawerLogoContainer}>
         <Image
           source={require("../../../assets/images/stock-vector-1.png")}
           style={styles.hamLogo}
