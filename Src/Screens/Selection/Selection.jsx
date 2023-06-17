@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { BsHospital } from "react-icons/bs";
-import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import colors from "../../Common/Colors";
 
 const Selection = ({ onSelection }) => {
   const optionOne = useRef();
@@ -35,9 +35,9 @@ const Selection = ({ onSelection }) => {
 
   return (
     <>
-      <TouchableOpacity style={styles.overlay} onPress={toggleSelection} />
-      <View style={[styles.selection, { width: "75%" }]}>
-        <View style={styles.container}>
+      <View style={styles.overlay} onPress={toggleSelection}></View>
+      <View style={styles.container}>
+        <View style={[styles.selection, { marginHorizontal: 10 }]}>
           <Text style={styles.heading}>Choose Your Plan</Text>
           <View style={styles.row}>
             <TouchableOpacity
@@ -50,7 +50,12 @@ const Selection = ({ onSelection }) => {
               ref={optionOne}
             >
               <Text style={styles.optionTitle}>Organization</Text>
-              <BsHospital size={64} color="#ee394a" />
+              {/* <BsHospital size={64} color="#ee394a" /> */}
+              <Ionicons
+                name={"business-outline"}
+                size={25}
+                color={colors.mainColor}
+              />
               <Text style={styles.optionDescription}>
                 This Plan Include Hospitals and Blood Banks
               </Text>
@@ -70,7 +75,12 @@ const Selection = ({ onSelection }) => {
               ref={optionTwo}
             >
               <Text style={styles.optionTitle}>User</Text>
-              <AiOutlineUser size={64} color="#ee394a" />
+              {/* <AiOutlineUser size={64} color="#ee394a" /> */}
+              <Ionicons
+                name={"person-outline"}
+                size={25}
+                color={colors.mainColor}
+              />
               <Text style={styles.optionDescription}>
                 This Plan Include Donors and Recipients
               </Text>
@@ -125,16 +135,15 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   selection: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: [{ translateX: "-50%" }, { translateY: "-50%" }],
     backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
     borderRadius: 10,
   },
   container: {
     flex: 1,
+    justifyContent: "center",
     alignItems: "center",
   },
   heading: {

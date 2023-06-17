@@ -22,8 +22,8 @@ const Root = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name={routes.Selection}
-        component={Selection}
+        name={routes.Home}
+        component={Home}
         options={{
           tabBarLabel: "Home",
           tabBarActiveTintColor: colors.mainColor,

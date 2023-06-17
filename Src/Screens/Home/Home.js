@@ -66,7 +66,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === "android" ? 30 : 0,
+    // marginTop: Platform.OS === "android" ? 30 : 0,
     flex: 1,
     backgroundColor: "#fbf1f0",
   },
@@ -98,13 +98,13 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: "center",
-    marginTop: "3rem",
+    // marginTop: "3rem",
     marginBottom: 0,
   },
   title: {
     letterSpacing: 4,
     fontSize: 35,
-    //fontFamily: "Montserrat Alternates",
+    fontFamily: "MontserratAlternates-Regular",
     fontWeight: "800",
     color: "#ff4951",
     marginBottom: 5,
@@ -128,14 +128,14 @@ const styles = StyleSheet.create({
   tag: {
     letterSpacing: 4,
     fontSize: 14,
-    fontFamily: "Montserrat Alternates",
+    fontFamily: "MontserratAlternates-Regular",
     fontWeight: "bold",
     color: "#000",
     textAlign: "center",
   },
   description: {
     fontSize: 14,
-    fontFamily: "Montserrat Alternates",
+    fontFamily: "MontserratAlternates-Regular",
     fontWeight: "bold",
     maxWidth: 500,
     marginBottom: 10,
