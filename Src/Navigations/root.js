@@ -14,14 +14,16 @@ import Volunteers from "../Screens/Volunteers/Volunteers";
 import LogOrg from "../Screens/LogIn/Organizations/LogOrg";
 import TermsAndConditions from "../Screens/Terms/Terms";
 import ContactUs from "../Screens/ContactUs/ContactUs";
+import UserProfile from "../Screens/Profile/user/userProfile";
+import Selection from "../Screens/Selection/Selection";
 const Tab = createBottomTabNavigator();
 
 const Root = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name={routes.LogOrg}
-        component={LogOrg}
+        name={routes.Selection}
+        component={Selection}
         options={{
           tabBarLabel: "Home",
           tabBarActiveTintColor: colors.mainColor,

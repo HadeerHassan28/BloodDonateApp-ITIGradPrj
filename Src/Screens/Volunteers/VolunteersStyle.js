@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   paragraph: {
     fontSize: 20,
     textAlign: "center",
-    marginBottom: 10
+    marginBottom: 10,
   },
   searchBox: {
     padding: 15,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     border: "1px solid gray",
-},
+  },
   button: {
     backgroundColor: colors.mainColor,
     paddingVertical: 15,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
-  navigateRes:{
+  navigateRes: {
     width: "30px",
     height: "30px",
     textAlign: "center",
@@ -81,37 +81,36 @@ const styles = StyleSheet.create({
     borderRadius: "15px",
     textAlignVertical: "center",
     margin: 5,
-},
-profile:
-{ 
-    width: "8vw", 
-    height: "8vw", 
-    borderRadius: "4vw" 
-},
-disNone:{
+  },
+  profile: {
+    width: "8vw",
+    height: "8vw",
+    borderRadius: "4vw",
+  },
+  disNone: {
     display: "none",
-},
-disBlock:{
+  },
+  disBlock: {
     display: "block",
     textAlign: "center",
     color: colors.mainColor,
-},
-filterWith :{
+  },
+  filterWith: {
     color: colors.mainColor,
     fontWeight: "bold",
-},
-select :{
-    color: gray,
+  },
+  select: {
+    color: "gray",
     borderRadius: "5px",
     border: "1px solid gray",
     height: "38px",
-},
-customInput: {
+  },
+  customInput: {
     width: "150px",
     height: "38px",
     borderRadius: "5px",
     border: "1px solid gray",
-}
+  },
 });
 
 export default styles;

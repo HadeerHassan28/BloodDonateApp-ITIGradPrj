@@ -4,7 +4,7 @@ import * as Font from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import Root from "./Src/Navigations/root";
 import colors from "./Src/Common/Colors";
-import DrawerNavigator from "./component/drawer/DrawerNavigator";
+//import DrawerNavigator from "./component/drawer/DrawerNavigator";
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>

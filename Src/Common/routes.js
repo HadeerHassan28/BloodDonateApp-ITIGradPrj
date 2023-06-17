@@ -11,6 +11,8 @@ const routes = Object.freeze({
   ContactUs: "ContactUs",
   Volunteers: "Volunteers",
   OrgProfile: "OrgProfile",
+  UserProfile: "UserProfile",
+  Selection: "Selection",
 });
 
 export default routes;
