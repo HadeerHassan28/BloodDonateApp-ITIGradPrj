@@ -26,6 +26,7 @@ const Root = () => {
         component={Home}
         options={{
           tabBarLabel: "Home",
+          // headerShown: false,
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",
           tabBarLabelStyle: {
@@ -43,6 +44,7 @@ const Root = () => {
         name={routes.about}
         component={About}
         options={{
+          // headerShown: false,
           tabBarLabel: "About",
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",
@@ -63,7 +65,8 @@ const Root = () => {
         name={routes.Volunteers}
         component={Volunteers}
         options={{
-          tabBarLabel: "Volunteers",
+          headerShown: false,
+          // tabBarLabel: "Volunteers",
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",
           tabBarLabelStyle: {
