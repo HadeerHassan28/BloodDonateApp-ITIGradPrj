@@ -1,93 +1,191 @@
-import React, { useRef, useState } from 'react';
-import styles from './Selection.module.css'
-import {BsHospital} from 'react-icons/bs'
-import {AiOutlineUser} from 'react-icons/ai'
-import { Link } from 'react-router-dom';
-const Selection = ({onSelection}) => {
+import React, { useRef, useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { BsHospital } from "react-icons/bs";
+import { AiOutlineUser } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
-    const optionOne = useRef()
-    const optionTwo = useRef()
+const Selection = ({ onSelection }) => {
+  const optionOne = useRef();
+  const optionTwo = useRef();
 
-    const [isOptionOneSelected , setIsOptionOneSelected] = useState(false)
-    const [isOptionTwoSelected , setIsOptionTwoSelected] = useState(false)
+  const [isOptionOneSelected, setIsOptionOneSelected] = useState(false);
+  const [isOptionTwoSelected, setIsOptionTwoSelected] = useState(false);
 
+  const toggleSelection = () => {
+    onSelection(false);
+  };
 
-    const toggleSelection = () => {
-        onSelection(false)
-
+  const handleOptionOne = () => {
+    if (!isOptionOneSelected && isOptionTwoSelected) {
+      setIsOptionOneSelected(true);
+      setIsOptionTwoSelected(false);
+    } else if (!isOptionOneSelected) {
+      setIsOptionOneSelected(true);
     }
+  };
 
-    const handleOptionOne = () => {
-
-        if(!isOptionOneSelected && isOptionTwoSelected){
-            optionOne.current.style.border = "2px solid #ee394a "
-            optionTwo.current.style.border = "none"
-            setIsOptionOneSelected(true)
-            setIsOptionTwoSelected(false)
-        }
-        else if(!isOptionOneSelected){
-            optionOne.current.style.border = "2px solid #ee394a "
-            setIsOptionOneSelected(true)
-        }
+  const handleOptionTwo = () => {
+    if (!isOptionTwoSelected && isOptionOneSelected) {
+      setIsOptionTwoSelected(true);
+      setIsOptionOneSelected(false);
+    } else if (!isOptionTwoSelected) {
+      setIsOptionTwoSelected(true);
     }
+  };
 
+  return (
+    <>
+      <TouchableOpacity style={styles.overlay} onPress={toggleSelection} />
+      <View style={[styles.selection, { width: "75%" }]}>
+        <View style={styles.container}>
+          <Text style={styles.heading}>Choose Your Plan</Text>
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={[
+                styles.option,
+                styles.rounded,
+                { borderWidth: isOptionOneSelected ? 2 : 0 },
+              ]}
+              onPress={handleOptionOne}
+              ref={optionOne}
+            >
+              <Text style={styles.optionTitle}>Organization</Text>
+              <BsHospital size={64} color="#ee394a" />
+              <Text style={styles.optionDescription}>
+                This Plan Include Hospitals and Blood Banks
+              </Text>
+              {isOptionOneSelected && (
+                <Text style={styles.optionSelectedText}>
+                  * You are Following the Organizational Plan
+                </Text>
+              )}
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.option,
+                styles.rounded,
+                { borderWidth: isOptionTwoSelected ? 2 : 0 },
+              ]}
+              onPress={handleOptionTwo}
+              ref={optionTwo}
+            >
+              <Text style={styles.optionTitle}>User</Text>
+              <AiOutlineUser size={64} color="#ee394a" />
+              <Text style={styles.optionDescription}>
+                This Plan Include Donors and Recipients
+              </Text>
+              {isOptionTwoSelected && (
+                <Text style={styles.optionSelectedText}>
+                  * You are Following the Users Plan
+                </Text>
+              )}
+            </TouchableOpacity>
+          </View>
 
-    const handleOptionTwo = () => {
-        if(!isOptionTwoSelected && isOptionOneSelected ){
-            optionTwo.current.style.border = "2px solid #ee394a"
-            optionOne.current.style.border = "none"
+          {isOptionOneSelected && (
+            <View style={styles.buttons}>
+              <TouchableOpacity
+                style={[styles.button, styles.secondaryButton]}
+                onPress={toggleSelection}
+              >
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+              <Link to="signup-org">
+                <TouchableOpacity style={[styles.button, styles.dangerButton]}>
+                  <Text style={styles.buttonText}>Sign Up</Text>
+                </TouchableOpacity>
+              </Link>
+            </View>
+          )}
 
-            setIsOptionOneSelected(false)
-            setIsOptionTwoSelected(true)
-        }
-        else if(!isOptionTwoSelected){
-            optionTwo.current.style.border = "2px solid #ee394a"
-            setIsOptionTwoSelected(true)
-        }
-    }
+          {isOptionTwoSelected && (
+            <View style={styles.buttons}>
+              <TouchableOpacity
+                style={[styles.button, styles.secondaryButton]}
+                onPress={toggleSelection}
+              >
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+              <Link to="signup-user">
+                <TouchableOpacity style={[styles.button, styles.dangerButton]}>
+                  <Text style={styles.buttonText}>Sign Up</Text>
+                </TouchableOpacity>
+              </Link>
+            </View>
+          )}
+        </View>
+      </View>
+    </>
+  );
+};
 
-    return (
-        <>
-        <div className={styles.overlay} onClick={toggleSelection}></div>
-        <div className={`${styles.selection} w-75 `}>
-            <div className="container">
-            <h2 className='mb-4'>Choose Your Plan</h2>
-                <div className="row mb-5">
-                    <div className={`${styles.option} col-lg-6 rounded`} onClick={handleOptionOne} ref={optionOne} >
-                       <h4>Organization</h4>
-                        <BsHospital size={64} color='#ee394a'/>
-                        <p>This Plan Include Hospitals and Blood Banks</p>
-                        {isOptionOneSelected && <span className='text-danger'>* Your are Following the Organizational Plan</span>}
-
-                    </div>
-                    <div className={`${styles.option} col-lg-6 rounded`} onClick={handleOptionTwo} ref={optionTwo} >
-                        <h4>User</h4>
-                        <AiOutlineUser size={64} color='#ee394a '/>
-                        <p>This Plan Include Donors and recipients</p>
-                        {isOptionTwoSelected && <span className='text-danger'>* Your are Following the Users Plan</span>}
-                     </div>
-                    </div>
-
-  
-                    {isOptionOneSelected &&  
-                    <div className='buttons d-flex justify-content-end'>
-                    <button className='btn btn-secondary px-4 py-2' onClick={toggleSelection} >Cancel</button>
-
-                    <Link to="signup-org"> <button className='btn btn-danger px-4 py-2 ms-3'>Sign Up</button></Link>
-                    </div> }
-
-                    {isOptionTwoSelected && <div className='buttons d-flex justify-content-end'>
-                    <button className='btn btn-secondary px-4 py-2' onClick={toggleSelection}>Cancel</button>
-
-                    <Link to="signup-user"> <button className='btn btn-danger px-4 py-2 ms-3'>Sign Up</button></Link>
-                    </div> }
-
-
- 
-                </div>
-        </div>
-        </>
-    );
-}
+const styles = StyleSheet.create({
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  selection: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: [{ translateX: "-50%" }, { translateY: "-50%" }],
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 10,
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+  },
+  heading: {
+    marginBottom: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  row: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  option: {
+    flex: 1,
+    padding: 10,
+    alignItems: "center",
+  },
+  rounded: {
+    borderRadius: 10,
+  },
+  optionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  optionDescription: {
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  optionSelectedText: {
+    color: "red",
+    marginBottom: 10,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  button: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginLeft: 5,
+    borderRadius: 5,
+  },
+  secondaryButton: {
+    backgroundColor: "#ccc",
+  },
+  dangerButton: {
+    backgroundColor: "red",
+  },
+  buttonText: {
+    color: "#fff",
+  },
+});
 
 export default Selection;

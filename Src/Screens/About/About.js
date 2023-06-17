@@ -22,7 +22,7 @@ const About = () => {
   return (
     <ScrollView>
       <Image
-        source={require("../../../assets/images/About-head.png")}
+        source={require("../../../assets/images/About-head-1.png")}
         style={{ width: windowWidth, height: 200 }}
         resizeMode="contain"
       />

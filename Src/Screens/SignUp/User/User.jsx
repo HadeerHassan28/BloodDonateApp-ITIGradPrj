@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import styles from "./User.module.css";
-import { Link } from "react-router-dom";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import { v4 as uuid } from "uuid";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import uuid from "react-native-uuid";
+import { Picker } from "@react-native-picker/picker";
+import styles from "./UserStyle";
 
-const User = () => {
-  const navigate = useNavigate();
+const UserSignUp = () => {
+  const navigation = useNavigation();
   const [data, SetData] = useState({
-    id: uuid(),
+    id: uuid,
     firstName: "",
     lastName: "",
     email: "",
@@ -53,10 +59,9 @@ const User = () => {
 
   const [isEmailExisting, setIsEmailExisting] = useState(false);
 
-  const handleChange = (event) => {
+  const handleChange = (name, value) => {
     setIsSubmitted(false);
     setIsEmailExisting(false);
-    const { name, value } = event.target;
 
     const lettersRegex = /^[A-Za-z]+$/;
     const emailRegex = /^[\w\\.-]+@\w+\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2})?$/;
@@ -75,13 +80,13 @@ const User = () => {
       ...prevFormData,
       [name]: value,
     }));
+
     if (name === "firstName") {
       setIsFirstNameValid(isValid);
     } else if (name === "lastName") {
       setIsLastNameValid(isValid);
     } else if (name === "email") {
       setIsEmailValid(isMailValid);
-      console.log(true);
     } else if (name === "password") {
       setIsPasswordValid(isEnteredPasswordValid);
     } else if (name === "confirmPassword") {
@@ -95,400 +100,254 @@ const User = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-
-    setIsSubmitted(true);
-
-    e.preventDefault();
-    axios.get("http://localhost:3000/users").then((res) => {
-      const users = res.data;
-      //console.log(users);
-      const user = users.find(
-        (user) => user.email === data.email && user.password === data.password
-      );
-      if (user) {
-        console.log("this account is existed");
-        toast.error("this account is existed");
-        setIsEmailExisting(true);
-      } else {
-        if (
-          isFirstNameValid &&
-          isLastNameValid &&
-          isEmailValid &&
-          isPasswordValid &&
-          isConfirmedPasswordValid &&
-          isAddressValid &&
-          isCityValid &&
-          isPnumberValid
-        ) {
-          //! get data from thr form and add it to the json data:
-          const newUser = {
-            id: uuid(),
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            password: data.password,
-            confirmPassword: data.confirmPassword,
-            Address: data.Address,
-            city: data.city,
-            pNumber: data.pNumber,
-            bloodType: data.bloodType,
-            gender: data.gender,
-            isVolunteer: false,
-          };
-          axios
-            .post("http://localhost:3000/users", newUser)
-            .then((res) => {
-              //console.log(res.data);
-              console.log("Done post");
-              navigate("/Signup-user/signin-user");
-            })
-            .catch((err) => console.log("error post"));
-          setIsDataValid(true);
-        } else {
-          console.log("Your Form Is Not Valid");
-          setIsDataValid(false);
-        }
-      }
-    });
+  const handlePickerChange = (fieldName, itemValue) => {
+    SetData((prevData) => ({
+      ...prevData,
+      [fieldName]: itemValue,
+    }));
+    console.warn(fieldName, itemValue);
   };
+
+  const handleSubmit = async () => {
+    setIsSubmitted(true);
+    axios
+      .get("http://localhost:3002/users")
+      .then((res) => {
+        const users = res.data;
+        //console.warn(users);
+        const user = users.find(
+          (user) =>
+            user.OrganizationCode === data.OrganizationCode &&
+            user.password === data.password
+        );
+        if (user) {
+          console.log("this account is existed");
+        } else {
+          if (
+            isFirstNameValid &&
+            isLastNameValid &&
+            isEmailValid &&
+            isPasswordValid &&
+            isConfirmedPasswordValid &&
+            isAddressValid &&
+            isCityValid &&
+            isPnumberValid
+          ) {
+            //! get data from thr form and add it to the json data:
+            const id = uuid.v4();
+            const newUser = {
+              id: id,
+              orgName: data.oName,
+              password: data.password,
+              confirmPassword: data.confirmPassword,
+              OrganizationCode: data.oCode,
+              Address: data.Address,
+              sector: data.sector,
+              pNumber: data.pNumber,
+            };
+            axios
+              .post("http://localhost:3002/users", newUser)
+              .then((res) => {
+                //console.log(res.data);
+                console.warn("Done post");
+                //navigation.navigate("LogOrg");
+              })
+              .catch((err) => console.warn("err"));
+          } else {
+            console.log("Your Form Is Not Valid");
+          }
+        }
+      })
+      .catch((err) => console.warn("geterr"));
+  };
+
   return (
-    <div>
-      <div className="container">
-        <div className="row ">
-          <div className="col-lg-6 d-flex justify-content-center">
-            <img
-              src={process.env.PUBLIC_URL + "/assets/images/user.png"}
-              className="img-fluid mt-5"
-              alt="signup img"
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.row}>
+          <View style={styles.col}>
+            <Text style={styles.heading}>Sign Up To Save A Life!</Text>
+            <TextInput
+              style={[
+                styles.input,
+                isFirstNameFocused && !isFirstNameValid && styles.invalidInput,
+              ]}
+              placeholder="First Name"
+              value={data.firstName}
+              onChangeText={(text) => handleChange("firstName", text)}
+              onFocus={() => setIsFirstNameFocused(true)}
+              onBlur={() => setIsFirstNameFocused(false)}
             />
-          </div>
-          <div className="col-lg-6">
-            <h2 className="text-center my-5 text-danger">
-              Sign Up To Save A Life!
-            </h2>
-            <form className="row g-3" onSubmit={handleSubmit} method="POST">
-              <div className="col-lg-6">
-                <label htmlFor="firstName" className="form-label">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  className={`${styles.formControl} form-control w-100`}
-                  name="firstName"
-                  id="firstName"
-                  aria-describedby="First Name"
-                  value={data.firstName}
-                  onChange={handleChange}
-                  style={
-                    !isFirstNameFocused
-                      ? {}
-                      : isFirstNameValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsFirstNameFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsFirstNameFocused(false);
-                  }}
-                />
-                {!isFirstNameValid && isFirstNameFocused && (
-                  <div className="text-danger">* This Field Can't be Empty</div>
-                )}
-              </div>
-              <div className="col-lg-6">
-                <label htmlFor="lastName" className="form-label ">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  className={`${styles.formControl} form-control w-100`}
-                  id="lastName"
-                  name="lastName"
-                  aria-describedby="Last Name"
-                  value={data.lastName}
-                  onChange={handleChange}
-                  style={
-                    !isLastNameFocused
-                      ? {}
-                      : isLastNameValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsLastNameFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsLastNameFocused(false);
-                  }}
-                />
-                {!isLastNameValid && isLastNameFocused && (
-                  <div className="text-danger">* This Field Can't be Empty</div>
-                )}
-              </div>
-              <div className="col-lg-12">
-                <label htmlFor="exampleInputEmail1" className="form-label">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  className={`${styles.formControl} form-control`}
-                  name="email"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  value={data.email}
-                  onChange={handleChange}
-                  style={
-                    !isEmailFocused
-                      ? {}
-                      : isEmailValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsEmailFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsEmailFocused(false);
-                  }}
-                />
-                {!isEmailValid && isEmailFocused && (
-                  <div className="text-danger">
-                    * Please Enter A Valid Email
-                  </div>
-                )}
-              </div>
-              <div className="col-lg-6">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className={`${styles.formControl} form-control w-100`}
-                  name="password"
-                  id="password"
-                  aria-describedby="password"
-                  value={data.password}
-                  onChange={handleChange}
-                  style={
-                    !isPasswordFocused
-                      ? {}
-                      : isPasswordValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsPasswordFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsPasswordFocused(false);
-                  }}
-                />
-                {!isPasswordValid && isPasswordFocused && (
-                  <div className="text-danger">
-                    * Password Must be At least 6 Characters
-                  </div>
-                )}
-              </div>
-              <div className="col-lg-6">
-                <label htmlFor="confirmPassword" className="form-label">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  className={`${styles.formControl} form-control w-100`}
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  aria-describedby="confirmPassword"
-                  value={data.confirmPassword}
-                  onChange={handleChange}
-                  style={
-                    !isConfirmedPasswordFocused
-                      ? {}
-                      : isConfirmedPasswordValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsConfirmedPasswordFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsConfirmedPasswordFocused(false);
-                  }}
-                />
-                {!isConfirmedPasswordValid && isConfirmedPasswordFocused && (
-                  <div className="text-danger">
-                    * The Password Is Not Matching
-                  </div>
-                )}
-              </div>
-              <div className="col-lg-6">
-                <label for="address" className="form-label">
-                  Address
-                </label>
-                <input
-                  type="text"
-                  className={`${styles.formControl} form-control w-100`}
-                  id="address"
-                  name="Address"
-                  aria-describedby="address"
-                  value={data.Address}
-                  onChange={handleChange}
-                  style={
-                    !isAddressFocused
-                      ? {}
-                      : isAddressValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsAddressFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsAddressFocused(false);
-                  }}
-                />
-                {!isAddressValid && isAddressFocused && (
-                  <div className="text-danger">
-                    * Please Enter A Valid Address
-                  </div>
-                )}
-              </div>
-              <div className="col-lg-6">
-                <label for="city" className="form-label">
-                  City
-                </label>
-                <input
-                  type="text"
-                  className={`${styles.formControl} form-control w-100 `}
-                  id="city"
-                  name="city"
-                  aria-describedby="city"
-                  value={data.city}
-                  onChange={handleChange}
-                  style={
-                    !isCityFocused
-                      ? {}
-                      : isCityValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsCityFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsCityFocused(false);
-                  }}
-                />
-                {!isCityValid && isCityFocused && (
-                  <div className="text-danger">* Please Enter A Valid City</div>
-                )}
-              </div>
-              <div className="col-lg-12">
-                <label for="pNumber" className="form-label">
-                  Phone Number
-                </label>
-                <input
-                  type="number"
-                  className={`${styles.formControl} form-control`}
-                  id="pNumber"
-                  name="pNumber"
-                  aria-describedby="pNumber"
-                  value={data.pNumber}
-                  onChange={handleChange}
-                  style={
-                    !isPnumberFocused
-                      ? {}
-                      : isPnumberValid
-                      ? { border: "2px solid green" }
-                      : { border: "2px solid red" }
-                  }
-                  onFocus={() => {
-                    setIsPnumberFocused(true);
-                  }}
-                  onBlur={() => {
-                    setIsPnumberFocused(false);
-                  }}
-                />
-                {!isPnumberValid && isPnumberFocused && (
-                  <div className="text-danger">
-                    * Please Enter A Valid Phone Number
-                  </div>
-                )}
-              </div>
-              <div className="col-lg-4">
-                <select
-                  className="form-select"
-                  name="bloodType"
-                  option={data.bloodType}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="" hidden>
-                    Select Blood Type
-                  </option>
-                  <option value="A+">A+</option>
-                  <option value="A-">A-</option>
-                  <option value="B-">B-</option>
-                  <option value="B+">B+</option>
-                  <option value="AB+">AB+</option>
-                  <option value="AB-">AB-</option>
-                  <option value="O-">O-</option>
-                  <option value="O+">O+</option>
-                </select>
-              </div>
-              <div className="col-lg-4">
-                <select
-                  className="form-select"
-                  name="gender"
-                  option={data.gender}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="" hidden>
-                    Gender
-                  </option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-              <p>
-                Have an Account?{" "}
-                <Link
-                  to="signin-user"
-                  className="text-decoration-none text-danger fw-bold"
-                >
-                  <span>Sign in Here</span>
-                </Link>
-              </p>
-              <button className="btn btn-danger py-3">Sign Up</button>
-            </form>
+            {isFirstNameFocused && !isFirstNameValid && (
+              <Text style={styles.errorText}>* This Field Can't be Empty</Text>
+            )}
+
+            <TextInput
+              style={[
+                styles.input,
+                isLastNameFocused && !isLastNameValid && styles.invalidInput,
+              ]}
+              placeholder="Last Name"
+              value={data.lastName}
+              onChangeText={(text) => handleChange("lastName", text)}
+              onFocus={() => setIsLastNameFocused(true)}
+              onBlur={() => setIsLastNameFocused(false)}
+            />
+            {isLastNameFocused && !isLastNameValid && (
+              <Text style={styles.errorText}>* This Field Can't be Empty</Text>
+            )}
+
+            <TextInput
+              style={[
+                styles.input,
+                isEmailFocused && !isEmailValid && styles.invalidInput,
+              ]}
+              placeholder="Email address"
+              value={data.email}
+              onChangeText={(text) => handleChange("email", text)}
+              onFocus={() => setIsEmailFocused(true)}
+              onBlur={() => setIsEmailFocused(false)}
+            />
+            {isEmailFocused && !isEmailValid && (
+              <Text style={styles.errorText}>* Please Enter A Valid Email</Text>
+            )}
+
+            <TextInput
+              style={[
+                styles.input,
+                isPasswordFocused && !isPasswordValid && styles.invalidInput,
+              ]}
+              placeholder="Password"
+              secureTextEntry
+              value={data.password}
+              onChangeText={(text) => handleChange("password", text)}
+              onFocus={() => setIsPasswordFocused(true)}
+              onBlur={() => setIsPasswordFocused(false)}
+            />
+            {isPasswordFocused && !isPasswordValid && (
+              <Text style={styles.errorText}>
+                * Password Must be At least 6 Characters
+              </Text>
+            )}
+
+            <TextInput
+              style={[
+                styles.input,
+                isConfirmedPasswordFocused &&
+                  !isConfirmedPasswordValid &&
+                  styles.invalidInput,
+              ]}
+              placeholder="Confirm Password"
+              secureTextEntry
+              value={data.confirmPassword}
+              onChangeText={(text) => handleChange("confirmPassword", text)}
+              onFocus={() => setIsConfirmedPasswordFocused(true)}
+              onBlur={() => setIsConfirmedPasswordFocused(false)}
+            />
+            {isConfirmedPasswordFocused && !isConfirmedPasswordValid && (
+              <Text style={styles.errorText}>
+                * The Password Is Not Matching
+              </Text>
+            )}
+            <TextInput
+              style={[
+                styles.input,
+                isAddressFocused && !isAddressValid && styles.invalidInput,
+              ]}
+              placeholder="Address"
+              value={data.Address}
+              onChangeText={(text) => handleChange("Address", text)}
+              onFocus={() => setIsAddressFocused(true)}
+              onBlur={() => setIsAddressFocused(false)}
+            />
+            {isAddressFocused && !isAddressValid && (
+              <Text style={styles.errorText}>
+                * Please Enter A Valid Address
+              </Text>
+            )}
+
+            <TextInput
+              style={[
+                styles.input,
+                isCityFocused && !isCityValid && styles.invalidInput,
+              ]}
+              placeholder="City"
+              value={data.city}
+              onChangeText={(text) => handleChange("city", text)}
+              onFocus={() => setIsCityFocused(true)}
+              onBlur={() => setIsCityFocused(false)}
+            />
+            {isCityFocused && !isCityValid && (
+              <Text style={styles.errorText}>* Please Enter A Valid City</Text>
+            )}
+
+            <TextInput
+              style={[
+                styles.input,
+                isPnumberFocused && !isPnumberValid && styles.invalidInput,
+              ]}
+              placeholder="Phone Number"
+              value={data.pNumber}
+              onChangeText={(text) => handleChange("pNumber", text)}
+              onFocus={() => setIsPnumberFocused(true)}
+              onBlur={() => setIsPnumberFocused(false)}
+            />
+            {isPnumberFocused && !isPnumberValid && (
+              <Text style={styles.errorText}>
+                * Please Enter A Valid Phone Number
+              </Text>
+            )}
+
+            <Picker
+              selectedValue={data.bloodType}
+              style={styles.picker}
+              onValueChange={(itemValue) =>
+                handlePickerChange("bloodType", itemValue)
+              }
+            >
+              <Picker.Item label="Select Blood Type" value="" />
+              <Picker.Item label="A+" value="A+" />
+              <Picker.Item label="A-" value="A-" />
+              <Picker.Item label="B-" value="B-" />
+              <Picker.Item label="B+" value="B+" />
+              <Picker.Item label="AB+" value="AB+" />
+              <Picker.Item label="AB-" value="AB-" />
+              <Picker.Item label="O-" value="O-" />
+              <Picker.Item label="O+" value="O+" />
+            </Picker>
+
+            <Picker
+              selectedValue={data.gender}
+              style={styles.picker}
+              onValueChange={(itemValue) =>
+                handlePickerChange("gender", itemValue)
+              }
+            >
+              <Picker.Item label="Gender" value="" />
+              <Picker.Item label="Male" value="Male" />
+              <Picker.Item label="Female" value="Female" />
+            </Picker>
+
+            <Text>
+              Have an Account?{" "}
+              <Text style={styles.signInLink} onPress={() => handleSignIn()}>
+                Sign in Here
+              </Text>
+            </Text>
+
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
             {isSubmitted && !isEmailExisting && isDataValid && (
-              <div className="text-success">
+              <Text style={[styles.successMessage, { color: "green" }]}>
                 Your Account Created Successfully
-              </div>
+              </Text>
             )}
-            {isSubmitted && !isEmailExisting && !isDataValid && (
-              <div className="text-danger">
-                Please Check For Any Missing Field
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      {/* {isEmailExisting && (
-        <div class="alert alert-danger mt-5" role="alert">
-          <span className="text-center fw-bold d-block">
-            This Account Exist
-          </span>
-        </div> */}
-      )}
-    </div>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
-export default User;
+export default UserSignUp;

@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import styles from "./LogUser.module.css";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import axios from "axios";
 import { v4 as uuid } from "uuid";
-import { useNavigate } from "react-router-dom";
+import { useNavigation } from "@react-navigation/native";
 
 const LogUser = () => {
-  const navigate = useNavigate();
-  const [data, SetData] = useState({
+  const navigation = useNavigation();
+
+  const [data, setData] = useState({
     id: uuid(),
     firstName: "",
     lastName: "",
@@ -27,16 +34,15 @@ const LogUser = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isEmailExisting, setIsEmailExisting] = useState(false);
 
-  const handleChange = (event) => {
+  const handleChange = (name, value) => {
     setIsSubmitted(false);
     setIsEmailExisting(false);
-    const { name, value } = event.target;
     const emailRegex = /^[\w\\.-]+@\w+\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2})?$/;
     const passwordRegex = /^\w{6,}$/;
     const isMailValid = emailRegex.test(value);
     const isEnteredPasswordValid = passwordRegex.test(value);
 
-    SetData((prevFormData) => ({
+    setData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
@@ -47,96 +53,119 @@ const LogUser = () => {
     } else if (name === "password") setIsPasswordValid(isEnteredPasswordValid);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setIsSubmitted(true);
 
-    setIsSubmitted(true);
-
-    e.preventDefault();
-    axios.get("http://localhost:3000/users").then((res) => {
+    axios.get("http://localhost:3002/users").then((res) => {
       const users = res.data;
-      //console.log(users);
       const user = users.find(
         (user) => user.email === data.email && user.password === data.password
       );
       if (user) {
-        console.log("Done");
+        console.warn("Done");
         setIsEmailExisting(true);
-        navigate("/userProfile");
-      } else console.log("error");
+        navigation.navigate("userProfile");
+      } else console.warn("error");
     });
   };
+
   return (
-    <div className={styles.login_user}>
-      <div className={styles.login_user_content}>
-        <h2 className="text-center text-danger">Log In - Users </h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label for="email" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
+    <View style={styles.login_user}>
+      <View style={styles.login_user_content}>
+        <Text style={styles.heading}>Log In - Users</Text>
+        <View style={styles.form}>
+          <View style={styles.formGroup}>
+            <Text style={styles.label}>Email address</Text>
+            <TextInput
+              style={[
+                styles.input,
+                isEmailFocused
+                  ? { borderColor: "green" }
+                  : { borderColor: "red" },
+              ]}
               value={data.email}
               name="email"
-              style={
-                !isPasswordFocused
-                  ? {}
-                  : isPasswordFocused
-                  ? { border: "2px solid green" }
-                  : { border: "2px solid red" }
-              }
-              onFocus={() => {
-                setIsEmailFocused(true);
-              }}
-              onBlur={() => {
-                setIsEmailFocused(true);
-              }}
-              onChange={handleChange}
+              placeholder="Email address"
+              placeholderTextColor="#888"
+              onFocus={() => setIsEmailFocused(true)}
+              onBlur={() => setIsEmailFocused(false)}
+              onChangeText={(value) => handleChange("email", value)}
             />
-          </div>
-          <div className="mb-3">
-            <label for="password" className="form-label">
-              Password
-            </label>
-            <input
-              aria-describedby="Password"
-              type="password"
-              className="form-control"
-              id="password"
+          </View>
+          <View style={styles.formGroup}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              style={[
+                styles.input,
+                isPasswordFocused
+                  ? { borderColor: "green" }
+                  : { borderColor: "red" },
+              ]}
               value={data.password}
               name="password"
-              onChange={handleChange}
-              style={
-                !isPasswordFocused
-                  ? {}
-                  : isPasswordFocused
-                  ? { border: "2px solid green" }
-                  : { border: "2px solid red" }
-              }
-              onFocus={() => {
-                setIsPasswordFocused(true);
-              }}
-              onBlur={() => {
-                setIsEmailFocused(true);
-              }}
+              placeholder="Password"
+              placeholderTextColor="#888"
+              secureTextEntry
+              onFocus={() => setIsPasswordFocused(true)}
+              onBlur={() => setIsPasswordFocused(false)}
+              onChangeText={(value) => handleChange("password", value)}
             />
-          </div>
+          </View>
 
-          <button
-            type="submit"
-            className="btn btn-danger w-100"
-            onChange={handleChange}
-          >
-            Sign In
-          </button>
-        </form>
-      </div>
-    </div>
+          <TouchableOpacity style={styles.signInButton} onPress={handleSubmit}>
+            <Text style={styles.signInButtonText}>Sign In</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  login_user: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fbf1f0",
+  },
+  login_user_content: {
+    width: "80%",
+  },
+  heading: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "red",
+    marginBottom: 20,
+  },
+  form: {
+    marginBottom: 20,
+  },
+  formGroup: {
+    marginBottom: 15,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 10,
+    fontSize: 16,
+  },
+  signInButton: {
+    backgroundColor: "red",
+    borderRadius: 5,
+    padding: 15,
+    alignItems: "center",
+  },
+  signInButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
 
 export default LogUser;
