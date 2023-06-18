@@ -24,26 +24,26 @@ const DrawerNavigator = () => {
         drawerInactiveTintColor: "red",
       }}
     >
-      {/* <Drawer.Screen
+      <Drawer.Screen
         screenOptions={{ headerShown: false }}
         name="Home"
         component={Root}
-      /> */}
-      {/* <Drawer.Screen
+      />
+      <Drawer.Screen
         screenOptions={{ headerShown: false }}
         name={routes.about}
         component={About}
-      /> */}
+      />
       <Drawer.Screen
         screenOptions={{ headerShown: false, activeTintColor: "#fbf1f0" }}
         name={routes.blogs}
         component={Blogs}
       />
-      {/* <Drawer.Screen
+      <Drawer.Screen
         screenOptions={{ headerShown: false }}
         name={routes.Volunteers}
         component={Volunteers}
-      /> */}
+      />
       <Drawer.Screen
         screenOptions={{ headerShown: false }}
         name={routes.ContactUs}
