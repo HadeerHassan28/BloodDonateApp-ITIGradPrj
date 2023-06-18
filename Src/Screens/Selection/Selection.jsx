@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 // import React, { useRef, useState } from "react";
 // import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 // //import { BsHospital } from "react-icons/bs";
 // // import { AiOutlineUser } from "react-icons/ai";
 // import { Link } from "react-router-dom";
+=======
+import React, { useRef, useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Link } from "react-router-dom";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import colors from "../../Common/Colors";
+>>>>>>> f0fbca1f4901b08b036e4d4a46ca8864e6b3d5bd
 
 // const Selection = ({ onSelection }) => {
 //   const optionOne = useRef();
@@ -33,6 +41,7 @@
 //     }
 //   };
 
+<<<<<<< HEAD
 //   return (
 //     <>
 //       <TouchableOpacity style={styles.overlay} onPress={toggleSelection} />
@@ -81,6 +90,66 @@
 //               )}
 //             </TouchableOpacity>
 //           </View>
+=======
+  return (
+    <>
+      <View style={styles.overlay} onPress={toggleSelection}></View>
+      <View style={styles.container}>
+        <View style={[styles.selection, { marginHorizontal: 10 }]}>
+          <Text style={styles.heading}>Choose Your Plan</Text>
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={[
+                styles.option,
+                styles.rounded,
+                { borderWidth: isOptionOneSelected ? 2 : 0 },
+              ]}
+              onPress={handleOptionOne}
+              ref={optionOne}
+            >
+              <Text style={styles.optionTitle}>Organization</Text>
+              {/* <BsHospital size={64} color="#ee394a" /> */}
+              <Ionicons
+                name={"business-outline"}
+                size={25}
+                color={colors.mainColor}
+              />
+              <Text style={styles.optionDescription}>
+                This Plan Include Hospitals and Blood Banks
+              </Text>
+              {isOptionOneSelected && (
+                <Text style={styles.optionSelectedText}>
+                  * You are Following the Organizational Plan
+                </Text>
+              )}
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.option,
+                styles.rounded,
+                { borderWidth: isOptionTwoSelected ? 2 : 0 },
+              ]}
+              onPress={handleOptionTwo}
+              ref={optionTwo}
+            >
+              <Text style={styles.optionTitle}>User</Text>
+              {/* <AiOutlineUser size={64} color="#ee394a" /> */}
+              <Ionicons
+                name={"person-outline"}
+                size={25}
+                color={colors.mainColor}
+              />
+              <Text style={styles.optionDescription}>
+                This Plan Include Donors and Recipients
+              </Text>
+              {isOptionTwoSelected && (
+                <Text style={styles.optionSelectedText}>
+                  * You are Following the Users Plan
+                </Text>
+              )}
+            </TouchableOpacity>
+          </View>
+>>>>>>> f0fbca1f4901b08b036e4d4a46ca8864e6b3d5bd
 
 //           {isOptionOneSelected && (
 //             <View style={styles.buttons}>
@@ -119,6 +188,7 @@
 //   );
 // };
 
+<<<<<<< HEAD
 // const styles = StyleSheet.create({
 //   overlay: {
 //     ...StyleSheet.absoluteFillObject,
@@ -187,5 +257,74 @@
 //     color: "#fff",
 //   },
 // });
+=======
+const styles = StyleSheet.create({
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  selection: {
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    borderRadius: 10,
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  heading: {
+    marginBottom: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  row: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  option: {
+    flex: 1,
+    padding: 10,
+    alignItems: "center",
+  },
+  rounded: {
+    borderRadius: 10,
+  },
+  optionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  optionDescription: {
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  optionSelectedText: {
+    color: "red",
+    marginBottom: 10,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  button: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginLeft: 5,
+    borderRadius: 5,
+  },
+  secondaryButton: {
+    backgroundColor: "#ccc",
+  },
+  dangerButton: {
+    backgroundColor: "red",
+  },
+  buttonText: {
+    color: "#fff",
+  },
+});
+>>>>>>> f0fbca1f4901b08b036e4d4a46ca8864e6b3d5bd
 
 // export default Selection;

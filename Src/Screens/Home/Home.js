@@ -18,12 +18,12 @@ export default function Home() {
   // };
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity style={styles.drawerLogoContainer}>
+      {/* <TouchableOpacity style={styles.drawerLogoContainer}>
         <Image
           source={require("../../../assets/images/stock-vector-1.png")}
           style={styles.hamLogo}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.logoContainer}>
         <Image
           source={require("../../../assets/images/heart.png")}
@@ -33,7 +33,13 @@ export default function Home() {
       <View style={styles.landing}>
         <View style={styles.landingContent}>
           <View style={styles.textContainer}>
-            <Text style={styles.title}>BLOOD {"\n"} DONATION</Text>
+            <Text
+              style={{
+                ...styles.title,
+              }}
+            >
+              BLOOD {"\n"} DONATION
+            </Text>
             <Text style={styles.subtitle}>Saves Lifes,</Text>
             <View style={styles.tagContainer}>
               <Text style={styles.tag}>Together we are stronger</Text>
@@ -54,7 +60,9 @@ export default function Home() {
       </View>
       <View style={styles.infoContainer}>{/* <InfoHome /> */}</View>
       <ScrollView contentContainerStyle={styles.textCenter}>
-        <Text style={styles.mainTitle}>Join The Cause</Text>
+        <Text style={{ ...styles.description, fontFamily: "MontsBold" }}>
+          Join The Cause
+        </Text>
         <Text style={styles.description}>
           Join our cause and help us save more lives. Everyone should have the
           right to get a blood transfusion.
@@ -66,7 +74,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === "android" ? 30 : 0,
+    // marginTop: Platform.OS === "android" ? 30 : 0,
     flex: 1,
     backgroundColor: "#fbf1f0",
   },
@@ -98,23 +106,21 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: "center",
-    marginTop: "3rem",
+    // marginTop: "3rem",
     marginBottom: 0,
   },
   title: {
     letterSpacing: 4,
     fontSize: 35,
-    //fontFamily: "Montserrat Alternates",
-    fontWeight: "800",
+    fontFamily: "MontsBold",
     color: "#ff4951",
     marginBottom: 5,
     textAlign: "center",
   },
   subtitle: {
     letterSpacing: 4,
-    fontSize: 25,
-    fontFamily: "Covered By Your Grace",
-    fontWeight: "bold",
+    fontSize: 20,
+    fontFamily: "MontsItalic",
     marginBottom: 5,
     textAlign: "center",
   },
@@ -128,15 +134,13 @@ const styles = StyleSheet.create({
   tag: {
     letterSpacing: 4,
     fontSize: 14,
-    fontFamily: "Montserrat Alternates",
-    fontWeight: "bold",
+    fontFamily: "MontsSemiBold",
     color: "#000",
     textAlign: "center",
   },
   description: {
     fontSize: 14,
-    fontFamily: "Montserrat Alternates",
-    fontWeight: "bold",
+    fontFamily: "MontsSemiBold",
     maxWidth: 500,
     marginBottom: 10,
     textAlign: "center",
@@ -150,8 +154,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 16,
+    fontFamily: "MontsSemiBold",
   },
   infoContainer: {
     marginVertical: 20,
