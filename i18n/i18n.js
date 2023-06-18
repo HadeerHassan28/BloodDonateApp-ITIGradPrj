@@ -12,4 +12,4 @@ i18n.locale = Localization.locale; //depende on the language of the device
 //i18n.locale = "ar"; // for check the arabic is done.
 i18n.enableFallback = true;
 
-console.warn(i18n.t("DonateNow"));
+//console.warn(i18n.t("DonateNow"));
