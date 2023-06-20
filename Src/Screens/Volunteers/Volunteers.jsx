@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, View, Text, TextInput, Picker, Button, Image, TouchableOpacity } from "react-native";
+import { ScrollView, View, Text, TextInput, Picker, Image, TouchableOpacity } from "react-native";
 import { DataTable } from 'react-native-paper';
 import styles from "./VolunteersStyle";
 import { useRef } from "react";
