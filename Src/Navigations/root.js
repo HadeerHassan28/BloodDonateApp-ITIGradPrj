@@ -10,10 +10,12 @@ import Blogs from "../Screens/Blogs/Blogs";
 import OrganizationSignUp from "../Screens/SignUp/Organization/Organization";
 import UserSignUp from "../Screens/SignUp/User/User";
 import LogUser from "../Screens/LogIn/User/LogUser";
-import Volunteers from "../Screens/Volunteers/Volunteers"
+import Volunteers from "../Screens/Volunteers/Volunteers";
 import LogOrg from "../Screens/LogIn/Organizations/LogOrg";
 import TermsAndConditions from "../Screens/Terms/Terms";
 import ContactUs from "../Screens/ContactUs/ContactUs";
+import UserProfile from "../Screens/Profile/user/userProfile";
+import Selection from "../Screens/Selection/Selection";
 const Tab = createBottomTabNavigator();
 
 const Root = () => {
@@ -24,6 +26,7 @@ const Root = () => {
         component={Home}
         options={{
           tabBarLabel: "Home",
+          // headerShown: false,
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",
           tabBarLabelStyle: {
@@ -41,6 +44,7 @@ const Root = () => {
         name={routes.about}
         component={About}
         options={{
+          // headerShown: false,
           tabBarLabel: "About",
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",
@@ -61,7 +65,8 @@ const Root = () => {
         name={routes.Volunteers}
         component={Volunteers}
         options={{
-          tabBarLabel: "Volunteers",
+          headerShown: false,
+          // tabBarLabel: "Volunteers",
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",
           tabBarLabelStyle: {
