@@ -10,9 +10,8 @@ import ContactUs from "../../Src/Screens/ContactUs/ContactUs";
 import TermsAndConditions from "../../Src/Screens/Terms/Terms";
 import Root from "../../Src/Navigations/root";
 
-import { ThemeConetxt } from "../../Src/Context/ThemeProvider";
+import { ThemeConetxt } from "../../Src/Theme/theme";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = ({ theme }) => {

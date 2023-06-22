@@ -1,5 +1,5 @@
 //import "react-native-gesture-handler";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import {
@@ -13,11 +13,12 @@ import "react-native-gesture-handler";
 import { useFonts } from "expo-font";
 import DrawerNavigator from "./component/drawer/DrawerNavigator";
 import { useColorScheme } from "react-native";
-
-import { ThemeConetxt, ThemeProvider } from "./Src/Context/ThemeProvider";
+import { EventRegister } from "react-native-event-listeners";
+import theme from "./Src/Theme/theme";
+import themeContext from "./Src/Theme/themeContext";
 import SettingsStackNavigator from "./Src/Navigations/SettingsStackNavigator";
 export default function App() {
-  const scheme = useColorScheme();
+  // const scheme = useColorScheme();
   // const MyTheme = {
   //   dark: true,
   //   colors: {
@@ -29,6 +30,16 @@ export default function App() {
   //     notification: "rgb(255, 69, 58)",
   //   },
   // };
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    const listener = EventRegister.addEventListener("ChangeTheme", (data) => {
+      setDarkMode(data);
+      console.warn(data);
+    });
+    return () => {
+      EventRegister.removeAllListeners(listener);
+    };
+  }, [darkMode]);
   let [fontsLoaded] = useFonts({
     MontsBold: require("./assets/fonts/MontserratAlternates-Bold.ttf"),
     MontsSemiBold: require("./assets/fonts/MontserratAlternates-SemiBold.ttf"),
@@ -38,15 +49,20 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
-  //const { theme } = useContext(ThemeConetxt);
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <ThemeProvider> */}
-      <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
-        {/* <SettingsStackNavigator /> */}
-        <DrawerNavigator />
-      </NavigationContainer>
+      <themeContext.Provider
+        value={darkMode === true ? theme.dark : theme.light}
+      >
+        {/* <ThemeProvider> */}
+        <NavigationContainer
+          theme={darkMode === true ? DarkTheme : DefaultTheme}
+        >
+          {/* <SettingsStackNavigator /> */}
+          <DrawerNavigator />
+        </NavigationContainer>
+      </themeContext.Provider>
       {/* </ThemeProvider> */}
     </SafeAreaView>
   );

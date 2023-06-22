@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -7,24 +7,34 @@ import {
   StyleSheet,
   ScrollView,
   Platform,
+  Switch,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import t from "../../../i18n/i18n";
-
+import { EventRegister } from "react-native-event-listeners";
+import themeContext from "../../Theme/theme";
 export default function Home() {
   // const navigation = useNavigation();
 
   // const openDrawer = () => {
   //   navigation.openDrawer();
   // };
+  const handlDark = (value) => {
+    setDarkTheme(value);
+    EventRegister.emit("ChangeTheme", value);
+  };
+  const [darkTheme, setDarkTheme] = useState(false);
+  const theme = useContext(themeContext);
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={{ ...styles.container }}>
       {/* <TouchableOpacity style={styles.drawerLogoContainer}>
         <Image
           source={require("../../../assets/images/stock-vector-1.png")}
           style={styles.hamLogo}
         />
       </TouchableOpacity> */}
+      <Switch value={darkTheme} onValueChange={handlDark}></Switch>
       <View style={styles.logoContainer}>
         <Image
           source={require("../../../assets/images/heart.png")}
@@ -45,7 +55,9 @@ export default function Home() {
             <View style={styles.tagContainer}>
               <Text style={styles.tag}>{t("Together we are stronger")}</Text>
             </View>
-            <Text style={styles.description}>{t("Find-blood-donors")}</Text>
+            <Text style={`styles.description color:theme.color`}>
+              {t("Find-blood-donors")}
+            </Text>
             <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText}>{t("Donate Now")}</Text>
             </TouchableOpacity>
@@ -71,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     // marginTop: Platform.OS === "android" ? 30 : 0,
     flex: 1,
-    backgroundColor: "#fbf1f0",
+    // backgroundColor: "#fbf1f0",
   },
   drawerLogoContainer: {
     marginRight: 10,
