@@ -5,6 +5,8 @@ import { AiFillFacebook } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
 import { AiFillLinkedin } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import t from '../../../i18n/i18n';
+
 const Footer = () => {
   return (
     <>
@@ -17,20 +19,18 @@ const Footer = () => {
             alt=""
             style={{ width: "50px", paddingBottom: "10px" }}
           />
-          <span className={`${styles.header} h2`}>
+          <Text className={`${styles.header} h2`}>
             {" "}
-            <span className="main-color">Blood</span> Donation
-          </span>
+            {t('BloodDonation-footer')}
+          </Text>
         </div>
-        <p className="text-light fs-7 text-center">
-          is a simple act of kindness that can have a profound impact on
-          someone's life. <br /> It only takes a few minutes to donate blood,
-          but the impact can last a lifetime.
-          <p className={`main-color text-center mt-2 fw-bold`}>
+        <Text className="text-light fs-7 text-center">
+          {t("blood-donation-definition")}
+          <Text className={`main-color text-center mt-2 fw-bold`}>
             {" "}
-            Join us in our efforts to make a difference in the world.
-          </p>
-        </p>
+            {t("Join us in our efforts to make a difference in the world.")}
+          </Text>
+        </Text>
         <AiFillFacebook
           color="white"
           size={30}
@@ -38,12 +38,11 @@ const Footer = () => {
         ></AiFillFacebook>
         <SiGmail color="white" size={30} className="me-5"></SiGmail>
         <AiFillLinkedin color="white" size={30}></AiFillLinkedin>
-        <p className="text-light position-absolute bottom-0 start-0 end-0 mb-0 p-2">
-          Copyright &copy;2023 <span className="main-color fw-bold">Blood</span>{" "}
-          Donation Team
-        </p>
+        <Text className="text-light position-absolute bottom-0 start-0 end-0 mb-0 p-2">
+          {t("copyright")}
+        </Text>
         <Link to="terms" className="text-decoration-none">
-          <p className=" text-light my-2 pt-2">Terms & Conditions</p>
+          <p className=" text-light my-2 pt-2">{t("Terms & Conditions")}</p>
         </Link>
       </div>
     </>

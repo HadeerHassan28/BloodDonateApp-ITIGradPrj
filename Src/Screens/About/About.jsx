@@ -15,6 +15,7 @@ import { Dimensions } from "react-native";
 
 import styles from "./AboutStyle.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import t from '../../../i18n/i18n';
 
 const About = () => {
   const windowWidth = Dimensions.get("window").width;
@@ -30,14 +31,13 @@ const About = () => {
         <View style={styles.container}>
           <View style={styles.aboutContent}>
             <Text style={styles.title}>
-              What we do at blood donation foundation?!
+              {t("What we do at blood donation foundation")}?!
             </Text>
             <Text style={styles.description}>
-              We solve the problem of blood emergencies by connecting blood
-              donors directly with people in blood need.
+              {t("We solve the problem of blood emergencies by connecting blood donors directly with people in blood need.")}
             </Text>
             <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Donate Now</Text>
+              <Text style={styles.buttonText}>{t("Donate Now")}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -49,7 +49,7 @@ const About = () => {
             paddingBottom: 10,
           }}
         >
-          What is this all about ?
+          {t("What is this all about ?")}
         </Text>
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -59,10 +59,9 @@ const About = () => {
               size={25}
               color={colors.mainColor}
             />
-            <Text style={styles.cardTitle}>What we do?</Text>
+            <Text style={styles.cardTitle}>{t("What we do?")}</Text>
             <Text style={styles.description}>
-              We connect blood donors with recipients, without any intermediary
-              such as blood banks, for an efficient and seamless process.
+              {t("We connect blood donors with recipients, without any intermediary such as blood banks, for an efficient and seamless process.")}
             </Text>
           </View>
           <View style={styles.card}>
@@ -71,10 +70,9 @@ const About = () => {
               size={25}
               color={colors.mainColor}
             />
-            <Text style={styles.cardTitle}>Innovative</Text>
+            <Text style={styles.cardTitle}>{t("Innovative")}</Text>
             <Text style={styles.description}>
-              Blood donation Connect is an innovative approach to address global
-              health. We provide immediate access to blood donors.
+              {t("Blood donation Connect is an innovative approach to address global health. We provide immediate access to blood donors.")}
             </Text>
           </View>
           <View style={styles.card}>
@@ -83,11 +81,9 @@ const About = () => {
               size={25}
               color={colors.mainColor}
             />
-            <Text style={styles.cardTitle}>Network</Text>
+            <Text style={styles.cardTitle}>{t("Network")}</Text>
             <Text style={styles.description}>
-              Blood donation is one of several community organizations working
-              together as a network that responds to emergencies in an efficient
-              manner.
+              {t("Blood donation is one of several community organizations working together as a network that responds to emergencies in an efficient manner.")}
             </Text>
           </View>
           <View style={styles.card}>
@@ -96,11 +92,9 @@ const About = () => {
               size={25}
               color={colors.mainColor}
             />
-            <Text style={styles.cardTitle}>Get notified</Text>
+            <Text style={styles.cardTitle}>{t("Get notified")}</Text>
             <Text style={styles.description}>
-              Blood donation Connect works with network partners to connect
-              blood donors and recipients through an automated SMS service and a
-              mobile app.
+              {t("Blood donation Connect works with network partners to connect blood donors and recipients through an automated SMS service and a mobile app.")}
             </Text>
           </View>
           <View style={styles.card}>
@@ -109,11 +103,9 @@ const About = () => {
               size={25}
               color={colors.mainColor}
             />
-            <Text style={styles.cardTitle}>Totally Free</Text>
+            <Text style={styles.cardTitle}>{t("Totally Free")}</Text>
             <Text style={styles.description}>
-              Blood donation Connect's ultimate goal is to provide an
-              easy-to-use, easy-to-access, fast, efficient, and reliable way to
-              get life-saving blood, totally Free of cost.
+            {t("Totally Free paragraph")}
             </Text>
           </View>
           <View style={styles.card}>
@@ -122,19 +114,17 @@ const About = () => {
               size={25}
               color={colors.mainColor}
             />
-            <Text style={styles.cardTitle}>Save Life</Text>
+            <Text style={styles.cardTitle}>{t("Save Life")}</Text>
             <Text style={styles.description}>
-              We are a non-profit foundation, and our main objective is to make
-              sure that everything is done to protect vulnerable persons. Help
-              us by making a gift!
+            {t("Save Life paragraph")}
             </Text>
           </View>
         </ScrollView>
         <View style={styles.container}>
           <View style={styles.textContainer}>
-            <Text style={styles.title}>Using Our Service</Text>
+            <Text style={styles.title}>{t("Using Our Service")}</Text>
             <Text style={styles.description}>
-              Using our service is as simple as saying, Hello!
+            {t("Using our service is as simple as saying, Hello!")}
             </Text>
           </View>
           <View style={styles.columnContainer}>
@@ -145,11 +135,10 @@ const About = () => {
                 size={25}
                 color={colors.mainColor}
               />
-              <Text style={styles.cardTitle}>Register</Text>
+              <Text style={styles.cardTitle}>{t("Register")}</Text>
             </View>
             <Text style={styles.iconDescription}>
-              Register your account so you can immediately start using Save Life
-              Connect
+              {t("Register your account so you can immediately start using Save Life Connect")}
             </Text>
           </View>
           <View style={styles.columnContainer}>
@@ -160,11 +149,10 @@ const About = () => {
                 size={25}
                 color={colors.mainColor}
               />
-              <Text style={styles.cardTitle}>Post a Blood request</Text>
+              <Text style={styles.cardTitle}>{t("Post a Blood request")}</Text>
             </View>
             <Text style={styles.iconDescription}>
-              Post a blood request using this website or our app and locate
-              volunteer blood donors within your area.
+              {t("Post a blood request using this website or our app and locate volunteer blood donors within your area.")}
             </Text>
           </View>
           <View style={styles.columnContainer}>
@@ -175,11 +163,10 @@ const About = () => {
                 size={25}
                 color={colors.mainColor}
               />
-              <Text style={styles.cardTitle}>Get notified</Text>
+              <Text style={styles.cardTitle}>{t("Get notified")}</Text>
             </View>
             <Text style={styles.iconDescription}>
-              Get notified in real-time when a donor has been found and when the
-              blood is on its way to the patient
+              {t("Get notified in real-time when a donor has been found and when the blood is on its way to the patient")}
             </Text>
           </View>
           <View style={styles.columnContainer}>
@@ -190,11 +177,10 @@ const About = () => {
                 size={25}
                 color={colors.mainColor}
               />
-              <Text style={styles.cardTitle}>Save a Life</Text>
+              <Text style={styles.cardTitle}>{t("Save a Life")}</Text>
             </View>
             <Text style={styles.iconDescription}>
-              Donating or requesting blood share the same noble and final
-              purpose Saving a Life.
+              {t("Donating or requesting blood share the same noble and final purpose Saving a Life.")}
             </Text>
           </View>
         </View>

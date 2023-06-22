@@ -4,6 +4,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { TiGroupOutline } from "react-icons/ti";
 import { FaSuperpowers } from "react-icons/fa";
+import t from '../../../i18n/i18n';
+
 const CauseHome = () => {
   return (
     <>

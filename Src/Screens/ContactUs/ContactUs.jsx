@@ -9,6 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import t from "../../../i18n/i18n";
+
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -63,30 +65,29 @@ const ContactUs = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>Connect With Us</Text>
+        <Text style={styles.title}>{t("Connect With Us")}</Text>
         <Text style={styles.subtitle}>
-          Whether you want some help or just to ask us a question, you are
-          welcome to do it using the form below.
+          {t("Whether you want some help or just to ask us a question, you are welcome to do it using the form below.")}
         </Text>
       </View>
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Full Name"
+          placeholder={t("Full Name")}
           name="name"
           value={name}
           onChangeText={(value) => handleChange(value, "name")}
         />
         <TextInput
           style={styles.input}
-          placeholder="Email"
+          placeholder={t("Email")}
           name="email"
           value={email}
           onChangeText={(value) => handleChange(value, "email")}
         />
         <TextInput
           style={styles.input}
-          placeholder="Phone Number"
+          placeholder={t("Phone Number")}
           name="phone"
           value={phone}
           onChangeText={(value) => handleChange(value, "phone")}
@@ -94,13 +95,13 @@ const ContactUs = () => {
         <TextInput
           style={styles.textarea}
           multiline
-          placeholder="Your Message"
+          placeholder={t("Your Message")}
           name="message"
           value={message}
           onChangeText={(value) => handleChange(value, "message")}
         />
         <TouchableOpacity style={styles.button} onPress={sendEmail}>
-          <Text style={styles.buttonText}>Send</Text>
+          <Text style={styles.buttonText}>{t("Send")}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

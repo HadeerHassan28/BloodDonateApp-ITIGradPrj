@@ -111,6 +111,19 @@ const styles = StyleSheet.create({
     borderRadius: "5px",
     border: "1px solid gray",
   },
+  searchBox: {
+    width: "50vw",
+    padding: "15px",
+    backgroundColor: "#ffffff",
+    margin: "0 auto",
+    marginTop: "50px",
+    borderRadius:" 2vw",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    alignItems: "center",
+    border: "1px solid gray",
+}
 });
 
 export default styles;

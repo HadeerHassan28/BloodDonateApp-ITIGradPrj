@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../../Common/routes";
+import t from "../../../../i18n/i18n";
 
 const LogOrg = () => {
   const [orgCode, setOrgCode] = useState("");
@@ -44,32 +45,32 @@ const LogOrg = () => {
   return (
     <View style={styles.login_org}>
       <View style={styles.login_org_content}>
-        <Text style={styles.heading}>Log In - Organizations</Text>
+        <Text style={styles.heading}>{t("Log In - Organizations")}</Text>
         <View style={styles.form}>
           <View style={styles.formGroup}>
-            <Text style={styles.label}>Organization Code</Text>
+            <Text style={styles.label}>{t("Organization Code")}</Text>
             <TextInput
               style={styles.input}
               onChangeText={handleOrgCode}
               value={orgCode}
-              placeholder="Organization Code"
+              placeholder={t("Organization Code")}
               placeholderTextColor="#888"
             />
           </View>
           <View style={styles.formGroup}>
-            <Text style={styles.label}>Password</Text>
+            <Text style={styles.label}>{t("Password")}</Text>
             <TextInput
               style={styles.input}
               onChangeText={handlePassword}
               value={password}
               secureTextEntry
-              placeholder="Password"
+              placeholder={t("Password")}
               placeholderTextColor="#888"
             />
           </View>
 
           <TouchableOpacity style={styles.signInButton} onPress={handleSubmit}>
-            <Text style={styles.signInButtonText}>Sign In</Text>
+            <Text style={styles.signInButtonText}>{t("Sign In")}</Text>
           </TouchableOpacity>
         </View>
       </View>

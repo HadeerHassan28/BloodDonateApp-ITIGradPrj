@@ -43,9 +43,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       {/* <ThemeProvider> */}
-      <NavigationContainer
-        theme={scheme === "light" ? DefaultTheme : DarkTheme}
-      >
+      <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
         {/* <SettingsStackNavigator /> */}
         <DrawerNavigator />
       </NavigationContainer>

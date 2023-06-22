@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Link } from "react-router-dom";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import colors from "../../Common/Colors";
+import t from "../../../i18n/i18n";
 
 const Selection = ({ onSelection }) => {
   const optionOne = useRef();
@@ -38,7 +39,7 @@ const Selection = ({ onSelection }) => {
       <View style={styles.overlay} onPress={toggleSelection}></View>
       <View style={styles.container}>
         <View style={[styles.selection, { marginHorizontal: 10 }]}>
-          <Text style={styles.heading}>Choose Your Plan</Text>
+          <Text style={styles.heading}>{t("Choose Your Plan")}</Text>
           <View style={styles.row}>
             <TouchableOpacity
               style={[
@@ -49,7 +50,7 @@ const Selection = ({ onSelection }) => {
               onPress={handleOptionOne}
               ref={optionOne}
             >
-              <Text style={styles.optionTitle}>Organization</Text>
+              <Text style={styles.optionTitle}>{t("Organization")}</Text>
               {/* <BsHospital size={64} color="#ee394a" /> */}
               <Ionicons
                 name={"business-outline"}
@@ -57,11 +58,11 @@ const Selection = ({ onSelection }) => {
                 color={colors.mainColor}
               />
               <Text style={styles.optionDescription}>
-                This Plan Include Hospitals and Blood Banks
+                {t("This Plan Include Hospitals and Blood Banks")}
               </Text>
               {isOptionOneSelected && (
                 <Text style={styles.optionSelectedText}>
-                  * You are Following the Organizational Plan
+                  {t("* You are Following the Organizational Plan")}
                 </Text>
               )}
             </TouchableOpacity>
@@ -74,7 +75,7 @@ const Selection = ({ onSelection }) => {
               onPress={handleOptionTwo}
               ref={optionTwo}
             >
-              <Text style={styles.optionTitle}>User</Text>
+              <Text style={styles.optionTitle}>{t("User")}</Text>
               {/* <AiOutlineUser size={64} color="#ee394a" /> */}
               <Ionicons
                 name={"person-outline"}
@@ -82,11 +83,11 @@ const Selection = ({ onSelection }) => {
                 color={colors.mainColor}
               />
               <Text style={styles.optionDescription}>
-                This Plan Include Donors and Recipients
+                {t("This Plan Include Donors and Recipients")}
               </Text>
               {isOptionTwoSelected && (
                 <Text style={styles.optionSelectedText}>
-                  * You are Following the Users Plan
+                  {t("* You are Following the Users Plan")}
                 </Text>
               )}
             </TouchableOpacity>
@@ -98,11 +99,11 @@ const Selection = ({ onSelection }) => {
                 style={[styles.button, styles.secondaryButton]}
                 onPress={toggleSelection}
               >
-                <Text style={styles.buttonText}>Cancel</Text>
+                <Text style={styles.buttonText}>{t("Cancel")}</Text>
               </TouchableOpacity>
               <Link to="signup-org">
                 <TouchableOpacity style={[styles.button, styles.dangerButton]}>
-                  <Text style={styles.buttonText}>Sign Up</Text>
+                  <Text style={styles.buttonText}>{t("Sign Up")}</Text>
                 </TouchableOpacity>
               </Link>
             </View>
@@ -114,11 +115,11 @@ const Selection = ({ onSelection }) => {
                 style={[styles.button, styles.secondaryButton]}
                 onPress={toggleSelection}
               >
-                <Text style={styles.buttonText}>Cancel</Text>
+                <Text style={styles.buttonText}>{t("Cancel")}</Text>
               </TouchableOpacity>
               <Link to="signup-user">
                 <TouchableOpacity style={[styles.button, styles.dangerButton]}>
-                  <Text style={styles.buttonText}>Sign Up</Text>
+                  <Text style={styles.buttonText}>{t("Sign Up")}</Text>
                 </TouchableOpacity>
               </Link>
             </View>

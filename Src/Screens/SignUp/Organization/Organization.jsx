@@ -11,6 +11,8 @@ import { Picker } from "@react-native-picker/picker";
 import uuid from "react-native-uuid";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import { t } from "../../../../i18n/i18n";
+
 const OrganizationSignUp = () => {
   const [data, setData] = useState({
     id: uuid,
@@ -145,7 +147,7 @@ const OrganizationSignUp = () => {
             fontSize: 24,
           }}
         >
-          Sign Up Your Organization To Save a Life
+          {t("Sign Up Your Organization To Save a Life")}
         </Text>
         <View style={{ marginHorizontal: 20 }}>
           <TextInput
@@ -158,7 +160,7 @@ const OrganizationSignUp = () => {
               },
               { marginBottom: 10 },
             ]}
-            placeholder="Organization Name"
+            placeholder={t("Organization Name")}
             onChangeText={(value) => handleChange("oName", value)}
             value={data.oName}
             onFocus={() => setIsOrgNameIsFocused(true)}
@@ -173,7 +175,7 @@ const OrganizationSignUp = () => {
               },
               { marginBottom: 10 },
             ]}
-            placeholder="Organization Email"
+            placeholder={t("Organization Email")}
             onChangeText={(value) => handleChange("email", value)}
             value={data.email}
             onFocus={() => setIsEmailFocused(true)}
@@ -189,7 +191,7 @@ const OrganizationSignUp = () => {
               },
               { marginBottom: 10 },
             ]}
-            placeholder="Password"
+            placeholder={t("Password")}
             secureTextEntry
             onChangeText={(value) => handleChange("password", value)}
             value={data.password}
@@ -208,7 +210,7 @@ const OrganizationSignUp = () => {
               },
               { marginBottom: 10 },
             ]}
-            placeholder="Confirm Password"
+            placeholder={t("Confirm Password")}
             secureTextEntry
             onChangeText={(value) => handleChange("confirmPassword", value)}
             value={data.confirmPassword}
@@ -227,7 +229,7 @@ const OrganizationSignUp = () => {
               },
               { marginBottom: 10 },
             ]}
-            placeholder="Organization Code"
+            placeholder={t("Organization Code")}
             keyboardType="number-pad"
             onChangeText={(value) => handleChange("oCode", value)}
             value={data.oCode}
@@ -244,7 +246,7 @@ const OrganizationSignUp = () => {
               },
               { marginBottom: 10 },
             ]}
-            placeholder="Address"
+            placeholder={t("Address")}
             onChangeText={(value) => handleChange("Address", value)}
             value={data.Address}
             onFocus={() => setIsAddressFocused(true)}
@@ -260,7 +262,7 @@ const OrganizationSignUp = () => {
               },
               { marginBottom: 10 },
             ]}
-            placeholder="Phone Number"
+            placeholder={t("Phone Number")}
             keyboardType="phone-pad"
             onChangeText={(value) => handleChange("pNumber", value)}
             value={data.pNumber}
@@ -274,15 +276,15 @@ const OrganizationSignUp = () => {
               selectedValue={data.gender}
               onValueChange={(value) => handlePickerChange("gender", value)}
             >
-              <Picker.Item label="Sector" value="" />
-              <Picker.Item label="Governmental" value="governmental" />
-              <Picker.Item label="Private" value="Private" />
+              <Picker.Item label={t("Sector")} value="" />
+              <Picker.Item label={t("Governmental")} value="governmental" />
+              <Picker.Item label={t("Private")} value="Private" />
             </Picker>
           </View>
           <Text>
-            Have an Account?{" "}
+            {t("Have an Account?")}{" "}
             <Text style={{ color: "red", fontWeight: "bold" }}>
-              Sign in Here
+              {t("Sign in Here")}
             </Text>
           </Text>
           <TouchableOpacity
@@ -294,7 +296,7 @@ const OrganizationSignUp = () => {
             onPress={handleSubmit}
           >
             <Text style={{ color: "white", textAlign: "center", fontSize: 18 }}>
-              Sign Up
+              {t("Sign Up")}
             </Text>
           </TouchableOpacity>
         </View>
