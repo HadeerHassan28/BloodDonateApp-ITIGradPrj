@@ -5,6 +5,8 @@ import styles from "./VolunteersStyle";
 import { useRef } from "react";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
+import t from '../../../i18n/i18n';
+
 
 const Volunteers = () => {
   const searchResStep = 9;
@@ -125,44 +127,44 @@ const Volunteers = () => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.col}>
-          <Text style={styles.heading}>Volunteers</Text>
-          <Text style={styles.paragraph}>Search our Super Hero Volunteers</Text>
+          <Text style={styles.heading}>{t("Volunteers")}</Text>
+          <Text style={styles.paragraph}>{t("Search our Super Hero Volunteers")}</Text>
         </View>
-        <View style={styles.row}>
-          <Text style={styles.filterWith}>Filter with:</Text>
+        <View className={`styles.row styles.searchBox`}>
+          <Text style={styles.filterWith}>{t("Filter with:")}</Text>
           <Picker
             style={styles.select}
             ref={bloodGroup}
             onValueChange={searchBloodGroup}
           >
-            <Picker.Item label="Blood Type" value="" />
-            <Picker.Item label="All" value="All" />
-            <Picker.Item label="A+" value="A+" />
-            <Picker.Item label="A-" value="A-" />
-            <Picker.Item label="B+" value="B+" />
-            <Picker.Item label="B-" value="B-" />
-            <Picker.Item label="AB+" value="AB+" />
-            <Picker.Item label="AB-" value="AB-" />
-            <Picker.Item label="O+" value="O+" />
-            <Picker.Item label="O-" value="O-" />
+            <Picker.Item label={t("Blood Type")} value="" />
+            <Picker.Item label={t("All")} value="All" />
+            <Picker.Item label={t("A+")} value="A+" />
+            <Picker.Item label={t("A-")} value="A-" />
+            <Picker.Item label={t("B+")} value="B+" />
+            <Picker.Item label={t("B-")} value="B-" />
+            <Picker.Item label={t("AB+")} value="AB+" />
+            <Picker.Item label={t("AB-")} value="AB-" />
+            <Picker.Item label={t("O+")} value="O+" />
+            <Picker.Item label={t("O-")} value="O-" />
           </Picker>
 
           <TextInput
             style={styles.customInput}
             value={location}
             onChange={searchLocation}
-            placeholder="Location"
+            placeholder={t("Location")}
           />
 
           <TouchableOpacity
             onPress={resetSearch}
             style={[styles.button, { padding: 10 }]}
           >
-            <Text style={styles.buttonText}>Reset</Text>
+            <Text style={styles.buttonText}>{t("Reset")}</Text>
           </TouchableOpacity>
         </View>
         <Text style={searchRes ? styles.disNone : styles.disBlock}>
-          Please wait data loading
+          {t("Please wait data loading")}
         </Text>
 
         <DataTable>
@@ -180,7 +182,7 @@ const Volunteers = () => {
                   <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
                   <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
                 </svg>
-                VOLUTEER
+                {t("VOLUTEER")}
               </Text>
             </DataTable.Title>
             <DataTable.Title>
@@ -196,7 +198,7 @@ const Volunteers = () => {
                   <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
                   <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 </svg>
-                LOCATION
+                {t("LOCATION")}
               </Text>
             </DataTable.Title>
             <DataTable.Title>
@@ -218,7 +220,7 @@ const Volunteers = () => {
                     d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"
                   />
                 </svg>
-                BLOOD GROUP
+                {t("BLOOD GROUP")}
               </Text>
             </DataTable.Title>
           </DataTable.Header>
@@ -226,7 +228,7 @@ const Volunteers = () => {
           {searchRes !== null && searchRes.length === 0 ? (
             <DataTable.Row>
               <DataTable.Cell colText={3} className="fs-4">
-                Sorry, no results
+                {t("Sorry, no results")}
               </DataTable.Cell>
             </DataTable.Row>
           ) : searchRes ? (
@@ -260,7 +262,7 @@ const Volunteers = () => {
             )
           ) : (
             <DataTable.Row>
-              <DataTable.Cell colText={3}>Loading...</DataTable.Cell>
+              <DataTable.Cell colText={3}>{t("Loading...")}</DataTable.Cell>
             </DataTable.Row>
           )}
         </DataTable>
@@ -305,7 +307,7 @@ const Volunteers = () => {
           </View>
         )}
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Start saving lifes</Text>
+          <Text style={styles.buttonText}>{t("Start saving lifes")}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

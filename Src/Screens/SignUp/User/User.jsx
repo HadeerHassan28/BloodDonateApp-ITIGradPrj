@@ -11,6 +11,7 @@ import axios from "axios";
 import uuid from "react-native-uuid";
 import { Picker } from "@react-native-picker/picker";
 import styles from "./UserStyle";
+import t from "../../../i18n/i18n";
 
 const UserSignUp = () => {
   const navigation = useNavigation();
@@ -166,20 +167,20 @@ const UserSignUp = () => {
       <View style={styles.container}>
         <View style={styles.row}>
           <View style={styles.col}>
-            <Text style={styles.heading}>Sign Up To Save A Life!</Text>
+            <Text style={styles.heading}>{t("Sign Up To Save A Life!")}</Text>
             <TextInput
               style={[
                 styles.input,
                 isFirstNameFocused && !isFirstNameValid && styles.invalidInput,
               ]}
-              placeholder="First Name"
+              placeholder={t("First Name")}
               value={data.firstName}
               onChangeText={(text) => handleChange("firstName", text)}
               onFocus={() => setIsFirstNameFocused(true)}
               onBlur={() => setIsFirstNameFocused(false)}
             />
             {isFirstNameFocused && !isFirstNameValid && (
-              <Text style={styles.errorText}>* This Field Can't be Empty</Text>
+              <Text style={styles.errorText}>{t("* This Field Can't be Empty")}</Text>
             )}
 
             <TextInput
@@ -187,14 +188,14 @@ const UserSignUp = () => {
                 styles.input,
                 isLastNameFocused && !isLastNameValid && styles.invalidInput,
               ]}
-              placeholder="Last Name"
+              placeholder={t("Last Name")}
               value={data.lastName}
               onChangeText={(text) => handleChange("lastName", text)}
               onFocus={() => setIsLastNameFocused(true)}
               onBlur={() => setIsLastNameFocused(false)}
             />
             {isLastNameFocused && !isLastNameValid && (
-              <Text style={styles.errorText}>* This Field Can't be Empty</Text>
+              <Text style={styles.errorText}>{t("* This Field Can't be Empty")}</Text>
             )}
 
             <TextInput
@@ -202,7 +203,7 @@ const UserSignUp = () => {
                 styles.input,
                 isEmailFocused && !isEmailValid && styles.invalidInput,
               ]}
-              placeholder="Email address"
+              placeholder={t("Email address")}
               value={data.email}
               onChangeText={(text) => handleChange("email", text)}
               onFocus={() => setIsEmailFocused(true)}
@@ -217,7 +218,7 @@ const UserSignUp = () => {
                 styles.input,
                 isPasswordFocused && !isPasswordValid && styles.invalidInput,
               ]}
-              placeholder="Password"
+              placeholder={t("Password")}
               secureTextEntry
               value={data.password}
               onChangeText={(text) => handleChange("password", text)}
@@ -226,7 +227,7 @@ const UserSignUp = () => {
             />
             {isPasswordFocused && !isPasswordValid && (
               <Text style={styles.errorText}>
-                * Password Must be At least 6 Characters
+                {t("* Password Must be At least 6 Characters")}
               </Text>
             )}
 
@@ -237,7 +238,7 @@ const UserSignUp = () => {
                   !isConfirmedPasswordValid &&
                   styles.invalidInput,
               ]}
-              placeholder="Confirm Password"
+              placeholder={t("Confirm Password")}
               secureTextEntry
               value={data.confirmPassword}
               onChangeText={(text) => handleChange("confirmPassword", text)}
@@ -246,7 +247,7 @@ const UserSignUp = () => {
             />
             {isConfirmedPasswordFocused && !isConfirmedPasswordValid && (
               <Text style={styles.errorText}>
-                * The Password Is Not Matching
+                {t("* The Password Is Not Matching")}
               </Text>
             )}
             <TextInput
@@ -254,7 +255,7 @@ const UserSignUp = () => {
                 styles.input,
                 isAddressFocused && !isAddressValid && styles.invalidInput,
               ]}
-              placeholder="Address"
+              placeholder={t("Address")}
               value={data.Address}
               onChangeText={(text) => handleChange("Address", text)}
               onFocus={() => setIsAddressFocused(true)}
@@ -262,7 +263,7 @@ const UserSignUp = () => {
             />
             {isAddressFocused && !isAddressValid && (
               <Text style={styles.errorText}>
-                * Please Enter A Valid Address
+                {t("* Please Enter A Valid Address")}
               </Text>
             )}
 
@@ -271,14 +272,14 @@ const UserSignUp = () => {
                 styles.input,
                 isCityFocused && !isCityValid && styles.invalidInput,
               ]}
-              placeholder="City"
+              placeholder={t("City")}
               value={data.city}
               onChangeText={(text) => handleChange("city", text)}
               onFocus={() => setIsCityFocused(true)}
               onBlur={() => setIsCityFocused(false)}
             />
             {isCityFocused && !isCityValid && (
-              <Text style={styles.errorText}>* Please Enter A Valid City</Text>
+              <Text style={styles.errorText}>{t("* Please Enter A Valid City")}</Text>
             )}
 
             <TextInput
@@ -286,7 +287,7 @@ const UserSignUp = () => {
                 styles.input,
                 isPnumberFocused && !isPnumberValid && styles.invalidInput,
               ]}
-              placeholder="Phone Number"
+              placeholder={t("Phone Number")}
               value={data.pNumber}
               onChangeText={(text) => handleChange("pNumber", text)}
               onFocus={() => setIsPnumberFocused(true)}
@@ -294,7 +295,7 @@ const UserSignUp = () => {
             />
             {isPnumberFocused && !isPnumberValid && (
               <Text style={styles.errorText}>
-                * Please Enter A Valid Phone Number
+                {t("* Please Enter A Valid Phone Number")}
               </Text>
             )}
 
@@ -305,15 +306,15 @@ const UserSignUp = () => {
                 handlePickerChange("bloodType", itemValue)
               }
             >
-              <Picker.Item label="Select Blood Type" value="" />
-              <Picker.Item label="A+" value="A+" />
-              <Picker.Item label="A-" value="A-" />
-              <Picker.Item label="B-" value="B-" />
-              <Picker.Item label="B+" value="B+" />
-              <Picker.Item label="AB+" value="AB+" />
-              <Picker.Item label="AB-" value="AB-" />
-              <Picker.Item label="O-" value="O-" />
-              <Picker.Item label="O+" value="O+" />
+              <Picker.Item label={t("Select Blood Type")} value="" />
+              <Picker.Item label={t("A+")} value="A+" />
+              <Picker.Item label={t("A-")} value="A-" />
+              <Picker.Item label={t("B-")} value="B-" />
+              <Picker.Item label={t("B+")} value="B+" />
+              <Picker.Item label={t("AB+")} value="AB+" />
+              <Picker.Item label={t("AB-")} value="AB-" />
+              <Picker.Item label={t("O-")} value="O-" />
+              <Picker.Item label={t("O+")} value="O+" />
             </Picker>
 
             <Picker
@@ -323,24 +324,24 @@ const UserSignUp = () => {
                 handlePickerChange("gender", itemValue)
               }
             >
-              <Picker.Item label="Gender" value="" />
-              <Picker.Item label="Male" value="Male" />
-              <Picker.Item label="Female" value="Female" />
+              <Picker.Item label={t("Gender")} value="" />
+              <Picker.Item label={t("Male")} value="Male" />
+              <Picker.Item label={t("Female")} value="Female" />
             </Picker>
 
             <Text>
-              Have an Account?{" "}
+              {t("Have an Account?")}{" "}
               <Text style={styles.signInLink} onPress={() => handleSignIn()}>
-                Sign in Here
+                {t("Sign in Here")}
               </Text>
             </Text>
 
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-              <Text style={styles.buttonText}>Sign Up</Text>
+              <Text style={styles.buttonText}>{t("Sign Up")}</Text>
             </TouchableOpacity>
             {isSubmitted && !isEmailExisting && isDataValid && (
               <Text style={[styles.successMessage, { color: "green" }]}>
-                Your Account Created Successfully
+                {t("Your Account Created Successfully")}
               </Text>
             )}
           </View>

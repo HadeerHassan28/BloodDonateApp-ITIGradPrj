@@ -9,7 +9,8 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import i18n from "../../../i18n/i18n";
+import t from "../../../i18n/i18n";
+
 export default function Home() {
   // const navigation = useNavigation();
 
@@ -38,18 +39,17 @@ export default function Home() {
                 ...styles.title,
               }}
             >
-              BLOOD {"\n"} DONATION
+              {t("Blood-Donation")}
             </Text>
-            <Text style={styles.subtitle}>Saves Lifes,</Text>
+            <Text style={styles.subtitle}>{t("Saves Lifes,")}</Text>
             <View style={styles.tagContainer}>
-              <Text style={styles.tag}>Together we are stronger</Text>
+              <Text style={styles.tag}>{t("Together we are stronger")}</Text>
             </View>
             <Text style={styles.description}>
-              Find blood donors near your location and make a blood request in
-              less than 5 minutes.
+            {t("Find-blood-donors")}
             </Text>
             <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Donate Now</Text>
+              <Text style={styles.buttonText}>{t("Donate Now")}</Text>
             </TouchableOpacity>
           </View>
 
@@ -61,11 +61,10 @@ export default function Home() {
       <View style={styles.infoContainer}>{/* <InfoHome /> */}</View>
       <ScrollView contentContainerStyle={styles.textCenter}>
         <Text style={{ ...styles.description, fontFamily: "MontsBold" }}>
-          Join The Cause
+          {t("Join The Cause")}
         </Text>
         <Text style={styles.description}>
-          Join our cause and help us save more lives. Everyone should have the
-          right to get a blood transfusion.
+          {t("Join-our-cause")}
         </Text>
       </ScrollView>
     </ScrollView>

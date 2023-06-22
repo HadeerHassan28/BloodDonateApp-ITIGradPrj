@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import { v4 as uuid } from "uuid";
 import { useNavigation } from "@react-navigation/native";
+import t from "../../../i18n/i18n";
 
 const LogUser = () => {
   const navigation = useNavigation();
@@ -72,10 +73,10 @@ const LogUser = () => {
   return (
     <View style={styles.login_user}>
       <View style={styles.login_user_content}>
-        <Text style={styles.heading}>Log In - Users</Text>
+        <Text style={styles.heading}>{t("Log In - Users")}</Text>
         <View style={styles.form}>
           <View style={styles.formGroup}>
-            <Text style={styles.label}>Email address</Text>
+            <Text style={styles.label}>{t("Email address")}</Text>
             <TextInput
               style={[
                 styles.input,
@@ -85,7 +86,7 @@ const LogUser = () => {
               ]}
               value={data.email}
               name="email"
-              placeholder="Email address"
+              placeholder={t("Email address")}
               placeholderTextColor="#888"
               onFocus={() => setIsEmailFocused(true)}
               onBlur={() => setIsEmailFocused(false)}
@@ -93,7 +94,7 @@ const LogUser = () => {
             />
           </View>
           <View style={styles.formGroup}>
-            <Text style={styles.label}>Password</Text>
+            <Text style={styles.label}>{t("Password")}</Text>
             <TextInput
               style={[
                 styles.input,
@@ -103,7 +104,7 @@ const LogUser = () => {
               ]}
               value={data.password}
               name="password"
-              placeholder="Password"
+              placeholder={t("Password")}
               placeholderTextColor="#888"
               secureTextEntry
               onFocus={() => setIsPasswordFocused(true)}
@@ -113,7 +114,7 @@ const LogUser = () => {
           </View>
 
           <TouchableOpacity style={styles.signInButton} onPress={handleSubmit}>
-            <Text style={styles.signInButtonText}>Sign In</Text>
+            <Text style={styles.signInButtonText}>{t("Sign In")}</Text>
           </TouchableOpacity>
         </View>
       </View>
