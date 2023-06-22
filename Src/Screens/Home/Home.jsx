@@ -9,7 +9,7 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import {t} from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
 
 export default function Home() {
   // const navigation = useNavigation();

@@ -5,7 +5,7 @@ import { AiFillFacebook } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
 import { AiFillLinkedin } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import {t} from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
 
 const Footer = () => {
   return (

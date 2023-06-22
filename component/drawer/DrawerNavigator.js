@@ -12,7 +12,7 @@ import Root from "../../Src/Navigations/root";
 
 import { ThemeConetxt } from "../../Src/Context/ThemeProvider";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import {t} from "../../../../i18n/i18n";
+import t from "../../i18n/i18n";
 
 const Drawer = createDrawerNavigator();
 

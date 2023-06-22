@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import {t} from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
+
 
 const TermsAndConditions = () => {
   return (

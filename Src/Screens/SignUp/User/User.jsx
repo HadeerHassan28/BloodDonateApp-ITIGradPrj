@@ -11,7 +11,7 @@ import axios from "axios";
 import uuid from "react-native-uuid";
 import { Picker } from "@react-native-picker/picker";
 import styles from "./UserStyle";
-import t from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
 
 const UserSignUp = () => {
   const navigation = useNavigation();

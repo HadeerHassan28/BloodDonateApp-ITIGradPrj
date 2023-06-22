@@ -15,7 +15,7 @@ import { Dimensions } from "react-native";
 
 import styles from "./AboutStyle.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {t} from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
 
 const About = () => {
   const windowWidth = Dimensions.get("window").width;

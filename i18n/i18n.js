@@ -16,4 +16,8 @@ i18n.enableFallback = true;
 export default function t(key) {
   return i18n.t(key);
 }
+
+export function changeLanguage(lang){
+  return i18n.locale = lang;
+}
 //console.warn(t("Donate Now"));

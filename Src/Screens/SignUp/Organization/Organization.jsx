@@ -11,7 +11,7 @@ import { Picker } from "@react-native-picker/picker";
 import uuid from "react-native-uuid";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
-import {t} from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
 
 const OrganizationSignUp = () => {
   const [data, setData] = useState({

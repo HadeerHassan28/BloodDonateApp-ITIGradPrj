@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import {t} from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
 
 const ContactUs = () => {
   const [name, setName] = useState("");

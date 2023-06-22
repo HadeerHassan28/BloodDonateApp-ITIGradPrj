@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../../Common/routes";
-import {t} from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
 
 const LogOrg = () => {
   const [orgCode, setOrgCode] = useState("");

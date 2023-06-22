@@ -5,7 +5,7 @@ import styles from "./VolunteersStyle";
 import { useRef } from "react";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
-import {t} from "../../../../i18n/i18n";
+import {t} from "../../../i18n/i18n";
 
 
 const Volunteers = () => {
