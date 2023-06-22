@@ -10,12 +10,14 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import i18n from "../../../i18n/i18n";
+import { useTheme } from "@react-navigation/native";
 export default function Home() {
   // const navigation = useNavigation();
 
   // const openDrawer = () => {
   //   navigation.openDrawer();
   // };
+  const { colors } = useTheme();
   return (
     <ScrollView style={styles.container}>
       {/* <TouchableOpacity style={styles.drawerLogoContainer}>
@@ -36,6 +38,8 @@ export default function Home() {
             <Text
               style={{
                 ...styles.title,
+
+                // color: colors.text,
               }}
             >
               BLOOD {"\n"} DONATION
@@ -63,7 +67,7 @@ export default function Home() {
         <Text style={{ ...styles.description, fontFamily: "MontsBold" }}>
           Join The Cause
         </Text>
-        <Text style={styles.description}>
+        <Text style={{ ...styles.description }}>
           Join our cause and help us save more lives. Everyone should have the
           right to get a blood transfusion.
         </Text>
@@ -106,7 +110,6 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: "center",
-    // marginTop: "3rem",
     marginBottom: 0,
   },
   title: {

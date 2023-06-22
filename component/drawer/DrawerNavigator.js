@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import React from "react";
+import React, { useContext } from "react";
 import routes from "../../Src/Common/routes";
 import About from "../../Src/Screens/About/About";
 import Blogs from "../../Src/Screens/Blogs/Blogs";
@@ -9,19 +9,28 @@ import Volunteers from "../../Src/Screens/Volunteers/Volunteers";
 import ContactUs from "../../Src/Screens/ContactUs/ContactUs";
 import TermsAndConditions from "../../Src/Screens/Terms/Terms";
 import Root from "../../Src/Navigations/root";
+
+import { ThemeConetxt } from "../../Src/Context/ThemeProvider";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = ({ theme }) => {
+  // const { theme, toggleDarkMode } = useContext(ThemeConetxt);
+  // const handleToggleTheme = () => {
+  //   toggleDarkMode();
+  // };
+
   return (
     <Drawer.Navigator
       screenOptions={{
         headerShown: false,
         drawerStyle: {
-          backgroundColor: "#fbf1f0",
+          backgroundColor: theme === "dark" ? "#000000" : "#fbf1f0",
           width: "75%",
         },
-        drawerActiveTintColor: "black",
-        drawerInactiveTintColor: "red",
+        drawerActiveTintColor: theme === "dark" ? "#fbf1f0" : "black",
+        drawerInactiveTintColor: theme === "dark" ? "#fbf1f0" : "red",
       }}
     >
       <Drawer.Screen
@@ -54,6 +63,15 @@ const DrawerNavigator = () => {
         screenOptions={{ headerShown: false }}
         name={routes.TermsAndConditions}
         component={TermsAndConditions}
+      />
+      <Drawer.Screen
+        name="Toggle Theme"
+        component={() => (
+          <TouchableOpacity
+            title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
+            onPress={handleToggleTheme}
+          />
+        )}
       />
     </Drawer.Navigator>
   );
