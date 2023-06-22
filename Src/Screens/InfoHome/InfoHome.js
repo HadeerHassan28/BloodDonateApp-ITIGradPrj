@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import {t} from "../../../../i18n/i18n";
 
 const InfoHome = () => {
   return (
@@ -17,9 +18,9 @@ const InfoHome = () => {
             </View>
           </View>
         </View>
-        <Text style={styles.heading}>Find Blood</Text>
+        <Text style={styles.heading}>{t("Find Blood")}</Text>
         <Text style={styles.description}>
-          Find blood donors near your location and request the needed blood type
+          {t("Find blood donors near your location and request the needed blood type")}
         </Text>
       </View>
       <View style={styles.container}>
@@ -36,9 +37,9 @@ const InfoHome = () => {
             </View>
           </View>
         </View>
-        <Text style={styles.heading}>Get Notification</Text>
+        <Text style={styles.heading}>{t("Get Notification")}</Text>
         <Text style={styles.description}>
-          Get notified about requests instantly, either on our app or by SMS
+        {t("Get notified about requests instantly, either on our app or by sms")}
         </Text>
       </View>
       <View style={styles.container}>
@@ -51,9 +52,9 @@ const InfoHome = () => {
             </View>
           </View>
         </View>
-        <Text style={styles.heading}>Forever Free</Text>
+        <Text style={styles.heading}>{t("Forever Free")}</Text>
         <Text style={styles.description}>
-          You don't have to pay anything, Save Life Connect is forever Free!
+        {t("You don't have to pay anything, Blood Donation Connect is forever Free !")}
         </Text>
       </View>
     </>

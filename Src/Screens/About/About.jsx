@@ -15,7 +15,7 @@ import { Dimensions } from "react-native";
 
 import styles from "./AboutStyle.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import t from '../../../i18n/i18n';
+import {t} from "../../../../i18n/i18n";
 
 const About = () => {
   const windowWidth = Dimensions.get("window").width;
@@ -166,7 +166,7 @@ const About = () => {
               <Text style={styles.cardTitle}>{t("Get notified")}</Text>
             </View>
             <Text style={styles.iconDescription}>
-              {t("Get notified in real-time when a donor has been found and when the blood is on its way to the patient")}
+            {t("Get notified in real time when a donor has been found and when the blood is on its way to the patient")}
             </Text>
           </View>
           <View style={styles.columnContainer}>
@@ -180,7 +180,7 @@ const About = () => {
               <Text style={styles.cardTitle}>{t("Save a Life")}</Text>
             </View>
             <Text style={styles.iconDescription}>
-              {t("Donating or requesting blood share the same noble and final purpose Saving a Life.")}
+            {t("Donating or requesting blood share the same noble and final purpose Saving a Life.")}
             </Text>
           </View>
         </View>

@@ -12,6 +12,7 @@ import Root from "../../Src/Navigations/root";
 
 import { ThemeConetxt } from "../../Src/Context/ThemeProvider";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import {t} from "../../../../i18n/i18n";
 
 const Drawer = createDrawerNavigator();
 
@@ -35,37 +36,37 @@ const DrawerNavigator = ({ theme }) => {
     >
       <Drawer.Screen
         screenOptions={{ headerShown: false }}
-        name="Home"
+        name={t("Home")}
         component={Root}
       />
       <Drawer.Screen
         screenOptions={{ headerShown: false }}
-        name={routes.about}
+        name={t(routes.about)}
         component={About}
       />
       <Drawer.Screen
         screenOptions={{ headerShown: false, activeTintColor: "#fbf1f0" }}
-        name={routes.blogs}
+        name={t(routes.blogs)}
         component={Blogs}
       />
       <Drawer.Screen
         screenOptions={{ headerShown: false }}
-        name={routes.Volunteers}
+        name={t(routes.Volunteers)}
         component={Volunteers}
       />
       <Drawer.Screen
         screenOptions={{ headerShown: false }}
-        name={routes.ContactUs}
+        name={t(routes.ContactUs)}
         component={ContactUs}
       />
 
       <Drawer.Screen
         screenOptions={{ headerShown: false }}
-        name={routes.TermsAndConditions}
+        name={t(routes.TermsAndConditions)}
         component={TermsAndConditions}
       />
       <Drawer.Screen
-        name="Toggle Theme"
+        name={t("Toggle Theme")}
         component={() => (
           <TouchableOpacity
             title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}

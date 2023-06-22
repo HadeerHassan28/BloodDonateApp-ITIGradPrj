@@ -5,7 +5,7 @@ import styles from "./VolunteersStyle";
 import { useRef } from "react";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
-import t from '../../../i18n/i18n';
+import {t} from "../../../../i18n/i18n";
 
 
 const Volunteers = () => {
@@ -139,14 +139,14 @@ const Volunteers = () => {
           >
             <Picker.Item label={t("Blood Type")} value="" />
             <Picker.Item label={t("All")} value="All" />
-            <Picker.Item label={t("A+")} value="A+" />
-            <Picker.Item label={t("A-")} value="A-" />
-            <Picker.Item label={t("B+")} value="B+" />
-            <Picker.Item label={t("B-")} value="B-" />
-            <Picker.Item label={t("AB+")} value="AB+" />
-            <Picker.Item label={t("AB-")} value="AB-" />
-            <Picker.Item label={t("O+")} value="O+" />
-            <Picker.Item label={t("O-")} value="O-" />
+            <Picker.Item label="A+" value="A+" />
+            <Picker.Item label="A-" value="A-" />
+            <Picker.Item label="B+" value="B+" />
+            <Picker.Item label="B-" value="B-" />
+            <Picker.Item label="AB+" value="AB+" />
+            <Picker.Item label="AB-" value="AB-" />
+            <Picker.Item label="O+" value="O+" />
+            <Picker.Item label="O-" value="O-" />
           </Picker>
 
           <TextInput

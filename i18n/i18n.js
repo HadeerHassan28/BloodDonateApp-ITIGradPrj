@@ -9,8 +9,8 @@ const i18n = new I18n({
   ar,
 });
 
-//i18n.locale = Localization.locale; //depende on the language of the device
-i18n.locale = "ar"; // for check the arabic is done.
+i18n.locale = Localization.locale; //depende on the language of the device
+// i18n.locale = "ar"; // for check the arabic is done.
 i18n.enableFallback = true;
 
 export default function t(key) {
