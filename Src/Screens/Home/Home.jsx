@@ -10,9 +10,14 @@ import {
   Switch,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+<<<<<<< HEAD
 import t from "../../../i18n/i18n";
 import { EventRegister } from "react-native-event-listeners";
 import themeContext from "../../Theme/theme";
+=======
+import {t} from "../../../../i18n/i18n";
+
+>>>>>>> ce434b69b08ba73e0ec553719b26aa1a2c37c59a
 export default function Home() {
   // const navigation = useNavigation();
 
@@ -49,7 +54,7 @@ export default function Home() {
                 ...styles.title,
               }}
             >
-              {t("Blood-Donation")}
+              {JSON.parse(t("Blood-Donation"))}
             </Text>
             <Text style={styles.subtitle}>{t("Saves Lifes,")}</Text>
             <View style={styles.tagContainer}>

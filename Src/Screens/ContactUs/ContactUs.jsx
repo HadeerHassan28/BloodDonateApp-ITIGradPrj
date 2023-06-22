@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import t from "../../../i18n/i18n";
+import {t} from "../../../../i18n/i18n";
 
 const ContactUs = () => {
   const [name, setName] = useState("");
@@ -67,7 +67,7 @@ const ContactUs = () => {
       <View style={styles.textContainer}>
         <Text style={styles.title}>{t("Connect With Us")}</Text>
         <Text style={styles.subtitle}>
-          {t("Whether you want some help or just to ask us a question, you are welcome to do it using the form below.")}
+        {t("Whether you want some help or just to ask us a question, you are welcome to do it using the form below.")}
         </Text>
       </View>
       <View style={styles.formContainer}>

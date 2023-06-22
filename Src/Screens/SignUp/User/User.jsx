@@ -313,14 +313,14 @@ const UserSignUp = () => {
               }
             >
               <Picker.Item label={t("Select Blood Type")} value="" />
-              <Picker.Item label={t("A+")} value="A+" />
-              <Picker.Item label={t("A-")} value="A-" />
-              <Picker.Item label={t("B-")} value="B-" />
-              <Picker.Item label={t("B+")} value="B+" />
-              <Picker.Item label={t("AB+")} value="AB+" />
-              <Picker.Item label={t("AB-")} value="AB-" />
-              <Picker.Item label={t("O-")} value="O-" />
-              <Picker.Item label={t("O+")} value="O+" />
+              <Picker.Item label="A+" value="A+" />
+              <Picker.Item label="A-" value="A-" />
+              <Picker.Item label="B-" value="B-" />
+              <Picker.Item label="B+" value="B+" />
+              <Picker.Item label="AB+" value="AB+" />
+              <Picker.Item label="AB-" value="AB-" />
+              <Picker.Item label="O-" value="O-" />
+              <Picker.Item label="O+" value="O+" />
             </Picker>
 
             <Picker

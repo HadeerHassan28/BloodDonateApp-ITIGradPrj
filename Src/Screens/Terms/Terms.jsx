@@ -1,17 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { t } from "../../../i18n/i18n";
+import {t} from "../../../../i18n/i18n";
+
 const TermsAndConditions = () => {
   return (
     <ScrollView style={styles.container}>
       <View>
         <Text style={styles.title}>
-          {t("Terms")} &amp; {t("Conditions")}
+          {t("Terms & Conditions")}
         </Text>
         <Text style={styles.subtitle}>
-          {t(
-            "This stuff is boring, but important. In short, be a decent human being."
-          )}
+        {t("This stuff is boring, but important. In short, be a decent human being.")}{" "}
         </Text>
       </View>
 
@@ -20,17 +19,17 @@ const TermsAndConditions = () => {
           {t("Software License and Service Agreement")}
         </Text>
         <Text style={styles.paragraph}>
-          {t("Software License and Service Agreement Paragraph")}
+          {JSON.parse(t("Software License and Service Agreement Paragraph"))}
         </Text>
         <Text style={styles.heading}>{t("Acceptance of the Agreement")}</Text>
         <Text style={styles.paragraph}>
-          {t("Acceptance of the Agreement Paragraph")}
+          {JSON.parse(t("Acceptance of the Agreement Paragraph"))}
         </Text>
         <Text style={styles.paragraph}>
-          {t("Acceptance of the Agreement Paragraph2")}
+          {JSON.parse(t("Acceptance of the Agreement Paragraph2"))}
         </Text>
         <Text style={styles.heading}>{t("Eligibility")}</Text>
-        <Text style={styles.paragraph}>{t("Eligibility Paragraph")}</Text>
+        <Text style={styles.paragraph}>{JSON.parse(t("Eligibility Paragraph"))}</Text>
       </View>
     </ScrollView>
   );
