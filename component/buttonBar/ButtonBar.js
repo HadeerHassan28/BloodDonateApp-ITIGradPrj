@@ -4,11 +4,12 @@ import rootes from "../../navigateVar/rootes";
 import About from "../../screens/About/About";
 import Home from "../../screens/Home/Home";
 import Blogs from "../../screens/Blogs/Blogs";
-import t from "../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
 
 export function MyTabs() {
+  const {t} = useTranslation();
   return (
     <Tab.Navigator>
       <Tab.Screen name={t("Blogs")} component={Blogs} />

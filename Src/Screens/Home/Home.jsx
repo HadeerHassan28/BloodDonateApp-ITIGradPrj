@@ -9,9 +9,11 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import {t} from "../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 export default function Home() {
+  const {t} = useTranslation();
+
   // const navigation = useNavigation();
 
   // const openDrawer = () => {
@@ -39,7 +41,7 @@ export default function Home() {
                 ...styles.title,
               }}
             >
-              {JSON.parse(t("Blood-Donation"))}
+              <Trans i18nKey='Blood-Donation'><Text></Text></Trans>
             </Text>
             <Text style={styles.subtitle}>{t("Saves Lifes,")}</Text>
             <View style={styles.tagContainer}>

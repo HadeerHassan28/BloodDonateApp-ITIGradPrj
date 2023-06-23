@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import {t} from "../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 
 const TermsAndConditions = () => {
+  const {t} = useTranslation();
+
   return (
     <ScrollView style={styles.container}>
       <View>
@@ -20,17 +22,17 @@ const TermsAndConditions = () => {
           {t("Software License and Service Agreement")}
         </Text>
         <Text style={styles.paragraph}>
-          {JSON.parse(t("Software License and Service Agreement Paragraph"))}
+          {t("Software License and Service Agreement Paragraph")}
         </Text>
         <Text style={styles.heading}>{t("Acceptance of the Agreement")}</Text>
         <Text style={styles.paragraph}>
-          {JSON.parse(t("Acceptance of the Agreement Paragraph"))}
+          {t("Acceptance of the Agreement Paragraph")}
         </Text>
         <Text style={styles.paragraph}>
-          {JSON.parse(t("Acceptance of the Agreement Paragraph2"))}
+          {t("Acceptance of the Agreement Paragraph2")}
         </Text>
         <Text style={styles.heading}>{t("Eligibility")}</Text>
-        <Text style={styles.paragraph}>{JSON.parse(t("Eligibility Paragraph"))}</Text>
+        <Text style={styles.paragraph}>{t("Eligibility Paragraph")}</Text>
       </View>
     </ScrollView>
   );

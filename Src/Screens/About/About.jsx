@@ -15,10 +15,11 @@ import { Dimensions } from "react-native";
 
 import styles from "./AboutStyle.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {t} from "../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const About = () => {
   const windowWidth = Dimensions.get("window").width;
+  const {t} = useTranslation();
 
   return (
     <ScrollView>

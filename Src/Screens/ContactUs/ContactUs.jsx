@@ -9,13 +9,15 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import {t} from "../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+
+  const {t} = useTranslation();
 
   const serviceId = "service_qikwrd7";
   const templateId = "template_gpnjabj";

@@ -3,9 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Link } from "react-router-dom";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import colors from "../../Common/Colors";
-import {t} from "../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const Selection = ({ onSelection }) => {
+  const {t} = useTranslation();
+
   const optionOne = useRef();
   const optionTwo = useRef();
 

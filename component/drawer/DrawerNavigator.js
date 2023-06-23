@@ -12,11 +12,12 @@ import Root from "../../Src/Navigations/root";
 
 import { ThemeConetxt } from "../../Src/Context/ThemeProvider";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import t from "../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = ({ theme }) => {
+  const {t} = useTranslation();
   // const { theme, toggleDarkMode } = useContext(ThemeConetxt);
   // const handleToggleTheme = () => {
   //   toggleDarkMode();

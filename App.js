@@ -13,9 +13,11 @@ import "react-native-gesture-handler";
 import { useFonts } from "expo-font";
 import DrawerNavigator from "./component/drawer/DrawerNavigator";
 import { useColorScheme } from "react-native";
+import './i18n/config';
 
 import { ThemeConetxt, ThemeProvider } from "./Src/Context/ThemeProvider";
 import SettingsStackNavigator from "./Src/Navigations/SettingsStackNavigator";
+import ChangeLang from "./component/Localization/changeLang";
 export default function App() {
   const scheme = useColorScheme();
   // const MyTheme = {
@@ -43,6 +45,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       {/* <ThemeProvider> */}
+      <ChangeLang/> 
       <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
         {/* <SettingsStackNavigator /> */}
         <DrawerNavigator />

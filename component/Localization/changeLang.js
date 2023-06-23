@@ -1,16 +1,19 @@
 import React from 'react';
 import { Text, View, Picker } from 'react-native';
-import { t, changeLanguage} from "../../i18n/i18n"
+import { Trans, useTranslation } from 'react-i18next';
 
 const ChangeLang = () => {
+    const {i18n} = useTranslation();
+
     const changeLang = (e)=>{
-        changeLanguage(e.target.value);
+      i18n.changeLanguage(e.target.value);
     }
     return (
-        <View>
+        <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-evenly"}}>
             <Text>{t("Change Language")}</Text>
             <Picker
             onValueChange={changeLang}
+            style={{color: "black"}}
           >
             <Picker.Item label="English (en)" value="en" />
             <Picker.Item label="العربية (ar)" value="ar" />

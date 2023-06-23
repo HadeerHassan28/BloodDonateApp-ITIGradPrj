@@ -1,8 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import {t} from "../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const InfoHome = () => {
+  const {t} = useTranslation();
+
   return (
     <>
       <View style={styles.container}>

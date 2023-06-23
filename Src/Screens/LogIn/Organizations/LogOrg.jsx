@@ -9,9 +9,11 @@ import {
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../../Common/routes";
-import {t} from "../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const LogOrg = () => {
+  const {t} = useTranslation();
+
   const [orgCode, setOrgCode] = useState("");
   const [password, setPassword] = useState("");
   const { navigate } = useNavigation();

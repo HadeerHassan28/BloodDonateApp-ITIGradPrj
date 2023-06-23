@@ -5,7 +5,7 @@ import styles from "./VolunteersStyle";
 import { useRef } from "react";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
-import {t} from "../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 
 const Volunteers = () => {
@@ -16,6 +16,8 @@ const Volunteers = () => {
   const [endIndex, setEndIndex] = useState(searchResStep);
   const bloodGroup = useRef();
   const [location, setLocation] = useState("");
+  const {t} = useTranslation();
+
   useEffect(() => {
     axios.get("http://localhost:3002/users").then((res) => {
       setVolunteers(res.data);
