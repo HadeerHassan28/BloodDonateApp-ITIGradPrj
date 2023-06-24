@@ -15,21 +15,16 @@ import { Dimensions } from "react-native";
 
 import styles from "./AboutStyle.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
-<<<<<<< HEAD
 import t from "../../../i18n/i18n";
 import themeContext from "../../Theme/themeContext";
 import themes from "../../Theme/theme";
+import { Trans, useTranslation } from "react-i18next";
 const About = () => {
   const windowWidth = Dimensions.get("window").width;
   const darkTheme = useContext(themeContext);
-=======
-import { Trans, useTranslation } from 'react-i18next';
 
-const About = () => {
-  const windowWidth = Dimensions.get("window").width;
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
->>>>>>> 9ec7098acdf10a4e50cdc85bc408d2aca6b0e4f2
   return (
     <ScrollView
       style={

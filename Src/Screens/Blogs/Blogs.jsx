@@ -3,15 +3,12 @@ import styles from "./BlogsStyle.js";
 import { View, Text, Image, Platform } from "react-native";
 import { Dimensions } from "react-native";
 import { ScrollView } from "react-native";
-<<<<<<< HEAD
 import { t } from "../../../i18n/i18n";
-=======
-import { Trans, useTranslation } from 'react-i18next';
->>>>>>> 9ec7098acdf10a4e50cdc85bc408d2aca6b0e4f2
+import { Trans, useTranslation } from "react-i18next";
 
 const Blogs = () => {
   const windowWidth = Dimensions.get("window").width;
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const imgsPrag = [
     {
