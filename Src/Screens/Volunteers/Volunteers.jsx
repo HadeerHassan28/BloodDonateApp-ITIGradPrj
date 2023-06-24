@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, View, Text, TextInput, Picker, Image, TouchableOpacity } from "react-native";
-import { DataTable } from 'react-native-paper';
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  Picker,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import { DataTable } from "react-native-paper";
 import styles from "./VolunteersStyle";
 import { useRef } from "react";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
-import {t} from "../../../../i18n/i18n";
-
+import { t } from "../../../i18n/i18n";
 
 const Volunteers = () => {
   const searchResStep = 9;
@@ -128,7 +135,9 @@ const Volunteers = () => {
       <View style={styles.container}>
         <View style={styles.col}>
           <Text style={styles.heading}>{t("Volunteers")}</Text>
-          <Text style={styles.paragraph}>{t("Search our Super Hero Volunteers")}</Text>
+          <Text style={styles.paragraph}>
+            {t("Search our Super Hero Volunteers")}
+          </Text>
         </View>
         <View className={`styles.row styles.searchBox`}>
           <Text style={styles.filterWith}>{t("Filter with:")}</Text>

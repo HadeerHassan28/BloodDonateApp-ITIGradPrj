@@ -1,13 +1,13 @@
-const theme = {
+const themes = {
   light: {
     theme: "light",
-    color: "red",
+    color: "black",
     background: "#fbf1f0",
   },
   dark: {
     theme: "dark",
-    color: "black",
+    color: "white",
     background: "black",
   },
 };
-export default theme;
+export default themes;

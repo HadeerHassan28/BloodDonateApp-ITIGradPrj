@@ -9,37 +9,38 @@ import {
   Platform,
   Switch,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-<<<<<<< HEAD
+import { DarkTheme, Link, useNavigation } from "@react-navigation/native";
 import t from "../../../i18n/i18n";
 import { EventRegister } from "react-native-event-listeners";
-import themeContext from "../../Theme/theme";
-=======
-import {t} from "../../../../i18n/i18n";
+import themeContext from "../../Theme/themeContext";
 
->>>>>>> ce434b69b08ba73e0ec553719b26aa1a2c37c59a
+import themes from "../../Theme/theme";
+import { ThemeProvider } from "../../Theme/themeContext";
+
 export default function Home() {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
   // const openDrawer = () => {
   //   navigation.openDrawer();
   // };
-  const handlDark = (value) => {
-    setDarkTheme(value);
-    EventRegister.emit("ChangeTheme", value);
-  };
-  const [darkTheme, setDarkTheme] = useState(false);
-  const theme = useContext(themeContext);
+  // const [darkTheme, setDarkTheme] = useState(true);
+  // const handlDark = (value) => {
+  //   setDarkTheme(value);
+  //   EventRegister.emit("ChangeTheme", value);
+  // };
+  //const theme = useContext(themeContext);
+  const darkTheme = useContext(themeContext);
+  //console.warn(darkTheme);
 
   return (
-    <ScrollView style={{ ...styles.container }}>
+    <ScrollView style={[styles.container]}>
       {/* <TouchableOpacity style={styles.drawerLogoContainer}>
         <Image
           source={require("../../../assets/images/stock-vector-1.png")}
           style={styles.hamLogo}
         />
       </TouchableOpacity> */}
-      <Switch value={darkTheme} onValueChange={handlDark}></Switch>
+      {/* <Switch value={darkTheme} onValueChange={handlDark}></Switch> */}
       <View style={styles.logoContainer}>
         <Image
           source={require("../../../assets/images/heart.png")}
@@ -54,16 +55,38 @@ export default function Home() {
                 ...styles.title,
               }}
             >
-              {JSON.parse(t("Blood-Donation"))}
+              {t("Blood-Donation")}
             </Text>
-            <Text style={styles.subtitle}>{t("Saves Lifes,")}</Text>
+            <Text
+              style={[
+                styles.subtitle,
+                {
+                  color:
+                    darkTheme === true ? themes.dark.color : themes.light.color,
+                },
+              ]}
+            >
+              {t("Saves-Lives,")}
+            </Text>
             <View style={styles.tagContainer}>
-              <Text style={styles.tag}>{t("Together we are stronger")}</Text>
+              <Text style={[styles.tag]}>{t("Together we are stronger")}</Text>
             </View>
-            <Text style={`styles.description color:theme.color`}>
+            <Text
+              style={[
+                styles.description,
+                {
+                  color:
+                    darkTheme === true ? themes.dark.color : themes.light.color,
+                },
+              ]}
+            >
               {t("Find-blood-donors")}
             </Text>
-            <TouchableOpacity style={styles.button}>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("Selection")}
+            >
               <Text style={styles.buttonText}>{t("Donate Now")}</Text>
             </TouchableOpacity>
           </View>
@@ -75,10 +98,31 @@ export default function Home() {
       </View>
       <View style={styles.infoContainer}>{/* <InfoHome /> */}</View>
       <ScrollView contentContainerStyle={styles.textCenter}>
-        <Text style={{ ...styles.description, fontFamily: "MontsBold" }}>
+        <Text
+          style={[
+            styles.description,
+            {
+              fontFamily: "MontsBold",
+            },
+            {
+              color:
+                darkTheme === true ? themes.dark.color : themes.light.color,
+            },
+          ]}
+        >
           {t("Join The Cause")}
         </Text>
-        <Text style={styles.description}>{t("Join-our-cause")}</Text>
+        <Text
+          style={[
+            styles.description,
+            {
+              color:
+                darkTheme === true ? themes.dark.color : themes.light.color,
+            },
+          ]}
+        >
+          {t("Join-our-cause")}
+        </Text>
       </ScrollView>
     </ScrollView>
   );

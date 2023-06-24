@@ -12,13 +12,13 @@ import AppLoading from "expo-app-loading";
 import "react-native-gesture-handler";
 import { useFonts } from "expo-font";
 import DrawerNavigator from "./component/drawer/DrawerNavigator";
-import { useColorScheme } from "react-native";
 import { EventRegister } from "react-native-event-listeners";
-import theme from "./Src/Theme/theme";
-import themeContext from "./Src/Theme/themeContext";
+import themes from "./Src/Theme/theme";
+
+import themeContext, { ThemeProvider } from "./Src/Theme/themeContext";
 import SettingsStackNavigator from "./Src/Navigations/SettingsStackNavigator";
+import RootNavigator from "./Src/Navigations/StackRoot";
 export default function App() {
-  // const scheme = useColorScheme();
   // const MyTheme = {
   //   dark: true,
   //   colors: {
@@ -34,7 +34,7 @@ export default function App() {
   useEffect(() => {
     const listener = EventRegister.addEventListener("ChangeTheme", (data) => {
       setDarkMode(data);
-      console.warn(data);
+      //console.warn(data);
     });
     return () => {
       EventRegister.removeAllListeners(listener);
@@ -51,20 +51,23 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <themeContext.Provider
-        value={darkMode === true ? theme.dark : theme.light}
-      >
-        {/* <ThemeProvider> */}
-        <NavigationContainer
-          theme={darkMode === true ? DarkTheme : DefaultTheme}
+    <ThemeProvider value={themes}>
+      <SafeAreaView style={styles.container}>
+        <themeContext.Provider
+          value={darkMode === true ? themes.dark : themes.light}
         >
-          {/* <SettingsStackNavigator /> */}
-          <DrawerNavigator />
-        </NavigationContainer>
-      </themeContext.Provider>
-      {/* </ThemeProvider> */}
-    </SafeAreaView>
+          {/* <ThemeProvider> */}
+          <NavigationContainer
+            theme={darkMode === true ? DarkTheme : DefaultTheme}
+          >
+            {/* <SettingsStackNavigator /> */}
+            {/* <DrawerNavigator /> */}
+            <RootNavigator />
+          </NavigationContainer>
+        </themeContext.Provider>
+        {/* </ThemeProvider> */}
+      </SafeAreaView>
+    </ThemeProvider>
   );
 }
 const styles = StyleSheet.create({
