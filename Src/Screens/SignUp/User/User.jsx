@@ -11,9 +11,11 @@ import axios from "axios";
 import uuid from "react-native-uuid";
 import { Picker } from "@react-native-picker/picker";
 import styles from "./UserStyle";
-import t from "../../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const UserSignUp = () => {
+  const {t} = useTranslation();
+
   const navigation = useNavigation();
   const [data, SetData] = useState({
     id: uuid,
@@ -214,7 +216,7 @@ const UserSignUp = () => {
               onBlur={() => setIsEmailFocused(false)}
             />
             {isEmailFocused && !isEmailValid && (
-              <Text style={styles.errorText}>* Please Enter A Valid Email</Text>
+              <Text style={styles.errorText}>{t("* Please Enter A Valid Email")}</Text>
             )}
 
             <TextInput

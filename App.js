@@ -14,9 +14,11 @@ import { useFonts } from "expo-font";
 import DrawerNavigator from "./component/drawer/DrawerNavigator";
 import { EventRegister } from "react-native-event-listeners";
 import themes from "./Src/Theme/theme";
+import "./i18n/config";
 
 import themeContext, { ThemeProvider } from "./Src/Theme/themeContext";
 import SettingsStackNavigator from "./Src/Navigations/SettingsStackNavigator";
+import ChangeLang from "./component/Localization/changeLang";
 import RootNavigator from "./Src/Navigations/StackRoot";
 export default function App() {
   // const MyTheme = {

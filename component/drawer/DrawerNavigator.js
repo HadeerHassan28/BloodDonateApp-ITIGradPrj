@@ -10,20 +10,34 @@ import ContactUs from "../../Src/Screens/ContactUs/ContactUs";
 import TermsAndConditions from "../../Src/Screens/Terms/Terms";
 import Root from "../../Src/Navigations/root";
 
+<<<<<<< HEAD
 import t from "../../i18n/i18n";
 import themeContext, { ThemeProvider } from "../../Src/Theme/themeContext";
 import { TouchableOpacity, View, Text, Switch, StyleSheet } from "react-native";
 import { EventRegister } from "react-native-event-listeners";
+=======
+import { ThemeConetxt } from "../../Src/Context/ThemeProvider";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Trans, useTranslation } from 'react-i18next';
+>>>>>>> 9ec7098acdf10a4e50cdc85bc408d2aca6b0e4f2
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = ({ theme }) => {
+<<<<<<< HEAD
   const [darkTheme, setDarkTheme] = useState(false);
   const handlDark = (value) => {
     setDarkTheme(value);
     EventRegister.emit("ChangeTheme", value);
   };
   //console.warn(darkTheme);
+=======
+  const {t} = useTranslation();
+  // const { theme, toggleDarkMode } = useContext(ThemeConetxt);
+  // const handleToggleTheme = () => {
+  //   toggleDarkMode();
+  // };
+>>>>>>> 9ec7098acdf10a4e50cdc85bc408d2aca6b0e4f2
 
   return (
     <ThemeProvider value={darkTheme}>

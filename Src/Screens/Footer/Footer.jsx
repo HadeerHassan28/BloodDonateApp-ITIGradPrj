@@ -5,9 +5,11 @@ import { AiFillFacebook } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
 import { AiFillLinkedin } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import {t} from "../../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const {t} = useTranslation();
+
   return (
     <>
       <div
@@ -21,7 +23,7 @@ const Footer = () => {
           />
           <Text className={`${styles.header} h2`}>
             {" "}
-            {JSON.parse(t('BloodDonation-footer'))}
+            <Trans i18nKey='BloodDonation-footer'><span className="main-color"></span></Trans>
           </Text>
         </div>
         <Text className="text-light fs-7 text-center">
@@ -39,7 +41,7 @@ const Footer = () => {
         <SiGmail color="white" size={30} className="me-5"></SiGmail>
         <AiFillLinkedin color="white" size={30}></AiFillLinkedin>
         <Text className="text-light position-absolute bottom-0 start-0 end-0 mb-0 p-2">
-          {JSON.parse(t("copyright"))}
+          <Trans i18nKey='copyright'><span className="main-color fw-bold"></span></Trans>
         </Text>
         <Link to="terms" className="text-decoration-none">
           <p className=" text-light my-2 pt-2">{t("Terms & Conditions")}</p>

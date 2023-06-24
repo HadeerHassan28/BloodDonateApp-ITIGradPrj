@@ -9,9 +9,11 @@ import {
 import axios from "axios";
 import { v4 as uuid } from "uuid";
 import { useNavigation } from "@react-navigation/native";
-import {t} from "../../../../i18n/i18n";
+import { Trans, useTranslation } from 'react-i18next';
 
 const LogUser = () => {
+  const {t} = useTranslation();
+
   const navigation = useNavigation();
 
   const [data, setData] = useState({

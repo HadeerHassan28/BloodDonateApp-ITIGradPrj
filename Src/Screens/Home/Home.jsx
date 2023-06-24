@@ -9,6 +9,7 @@ import {
   Platform,
   Switch,
 } from "react-native";
+<<<<<<< HEAD
 import { DarkTheme, Link, useNavigation } from "@react-navigation/native";
 import t from "../../../i18n/i18n";
 import { EventRegister } from "react-native-event-listeners";
@@ -19,6 +20,15 @@ import { ThemeProvider } from "../../Theme/themeContext";
 
 export default function Home() {
   const navigation = useNavigation();
+=======
+import { useNavigation } from "@react-navigation/native";
+import { Trans, useTranslation } from 'react-i18next';
+
+export default function Home() {
+  const {t} = useTranslation();
+
+  // const navigation = useNavigation();
+>>>>>>> 9ec7098acdf10a4e50cdc85bc408d2aca6b0e4f2
 
   // const openDrawer = () => {
   //   navigation.openDrawer();
@@ -55,6 +65,7 @@ export default function Home() {
                 ...styles.title,
               }}
             >
+<<<<<<< HEAD
               {t("Blood-Donation")}
             </Text>
             <Text
@@ -67,6 +78,9 @@ export default function Home() {
               ]}
             >
               {t("Saves-Lives,")}
+=======
+              <Trans i18nKey='Blood-Donation'><Text></Text></Trans>
+>>>>>>> 9ec7098acdf10a4e50cdc85bc408d2aca6b0e4f2
             </Text>
             <View style={styles.tagContainer}>
               <Text style={[styles.tag]}>{t("Together we are stronger")}</Text>
