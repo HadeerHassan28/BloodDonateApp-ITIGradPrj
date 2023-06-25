@@ -48,13 +48,9 @@
     "react-native-screens": "~3.20.0",
     "react-native-uuid": "^2.0.1",
     "react-native-web": "~0.18.10",
-<<<<<<< HEAD
     "react-router-dom": "^6.13.0",
     "styled-components": "^5.3.11"
     
-=======
-    "react-router-dom": "^6.13.0"
->>>>>>> 093a5a29ff34c88db165309b1979ad266657aae3
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
