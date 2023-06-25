@@ -1,20 +1,17 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import routes from "../../Src/Common/routes";
 import About from "../../Src/Screens/About/About";
 import Blogs from "../../Src/Screens/Blogs/Blogs";
-import Home from "../../Src/Screens/Home/Home";
-import { NavigationContainer } from "@react-navigation/native";
 import Volunteers from "../../Src/Screens/Volunteers/Volunteers";
 import ContactUs from "../../Src/Screens/ContactUs/ContactUs";
 import TermsAndConditions from "../../Src/Screens/Terms/Terms";
 import Root from "../../Src/Navigations/root";
 
-import t from "../../i18n/i18n";
 import { ThemeProvider } from "../../Src/Theme/themeContext";
-import { TouchableOpacity, View, Text, Switch, StyleSheet } from "react-native";
+import { View, Text, Switch, StyleSheet } from "react-native";
 import { EventRegister } from "react-native-event-listeners";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const Drawer = createDrawerNavigator();
 
@@ -24,12 +21,7 @@ const DrawerNavigator = ({ theme }) => {
     setDarkTheme(value);
     EventRegister.emit("ChangeTheme", value);
   };
-  //console.warn(darkTheme);
   const { t } = useTranslation();
-  // const { theme, toggleDarkMode } = useContext(ThemeConetxt);
-  // const handleToggleTheme = () => {
-  //   toggleDarkMode();
-  // };
 
   return (
     <ThemeProvider value={darkTheme}>
@@ -62,25 +54,25 @@ const DrawerNavigator = ({ theme }) => {
       >
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
-          name={"Home"}
+          name={routes.Home}
           component={Root}
         />
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
-          name={"About"}
+          name={routes.About}
           component={About}
         />
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
-          name={"Blogs"}
+          name={routes.Blogs}
           component={Blogs}
         />
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
-          name={"Volunteers"}
+          name={routes.Volunteers}
           component={Volunteers}
         />
-        {/* <Drawer.Screen
+        <Drawer.Screen
           screenOptions={{ headerShown: false }}
           name={routes.ContactUs}
           component={ContactUs}
@@ -89,7 +81,7 @@ const DrawerNavigator = ({ theme }) => {
           screenOptions={{ headerShown: false }}
           name={routes.TermsAndConditions}
           component={TermsAndConditions}
-        /> */}
+        />
       </Drawer.Navigator>
     </ThemeProvider>
   );
