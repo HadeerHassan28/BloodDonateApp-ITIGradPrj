@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./BlogsStyle.js";
 import { View, Text, Image, Platform } from "react-native";
 import { Dimensions } from "react-native";
 import { ScrollView } from "react-native";
 import { Trans, useTranslation } from "react-i18next";
-
+import themes from "../../Theme/theme";
+import themeContext from "../../Theme/themeContext";
 const Blogs = () => {
+  const darkTheme = useContext(themeContext);
+  //console.warn(darkTheme);
   const windowWidth = Dimensions.get("window").width;
   const { t } = useTranslation();
 
@@ -42,12 +45,44 @@ const Blogs = () => {
     },
   ];
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView
+      style={
+        darkTheme === true ? themes.dark.background : themes.light.background
+      }
+    >
+      <View
+        style={[
+          styles.container,
+          {
+            backgroundColor:
+              darkTheme === true
+                ? themes.dark.background
+                : themes.light.background,
+          },
+          {
+            color: darkTheme === true ? themes.dark.color : themes.light.color,
+          },
+        ]}
+      >
         <Text style={styles.h1}>{t("Saving Lives Through Donation")}</Text>
         {imgsPrag.map((img, index) => {
           return (
-            <View style={styles.row} key={img.id}>
+            <View
+              style={[
+                styles.row,
+                {
+                  backgroundColor:
+                    darkTheme === true
+                      ? themes.dark.background
+                      : themes.light.background,
+                },
+                {
+                  color:
+                    darkTheme === true ? themes.dark.color : themes.light.color,
+                },
+              ]}
+              key={img.id}
+            >
               <View>
                 <Image
                   source={img.src}
@@ -56,7 +91,19 @@ const Blogs = () => {
                 />
               </View>
               <View style={styles.textContainer}>
-                <Text style={styles.description}>{t(img.description)}</Text>
+                <Text
+                  style={[
+                    styles.description,
+                    {
+                      color:
+                        darkTheme === true
+                          ? themes.dark.color
+                          : themes.light.color,
+                    },
+                  ]}
+                >
+                  {t(img.description)}
+                </Text>
               </View>
             </View>
           );

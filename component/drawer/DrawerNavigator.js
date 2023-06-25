@@ -30,7 +30,7 @@ const DrawerNavigator = () => {
     setDarkTheme(value);
     EventRegister.emit("ChangeTheme", value);
   };
-  console.warn(darkTheme, "not in return");
+
   const { t } = useTranslation();
   // const { theme, toggleDarkMode } = useContext(ThemeConetxt);
   // const handleToggleTheme = () => {
@@ -69,7 +69,6 @@ const DrawerNavigator = () => {
                 label="Dark theme"
                 onPress={() => {
                   handlDark(!darkTheme);
-                  console.warn(darkTheme);
                 }}
               />
             </DrawerContentScrollView>
