@@ -19,6 +19,7 @@ import t from "../../../i18n/i18n";
 import themeContext from "../../Theme/themeContext";
 import { Trans, useTranslation } from "react-i18next";
 import themes from "../../Theme/theme";
+
 const About = () => {
   const darkTheme = useContext(themeContext);
 

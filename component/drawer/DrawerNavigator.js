@@ -1,26 +1,35 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import React, { useState } from "react";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
+import React, { useContext, useState } from "react";
 import routes from "../../Src/Common/routes";
 import About from "../../Src/Screens/About/About";
+import Home from "../../Src/Screens/Home/Home";
 import Blogs from "../../Src/Screens/Blogs/Blogs";
 import Volunteers from "../../Src/Screens/Volunteers/Volunteers";
 import ContactUs from "../../Src/Screens/ContactUs/ContactUs";
 import TermsAndConditions from "../../Src/Screens/Terms/Terms";
 import Root from "../../Src/Navigations/root";
-
-import { ThemeProvider } from "../../Src/Theme/themeContext";
-import { View, Text, Switch, StyleSheet } from "react-native";
+import t from "../../i18n/i18n";
+import themeContext, { ThemeProvider } from "../../Src/Theme/themeContext";
+import { TouchableOpacity, View, Text, Switch, StyleSheet } from "react-native";
 import { EventRegister } from "react-native-event-listeners";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import SettingsStackNavigator from "../../Src/Navigations/SettingsStackNavigator";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = ({ theme }) => {
+const DrawerNavigator = () => {
   const [darkTheme, setDarkTheme] = useState(false);
+  const { theme, toggleDarkMode } = useContext(themeContext);
   const handlDark = (value) => {
     setDarkTheme(value);
     EventRegister.emit("ChangeTheme", value);
   };
+
   const { t } = useTranslation();
 
   return (
@@ -37,25 +46,34 @@ const DrawerNavigator = ({ theme }) => {
         }}
         drawerContent={(props) => {
           return (
-            <View style={styles.drawerContent}>
-              <View style={styles.switchContainer}>
-                <Text style={styles.switchLabel}>Dark Mode</Text>
-                <Switch
-                  value={darkTheme}
-                  onValueChange={handlDark}
-                  style={styles.switchButton}
-                  darkTheme={darkTheme}
-                />
-              </View>
-              {props.children}
-            </View>
+            // <View style={styles.drawerContent}>
+            //   <View style={styles.switchContainer}>
+            //     <Text style={styles.switchLabel}>Dark Mode</Text>
+            //     <Switch
+            //       value={darkTheme}
+            //       onValueChange={handlDark}
+            //       style={styles.switchButton}
+            //       darkTheme={darkTheme}
+            //     />
+            //   </View>
+            //   {props.children}
+            // </View>
+            <DrawerContentScrollView {...props}>
+              <DrawerItemList {...props} />
+              <DrawerItem
+                label="Dark theme"
+                onPress={() => {
+                  handlDark(!darkTheme);
+                }}
+              />
+            </DrawerContentScrollView>
           );
         }}
       >
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
           name={routes.Home}
-          component={Root}
+          component={Home}
         />
         <Drawer.Screen
           screenOptions={{ headerShown: false }}

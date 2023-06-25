@@ -10,7 +10,7 @@ import {
   Switch,
 } from "react-native";
 import { DarkTheme, Link, useNavigation } from "@react-navigation/native";
-import t from "../../../i18n/i18n";
+//import t from "../../../i18n/i18n";
 import { EventRegister } from "react-native-event-listeners";
 import themeContext from "../../Theme/themeContext";
 
@@ -33,7 +33,7 @@ export default function Home() {
   //   setDarkTheme(value);
   //   EventRegister.emit("ChangeTheme", value);
   // };
-  //const theme = useContext(themeContext);
+
   const darkTheme = useContext(themeContext);
   //console.warn(darkTheme);
 
