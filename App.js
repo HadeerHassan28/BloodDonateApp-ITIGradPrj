@@ -14,12 +14,15 @@ import { useFonts } from "expo-font";
 import DrawerNavigator from "./component/drawer/DrawerNavigator";
 import { EventRegister } from "react-native-event-listeners";
 import themes from "./Src/Theme/theme";
-import "./i18n/config";
+// import "./i18n/config";
 
 import themeContext, { ThemeProvider } from "./Src/Theme/themeContext";
 import SettingsStackNavigator from "./Src/Navigations/SettingsStackNavigator";
 import ChangeLang from "./component/Localization/changeLang";
 import RootNavigator from "./Src/Navigations/StackRoot";
+import {I18nextProvider} from "react-i18next";
+import i18n from "./i18n";
+
 export default function App() {
   // const MyTheme = {
   //   dark: true,
@@ -53,6 +56,7 @@ export default function App() {
   }
 
   return (
+    <I18nextProvider i18n={i18n}>
     <ThemeProvider value={themes}>
       <SafeAreaView style={styles.container}>
         <themeContext.Provider
@@ -70,6 +74,7 @@ export default function App() {
         {/* </ThemeProvider> */}
       </SafeAreaView>
     </ThemeProvider>
+    </I18nextProvider>
   );
 }
 const styles = StyleSheet.create({
