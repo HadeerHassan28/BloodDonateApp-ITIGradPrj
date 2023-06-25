@@ -17,7 +17,8 @@
     "@mui/material": "^5.13.6",
     "@mui/styled-engine-sc": "^5.12.0",
     "@react-native-community/masked-view": "^0.1.11",
-    "@react-native-picker/picker": "2.4.8",
+    "@react-native-masked-view/masked-view": "0.2.8",
+    "@react-native-picker/picker": "^2.4.8",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
@@ -47,9 +48,13 @@
     "react-native-screens": "~3.20.0",
     "react-native-uuid": "^2.0.1",
     "react-native-web": "~0.18.10",
+<<<<<<< HEAD
     "react-router-dom": "^6.13.0",
     "styled-components": "^5.3.11"
     
+=======
+    "react-router-dom": "^6.13.0"
+>>>>>>> 093a5a29ff34c88db165309b1979ad266657aae3
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

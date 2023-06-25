@@ -18,7 +18,6 @@ import themes from "./Src/Theme/theme";
 
 import themeContext, { ThemeProvider } from "./Src/Theme/themeContext";
 import SettingsStackNavigator from "./Src/Navigations/SettingsStackNavigator";
-import ChangeLang from "./component/Localization/changeLang";
 import RootNavigator from "./Src/Navigations/StackRoot";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
