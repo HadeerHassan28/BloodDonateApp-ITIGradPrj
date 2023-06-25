@@ -3,7 +3,7 @@ import { Text, View, Picker } from 'react-native';
 import { Trans, useTranslation } from 'react-i18next';
 
 const ChangeLang = () => {
-    const {i18n} = useTranslation();
+    const {i18n, t} = useTranslation();
 
     const changeLang = (e)=>{
       i18n.changeLanguage(e.target.value);
