@@ -18,6 +18,7 @@ import themeContext from "../../Theme/themeContext";
 
 import themes from "../../Theme/theme";
 import { ThemeProvider } from "../../Theme/themeContext";
+import ChangeLang from "../../../component/Localization/changeLang";
 
 import { Trans, useTranslation } from "react-i18next";
 import routes from "../../Common/routes";
@@ -49,6 +50,7 @@ export default function Home() {
         />
       </TouchableOpacity> */}
       {/* <Switch value={darkTheme} onValueChange={handlDark}></Switch> */}
+
       <View style={styles.logoContainer}>
         <Image
           source={require("../../../assets/images/heart.png")}
@@ -124,6 +126,7 @@ export default function Home() {
           {t("Join-our-cause")}
         </Text>
       </ScrollView>
+      <ChangeLang></ChangeLang>
     </ScrollView>
   );
 }
