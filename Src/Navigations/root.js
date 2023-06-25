@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import routes from "../Common/routes";
 import colors from "../Common/Colors";
 import About from "../Screens/About/About";
@@ -16,17 +18,38 @@ import TermsAndConditions from "../Screens/Terms/Terms";
 import ContactUs from "../Screens/ContactUs/ContactUs";
 import UserProfile from "../Screens/Profile/user/userProfile";
 import Selection from "../Screens/Selection/Selection";
+import DrawerNavigator from "../../component/drawer/DrawerNavigator";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Tab = createBottomTabNavigator();
+// const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
+function MainStackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name={routes.Selection} component={Selection} />
+    </Stack.Navigator>
+  );
+}
+function AboutStackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name={routes.Selection} component={Selection} />
+    </Stack.Navigator>
+  );
+}
 const Root = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
         name={routes.Home}
-        component={Home}
+        component={MainStackNavigator}
         options={{
           tabBarLabel: "Home",
-          // headerShown: false,
+          headerShown: false,
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",
           tabBarLabelStyle: {
@@ -41,10 +64,10 @@ const Root = () => {
         }}
       />
       <Tab.Screen
-        name={routes.about}
-        component={About}
+        name={routes.About}
+        component={AboutStackNavigator}
         options={{
-          // headerShown: false,
+          headerShown: false,
           tabBarLabel: "About",
           tabBarActiveTintColor: colors.mainColor,
           tabBarInactiveTintColor: "grey",

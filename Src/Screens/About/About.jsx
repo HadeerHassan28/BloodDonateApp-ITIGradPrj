@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import colors from "../../Common/Colors";
+import routes from "../../Common/routes";
 
 // import SiQuantconnect from "react-icons/si/Quantconnect";
 // import FaRegLightbulb from "react-icons/fa/RegLightbulb";
@@ -12,6 +13,7 @@ import colors from "../../Common/Colors";
 // import AiOutlineHeart from "react-icons/ai/OutlineHeart";
 // import BsDroplet from "react-icons/bs/Droplet";
 import { Dimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import styles from "./AboutStyle.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -22,6 +24,7 @@ import themes from "../../Theme/theme";
 
 const About = () => {
   const darkTheme = useContext(themeContext);
+  const { navigate } = useNavigation();
 
   const windowWidth = Dimensions.get("window").width;
   const { t } = useTranslation();
@@ -76,7 +79,10 @@ const About = () => {
                 "We solve the problem of blood emergencies by connecting blood donors directly with people in blood need."
               )}
             </Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigate(routes.Selection)}
+            >
               <Text style={styles.buttonText}>{t("Donate Now")}</Text>
             </TouchableOpacity>
           </View>
