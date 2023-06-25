@@ -9,17 +9,21 @@ import {
   Platform,
   Switch,
 } from "react-native";
-import { DarkTheme, Link, useNavigation } from "@react-navigation/native";
+import { DarkTheme, Link } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+
 //import t from "../../../i18n/i18n";
 import { EventRegister } from "react-native-event-listeners";
 import themeContext from "../../Theme/themeContext";
 
 import themes from "../../Theme/theme";
 import { ThemeProvider } from "../../Theme/themeContext";
+import ChangeLang from "../../../component/Localization/changeLang";
 
 import { Trans, useTranslation } from "react-i18next";
+import routes from "../../Common/routes";
 export default function Home() {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   const { t } = useTranslation();
 
@@ -46,6 +50,7 @@ export default function Home() {
         />
       </TouchableOpacity> */}
       {/* <Switch value={darkTheme} onValueChange={handlDark}></Switch> */}
+
       <View style={styles.logoContainer}>
         <Image
           source={require("../../../assets/images/heart.png")}
@@ -93,7 +98,7 @@ export default function Home() {
 
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("Selection")}
+              onPress={() => navigate(routes.Selection)}
             >
               <Text style={styles.buttonText}>{t("Donate Now")}</Text>
             </TouchableOpacity>
@@ -118,20 +123,10 @@ export default function Home() {
             },
           ]}
         >
-          {t("Join The Cause")}
-        </Text>
-        <Text
-          style={[
-            styles.description,
-            {
-              color:
-                darkTheme === true ? themes.dark.color : themes.light.color,
-            },
-          ]}
-        >
           {t("Join-our-cause")}
         </Text>
       </ScrollView>
+      <ChangeLang></ChangeLang>
     </ScrollView>
   );
 }
@@ -175,7 +170,7 @@ const styles = StyleSheet.create({
   },
   title: {
     letterSpacing: 4,
-    fontSize: 35,
+    fontSize: 30,
     fontFamily: "MontsBold",
     color: "#ff4951",
     marginBottom: 5,
