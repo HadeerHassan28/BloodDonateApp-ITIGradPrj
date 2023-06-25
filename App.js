@@ -59,7 +59,6 @@ export default function App() {
     <I18nextProvider i18n={i18n}>
       <ThemeProvider value={themes}>
         <SafeAreaView style={styles.container}>
-          <ChangeLang></ChangeLang>
           <themeContext.Provider
             value={darkMode === true ? themes.dark : themes.light}
           >
@@ -67,7 +66,7 @@ export default function App() {
             <NavigationContainer
               theme={darkMode === true ? DarkTheme : DefaultTheme}
             >
-              {/* <SettingsStackNavigator /> */}
+              {/* <SettingsStackNavigator navigation={DrawerNavigator} /> */}
               <DrawerNavigator />
               {/* <RootNavigator /> */}
             </NavigationContainer>

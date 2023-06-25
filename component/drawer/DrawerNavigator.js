@@ -14,6 +14,7 @@ import ContactUs from "../../Src/Screens/ContactUs/ContactUs";
 import TermsAndConditions from "../../Src/Screens/Terms/Terms";
 import Root from "../../Src/Navigations/root";
 import t from "../../i18n/i18n";
+import { createStackNavigator } from "@react-navigation/stack";
 import themeContext, { ThemeProvider } from "../../Src/Theme/themeContext";
 import { TouchableOpacity, View, Text, Switch, StyleSheet } from "react-native";
 import { EventRegister } from "react-native-event-listeners";
@@ -21,6 +22,7 @@ import { Trans, useTranslation } from "react-i18next";
 import SettingsStackNavigator from "../../Src/Navigations/SettingsStackNavigator";
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
 const DrawerNavigator = () => {
   const [darkTheme, setDarkTheme] = useState(false);
@@ -76,27 +78,17 @@ const DrawerNavigator = () => {
           component={Root}
         />
         <Drawer.Screen
-          screenOptions={{ headerShown: false }}
-          name={routes.About}
-          component={About}
-        />
-        <Drawer.Screen
-          screenOptions={{ headerShown: false }}
+          screenOptions={{ headerShown: true }}
           name={routes.Blogs}
           component={Blogs}
         />
         <Drawer.Screen
-          screenOptions={{ headerShown: false }}
-          name={routes.Volunteers}
-          component={Volunteers}
-        />
-        <Drawer.Screen
-          screenOptions={{ headerShown: false }}
+          screenOptions={{ headerShown: true }}
           name={routes.ContactUs}
           component={ContactUs}
         />
         <Drawer.Screen
-          screenOptions={{ headerShown: false }}
+          screenOptions={{ headerShown: true }}
           name={routes.TermsAndConditions}
           component={TermsAndConditions}
         />
