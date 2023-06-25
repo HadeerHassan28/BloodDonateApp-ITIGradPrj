@@ -18,7 +18,6 @@ import themeContext from "../../Theme/themeContext";
 
 import themes from "../../Theme/theme";
 import { ThemeProvider } from "../../Theme/themeContext";
-import ChangeLang from "../../../component/Localization/changeLang";
 
 import { Trans, useTranslation } from "react-i18next";
 import routes from "../../Common/routes";
@@ -123,8 +122,6 @@ export default function Home() {
         />
       </TouchableOpacity> */}
       {/* <Switch value={darkTheme} onValueChange={handlDark}></Switch> */}
-
-      <ChangeLang></ChangeLang>
     </ScrollView>
   );
 }
@@ -169,7 +166,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "MontsBold",
     color: "#ff4951",
-    marginBottom: 5,
+    marginBottom: 10,
     textAlign: "center",
     justifyContent: "center",
   },
@@ -177,7 +174,7 @@ const styles = StyleSheet.create({
     letterSpacing: 4,
     fontSize: 20,
     fontFamily: "MontsItalic",
-    marginBottom: 5,
+    marginBottom: 20,
     textAlign: "center",
   },
   tagContainer: {
@@ -185,7 +182,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderRadius: 20,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   tag: {
     letterSpacing: 4,
@@ -198,7 +195,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "MontsSemiBold",
     maxWidth: 500,
-    marginBottom: 10,
+    marginBottom: 20,
     textAlign: "center",
   },
   button: {
