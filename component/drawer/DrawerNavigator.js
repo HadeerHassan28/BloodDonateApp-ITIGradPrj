@@ -82,9 +82,9 @@ const DrawerNavigator = () => {
         }}
       >
         <Drawer.Screen
-          screenOptions={{ headerShown: false }}
           name={routes.Home}
-          component={Root}
+          component={Home}
+          options={{ headerShown: false }}
         />
         <Drawer.Screen
           screenOptions={{ headerShown: true }}
@@ -100,8 +100,7 @@ const DrawerNavigator = () => {
           screenOptions={{ headerShown: true }}
           name={routes.TermsAndConditions}
           component={TermsAndConditions}
-<<<<<<< HEAD
-        /> */}
+        />
         {/* <Drawer.Screen
           name="Home"
           component={Home}
@@ -116,9 +115,6 @@ const DrawerNavigator = () => {
             ),
           }}
         /> */}
-=======
-        />
->>>>>>> bdedb297878993ed047ec2b8fa63a3862f8dfb75
       </Drawer.Navigator>
     </ThemeProvider>
   );
