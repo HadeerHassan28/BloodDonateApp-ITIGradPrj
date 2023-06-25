@@ -20,22 +20,20 @@ import { TouchableOpacity, View, Text, Switch, StyleSheet } from "react-native";
 import { EventRegister } from "react-native-event-listeners";
 import { Trans, useTranslation } from "react-i18next";
 import SettingsStackNavigator from "../../Src/Navigations/SettingsStackNavigator";
-
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness4";
+import { Icon } from "react-native-paper";
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   const [darkTheme, setDarkTheme] = useState(false);
-  const { theme, toggleDarkMode } = useContext(themeContext);
+  const { theme } = useContext(themeContext);
   const handlDark = (value) => {
     setDarkTheme(value);
     EventRegister.emit("ChangeTheme", value);
   };
 
   const { t } = useTranslation();
-  // const { theme, toggleDarkMode } = useContext(ThemeConetxt);
-  // const handleToggleTheme = () => {
-  //   toggleDarkMode();
-  // };
 
   return (
     <ThemeProvider value={darkTheme}>
@@ -66,7 +64,14 @@ const DrawerNavigator = () => {
             <DrawerContentScrollView {...props}>
               <DrawerItemList {...props} />
               <DrawerItem
-                label="Dark theme"
+                // icon={({ color, size, focused }) => {
+                //   <Icon
+                //     color={color}
+                //     size={size}
+                //     name={focused ? "heart" : "heart-outline"}
+                //   />;
+                // }}
+                label="Dark Theme"
                 onPress={() => {
                   handlDark(!darkTheme);
                 }}
@@ -104,6 +109,20 @@ const DrawerNavigator = () => {
           screenOptions={{ headerShown: false }}
           name={routes.TermsAndConditions}
           component={TermsAndConditions}
+        /> */}
+        {/* <Drawer.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: "Home",
+            drawerIcon: ({ focused, size }) => (
+              <Ionicons
+                name="md-home"
+                size={size}
+                color={focused ? "#7cc" : "#ccc"}
+              />
+            ),
+          }}
         /> */}
       </Drawer.Navigator>
     </ThemeProvider>
