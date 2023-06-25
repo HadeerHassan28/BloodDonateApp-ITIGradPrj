@@ -9,22 +9,39 @@ const ChangeLang = () => {
   const changeLang = (e) => {
     i18n.changeLanguage("ar");
   };
-  return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-evenly",
-      }}
-    >
-      <Button onPress={changeLang} title="change"></Button>
-      <Text>{t("Change Language")}</Text>
-      <Picker onValueChange={changeLang} style={{ color: "black" }}>
-        <Picker.Item label="English (en)" value="en" />
-        <Picker.Item label="العربية (ar)" value="ar" />
-      </Picker>
-    </View>
-  );
+
+  const {supportedLngs} = i18n.services.resourceStore.data
+
+    return (
+
+        <View style={styles.container}>
+          <Text>{t("Change Language")}</Text>
+            <FlatList data={supportedLngs} renderItem={({item}) => (
+
+                <TouchableOpacity onPress={() => i18n.changeLanguage(item.code)} >
+                    <Text>{item.locale}</Text>
+                </TouchableOpacity>
+
+            )}/>
+        </View>
+
+    );
+  // return (
+  //   <View
+  //     style={{
+  //       flexDirection: "row",
+  //       alignItems: "center",
+  //       justifyContent: "space-evenly",
+  //     }}
+  //   >
+  //     <Button onPress={changeLang} title="change"></Button>
+  //     <Text>{t("Change Language")}</Text>
+  //     <Picker onValueChange={changeLang} style={{ color: "black" }}>
+  //       <Picker.Item label="English (en)" value="en" />
+  //       <Picker.Item label="العربية (ar)" value="ar" />
+  //     </Picker>
+  //   </View>
+  // );
 };
 
 export default ChangeLang;

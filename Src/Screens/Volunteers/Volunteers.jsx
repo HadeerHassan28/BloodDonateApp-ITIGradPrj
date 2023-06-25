@@ -28,8 +28,9 @@ const Volunteers = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3002/users").then((res) => {
-      setVolunteers(res.data);
-      setSearchRes(res.data);
+      const volunteers = res.data.filter(user => user.isVolunteer===true);
+      setVolunteers(volunteers);
+      setSearchRes(volunteers);
     });
   }, []);
 
@@ -179,7 +180,87 @@ const Volunteers = () => {
           {t("Please wait data loading")}
         </Text>
 
-        <DataTable>
+
+        {searchRes !== null && searchRes.length === 0 ? (
+            <View>
+              <Text className="fs-4">
+                {t("Sorry, no results")}
+              </Text>
+            </View>
+          ) : searchRes ? (
+            searchRes.slice(startIndex, endIndex).map(
+              (vol) =>
+                (
+        <View key={uuid()} className={`${styles.container}`}>
+          <View className={`${styles.row}`}>
+            <Text className={`${styles.tableTitle}`}>{t("VOLUTEER")}</Text>
+            <Text style={styles.tableCell}>
+              <Image
+                source={require("../../../assets/images/user.jpeg")}
+                style={styles.profile}
+              />
+              <Text>
+                {vol.firstName} {vol.lastName}
+              </Text>
+            </Text>
+          </View>
+          <View className={`${styles.row}`}>
+            <Text className={`${styles.tableTitle}`}>{t("LOCATION")}</Text>
+            <Text style={styles.tableCell}>
+              {vol.Address}, {vol.city}
+            </Text>
+          </View>
+          <View className={`${styles.row}`}>
+            <Text className={`${styles.tableTitle}`}>{t("BLOOD GROUP")}</Text>
+            <Text style={styles.tableCell}>{vol.bloodType}</Text>
+          </View>
+        </View>))) : (
+            <View>
+              <Text className="fs-4">{t("Loading...")}</Text>
+            </View>
+          )}
+
+        {searchRes && searchRes.length > searchResStep && (
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.navigateRes} onPress={handlePrev}>
+              <Text>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  className="bi bi-arrow-left"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                  />
+                </svg>
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.navigateRes} onPress={handleNext}>
+              <Text>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  className="bi bi-arrow-right"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+                  />
+                </svg>
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {/* <DataTable>
           <DataTable.Header>
             <DataTable.Title>
               <Text style={[styles.tableTitle, styles.tableCell]}>
@@ -247,6 +328,7 @@ const Volunteers = () => {
             searchRes.slice(startIndex, endIndex).map(
               (vol) =>
                 !vol.isVolunteer && (
+                  
                   <DataTable.Row key={uuid()}>
                     <DataTable.Cell
                       className={`${styles.volName} text-start ps-3`}
@@ -317,7 +399,7 @@ const Volunteers = () => {
               </Text>
             </TouchableOpacity>
           </View>
-        )}
+        )} */}
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>{t("Start saving lifes")}</Text>
         </TouchableOpacity>
