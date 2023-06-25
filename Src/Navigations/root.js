@@ -41,7 +41,7 @@ const Root = () => {
         }}
       />
       <Tab.Screen
-        name={routes.about}
+        name={routes.About}
         component={About}
         options={{
           // headerShown: false,

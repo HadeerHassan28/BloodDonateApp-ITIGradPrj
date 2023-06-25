@@ -52,13 +52,14 @@ export default function App() {
     MontsItalic: require("./assets/fonts/MontserratAlternates-Italic.ttf"),
   });
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <Text>LOading</Text>;
   }
 
   return (
     <I18nextProvider i18n={i18n}>
       <ThemeProvider value={themes}>
         <SafeAreaView style={styles.container}>
+          <ChangeLang></ChangeLang>
           <themeContext.Provider
             value={darkMode === true ? themes.dark : themes.light}
           >

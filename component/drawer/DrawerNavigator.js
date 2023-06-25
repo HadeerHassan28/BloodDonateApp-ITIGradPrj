@@ -73,7 +73,7 @@ const DrawerNavigator = () => {
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
           name={routes.Home}
-          component={Home}
+          component={Root}
         />
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
