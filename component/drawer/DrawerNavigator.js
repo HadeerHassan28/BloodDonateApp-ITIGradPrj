@@ -10,12 +10,11 @@ import ContactUs from "../../Src/Screens/ContactUs/ContactUs";
 import TermsAndConditions from "../../Src/Screens/Terms/Terms";
 import Root from "../../Src/Navigations/root";
 import t from "../../i18n/i18n";
-import themeContext, { ThemeProvider } from "../../Src/Theme/themeContext";
+import { ThemeProvider } from "../../Src/Theme/themeContext";
 import { TouchableOpacity, View, Text, Switch, StyleSheet } from "react-native";
 import { EventRegister } from "react-native-event-listeners";
-//import { ThemeConetxt } from "../../Src/Context/ThemeProvider";
-
 import { Trans, useTranslation } from "react-i18next";
+import SettingsStackNavigator from "../../Src/Navigations/SettingsStackNavigator";
 
 const Drawer = createDrawerNavigator();
 
@@ -68,20 +67,20 @@ const DrawerNavigator = ({ theme }) => {
         />
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
-          name={routes.About}
+          name={"About"}
           component={About}
         />
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
-          name={routes.Blogs}
+          name={"Blogs"}
           component={Blogs}
         />
         <Drawer.Screen
           screenOptions={{ headerShown: false }}
-          name={routes.Volunteers}
+          name={"Volunteers"}
           component={Volunteers}
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           screenOptions={{ headerShown: false }}
           name={routes.ContactUs}
           component={ContactUs}
@@ -90,7 +89,7 @@ const DrawerNavigator = ({ theme }) => {
           screenOptions={{ headerShown: false }}
           name={routes.TermsAndConditions}
           component={TermsAndConditions}
-        />
+        /> */}
       </Drawer.Navigator>
     </ThemeProvider>
   );

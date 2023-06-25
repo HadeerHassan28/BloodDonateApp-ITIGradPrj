@@ -63,8 +63,8 @@ export default function App() {
             theme={darkMode === true ? DarkTheme : DefaultTheme}
           >
             {/* <SettingsStackNavigator /> */}
-            {/* <DrawerNavigator /> */}
-            <RootNavigator />
+            <DrawerNavigator />
+            {/* <RootNavigator /> */}
           </NavigationContainer>
         </themeContext.Provider>
         {/* </ThemeProvider> */}

@@ -17,12 +17,13 @@ import styles from "./AboutStyle.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import t from "../../../i18n/i18n";
 import themeContext from "../../Theme/themeContext";
-import themes from "../../Theme/theme";
 import { Trans, useTranslation } from "react-i18next";
+import themes from "../../Theme/theme";
+
 const About = () => {
-  const windowWidth = Dimensions.get("window").width;
   const darkTheme = useContext(themeContext);
 
+  const windowWidth = Dimensions.get("window").width;
   const { t } = useTranslation();
 
   return (

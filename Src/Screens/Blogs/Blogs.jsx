@@ -3,7 +3,6 @@ import styles from "./BlogsStyle.js";
 import { View, Text, Image, Platform } from "react-native";
 import { Dimensions } from "react-native";
 import { ScrollView } from "react-native";
-import { t } from "../../../i18n/i18n";
 import { Trans, useTranslation } from "react-i18next";
 
 const Blogs = () => {

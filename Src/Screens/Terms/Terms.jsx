@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { t } from "../../../i18n/i18n";
 import { Trans, useTranslation } from "react-i18next";
 
 const TermsAndConditions = () => {
@@ -32,9 +31,7 @@ const TermsAndConditions = () => {
           {t("Acceptance of the Agreement Paragraph2")}
         </Text>
         <Text style={styles.heading}>{t("Eligibility")}</Text>
-        <Text style={styles.paragraph}>
-          {JSON.parse(t("Eligibility Paragraph"))}
-        </Text>
+        <Text style={styles.paragraph}>{t("Eligibility Paragraph")}</Text>
       </View>
     </ScrollView>
   );

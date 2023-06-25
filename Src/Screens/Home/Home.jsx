@@ -18,8 +18,9 @@ import themes from "../../Theme/theme";
 import { ThemeProvider } from "../../Theme/themeContext";
 
 import { Trans, useTranslation } from "react-i18next";
-
 export default function Home() {
+  const navigation = useNavigation();
+
   const { t } = useTranslation();
 
   // const navigation = useNavigation();
@@ -32,7 +33,7 @@ export default function Home() {
   //   setDarkTheme(value);
   //   EventRegister.emit("ChangeTheme", value);
   // };
-  //const theme = useContext(themeContext);
+
   const darkTheme = useContext(themeContext);
   //console.warn(darkTheme);
 
