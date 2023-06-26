@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: Platform.OS === "android" ? 30 : 0,
     flex: 1,
-    padding: 20,
     backgroundColor: "#fbf1f0",
   },
   row: {
@@ -20,13 +19,10 @@ const styles = StyleSheet.create({
   justifyContentCenter: {
     justifyContent: "center",
   },
-
   heading: {
     color: colors.mainColor,
-    fontSize: 24,
     textAlign: "center",
     fontWeight: "bold",
-    marginBottom: 10,
   },
   paragraph: {
     fontSize: 20,
@@ -37,17 +33,14 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: "#ffffff",
     marginTop: 50,
-    borderRadius: 5,
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
     alignItems: "center",
-    border: "1px solid gray",
   },
   button: {
     backgroundColor: colors.mainColor,
     paddingVertical: 15,
-    borderRadius: 5,
     marginTop: 20,
   },
   buttonText: {
@@ -74,24 +67,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   navigateRes: {
-    width: "30px",
-    height: "30px",
+    width: 30,
     textAlign: "center",
-    border: "1px solid grey",
-    borderRadius: "15px",
+
     textAlignVertical: "center",
     margin: 5,
   },
-  profile: {
-    width: "8vw",
-    height: "8vw",
-    borderRadius: "4vw",
-  },
+  profile: {},
   disNone: {
     display: "none",
   },
   disBlock: {
-    display: "block",
     textAlign: "center",
     color: colors.mainColor,
   },
@@ -101,29 +87,18 @@ const styles = StyleSheet.create({
   },
   select: {
     color: "gray",
-    borderRadius: "5px",
-    border: "1px solid gray",
-    height: "38px",
   },
-  customInput: {
-    width: "150px",
-    height: "38px",
-    borderRadius: "5px",
-    border: "1px solid gray",
-  },
+  customInput: {},
   searchBox: {
-    width: "50vw",
-    padding: "15px",
+    padding: 15,
     backgroundColor: "#ffffff",
     margin: "0 auto",
-    marginTop: "50px",
-    borderRadius:" 2vw",
+    marginTop: 50,
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
     alignItems: "center",
-    border: "1px solid gray",
-}
+  },
 });
 
 export default styles;

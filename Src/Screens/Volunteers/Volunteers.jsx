@@ -7,7 +7,6 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-// import { Picker } from "react-native-picker/picker";
 import { DataTable } from "react-native-paper";
 import styles from "./VolunteersStyle";
 import { useRef } from "react";
@@ -28,7 +27,7 @@ const Volunteers = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3002/users").then((res) => {
-      const volunteers = res.data.filter(user => user.isVolunteer===true);
+      const volunteers = res.data.filter((user) => user.isVolunteer === true);
       setVolunteers(volunteers);
       setSearchRes(volunteers);
     });
@@ -180,45 +179,44 @@ const Volunteers = () => {
           {t("Please wait data loading")}
         </Text>
 
-
         {searchRes !== null && searchRes.length === 0 ? (
-            <View>
-              <Text className="fs-4">
-                {t("Sorry, no results")}
-              </Text>
+          <View>
+            <Text className="fs-4">{t("Sorry, no results")}</Text>
+          </View>
+        ) : searchRes ? (
+          searchRes.slice(startIndex, endIndex).map((vol) => (
+            <View key={uuid()} className={`${styles.container}`}>
+              <View className={`${styles.row}`}>
+                <Text className={`${styles.tableTitle}`}>{t("VOLUTEER")}</Text>
+                <Text style={styles.tableCell}>
+                  <Image
+                    source={require("../../../assets/images/user.jpeg")}
+                    style={styles.profile}
+                  />
+                  <Text>
+                    {vol.firstName} {vol.lastName}
+                  </Text>
+                </Text>
+              </View>
+              <View className={`${styles.row}`}>
+                <Text className={`${styles.tableTitle}`}>{t("LOCATION")}</Text>
+                <Text style={styles.tableCell}>
+                  {vol.Address}, {vol.city}
+                </Text>
+              </View>
+              <View className={`${styles.row}`}>
+                <Text className={`${styles.tableTitle}`}>
+                  {t("BLOOD GROUP")}
+                </Text>
+                <Text style={styles.tableCell}>{vol.bloodType}</Text>
+              </View>
             </View>
-          ) : searchRes ? (
-            searchRes.slice(startIndex, endIndex).map(
-              (vol) =>
-                (
-        <View key={uuid()} className={`${styles.container}`}>
-          <View className={`${styles.row}`}>
-            <Text className={`${styles.tableTitle}`}>{t("VOLUTEER")}</Text>
-            <Text style={styles.tableCell}>
-              <Image
-                source={require("../../../assets/images/user.jpeg")}
-                style={styles.profile}
-              />
-              <Text>
-                {vol.firstName} {vol.lastName}
-              </Text>
-            </Text>
+          ))
+        ) : (
+          <View>
+            <Text className="fs-4">{t("Loading...")}</Text>
           </View>
-          <View className={`${styles.row}`}>
-            <Text className={`${styles.tableTitle}`}>{t("LOCATION")}</Text>
-            <Text style={styles.tableCell}>
-              {vol.Address}, {vol.city}
-            </Text>
-          </View>
-          <View className={`${styles.row}`}>
-            <Text className={`${styles.tableTitle}`}>{t("BLOOD GROUP")}</Text>
-            <Text style={styles.tableCell}>{vol.bloodType}</Text>
-          </View>
-        </View>))) : (
-            <View>
-              <Text className="fs-4">{t("Loading...")}</Text>
-            </View>
-          )}
+        )}
 
         {searchRes && searchRes.length > searchResStep && (
           <View style={styles.row}>
