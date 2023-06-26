@@ -17,7 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import styles from "./AboutStyle.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import t from "../../../i18n/i18n";
+// import t from "../../../i18n/i18n";
 import themeContext from "../../Theme/themeContext";
 import { Trans, useTranslation } from "react-i18next";
 import themes from "../../Theme/theme";
@@ -75,9 +75,7 @@ const About = () => {
                 },
               ]}
             >
-              {t(
-                "We solve the problem of blood emergencies by connecting blood donors directly with people in blood need."
-              )}
+              {t("We solve the problem of blood emergencies by connecting blood donors directly with people in blood need.")}
             </Text>
             <TouchableOpacity
               style={styles.button}
@@ -134,9 +132,7 @@ const About = () => {
                 },
               ]}
             >
-              {t(
-                "We connect blood donors with recipients, without any intermediary such as blood banks, for an efficient and seamless process."
-              )}
+              {t("We connect blood donors with recipients, without any intermediary such as blood banks, for an efficient and seamless process.")}
             </Text>
           </View>
           <View
@@ -198,9 +194,7 @@ const About = () => {
                 },
               ]}
             >
-              {t(
-                "Blood donation is one of several community organizations working together as a network that responds to emergencies in an efficient manner."
-              )}
+              {t("Blood donation is one of several community organizations working together as a network that responds to emergencies in an efficient manner.")}
             </Text>
           </View>
           <View style={styles.card}>
@@ -211,9 +205,7 @@ const About = () => {
             />
             <Text style={styles.cardTitle}>{t("Get notified")}</Text>
             <Text style={styles.description}>
-              {t(
-                "Blood donation Connect works with network partners to connect blood donors and recipients through an automated SMS service and a mobile app."
-              )}
+              {t("Blood donation Connect works with network partners to connect blood donors and recipients through an automated SMS service and a mobile app.")}
             </Text>
           </View>
           <View style={styles.card}>
@@ -293,9 +285,7 @@ const About = () => {
                 },
               ]}
             >
-              {t(
-                "Register your account so you can immediately start using Save Life Connect"
-              )}
+              {t("Register your account so you can immediately start using Save Life Connect")}
             </Text>
           </View>
           <View style={styles.columnContainer}>
@@ -323,9 +313,7 @@ const About = () => {
                 },
               ]}
             >
-              {t(
-                "Post a blood request using this website or our app and locate volunteer blood donors within your area."
-              )}
+              {t("Post a blood request using this website or our app and locate volunteer blood donors within your area.")}
             </Text>
           </View>
           <View style={styles.columnContainer}>
@@ -353,9 +341,7 @@ const About = () => {
                 },
               ]}
             >
-              {t(
-                "Get notified in real time when a donor has been found and when the blood is on its way to the patient"
-              )}
+              {t("Get notified in real time when a donor has been found and when the blood is on its way to the patient")}
             </Text>
           </View>
           <View style={styles.columnContainer}>
@@ -383,9 +369,7 @@ const About = () => {
                 },
               ]}
             >
-              {t(
-                "Donating or requesting blood share the same noble and final purpose Saving a Life."
-              )}
+              {t("Donating or requesting blood share the same noble and final purpose Saving a Life.")}
             </Text>
           </View>
         </View>

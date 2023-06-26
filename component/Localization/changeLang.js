@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text, View } from "react-native";
+import { Button, FlatList, Text, TouchableOpacity, View } from "react-native";
 import { Trans, useTranslation } from "react-i18next";
 import { Picker } from "@react-native-picker/picker";
 
@@ -22,7 +22,7 @@ const ChangeLang = () => {
                     <Text>{item.locale}</Text>
                 </TouchableOpacity>
 
-            )}/>
+            )}/>  
         </View>
 
     );

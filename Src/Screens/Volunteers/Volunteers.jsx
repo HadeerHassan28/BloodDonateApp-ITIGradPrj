@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TextInput,
-  Picker,
   Image,
   TouchableOpacity,
 } from "react-native";
@@ -15,6 +14,7 @@ import { useRef } from "react";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
 import { Trans, useTranslation } from "react-i18next";
+import { Picker } from "@react-native-picker/picker";
 
 const Volunteers = () => {
   const searchResStep = 9;
