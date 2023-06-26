@@ -18,13 +18,10 @@ import themeContext from "../../Theme/themeContext";
 
 import themes from "../../Theme/theme";
 import { ThemeProvider } from "../../Theme/themeContext";
-import ChangeLang from "../../../component/Localization/changeLang";
 
 import { Trans, useTranslation } from "react-i18next";
 import routes from "../../Common/routes";
 export default function Home() {
-  const { navigate } = useNavigation();
-
   const { t } = useTranslation();
 
   // const navigation = useNavigation();
@@ -37,77 +34,68 @@ export default function Home() {
   //   setDarkTheme(value);
   //   EventRegister.emit("ChangeTheme", value);
   // };
+  const { navigate } = useNavigation();
 
   const darkTheme = useContext(themeContext);
   //console.warn(darkTheme);
 
   return (
     <ScrollView style={[styles.container]}>
-      {/* <TouchableOpacity style={styles.drawerLogoContainer}>
-        <Image
-          source={require("../../../assets/images/stock-vector-1.png")}
-          style={styles.hamLogo}
-        />
-      </TouchableOpacity> */}
-      {/* <Switch value={darkTheme} onValueChange={handlDark}></Switch> */}
-
       <View style={styles.logoContainer}>
         <Image
           source={require("../../../assets/images/heart.png")}
           style={styles.logo}
         />
       </View>
-      <View style={styles.landing}>
-        <View style={styles.landingContent}>
-          <View style={styles.textContainer}>
-            <Text
-              style={{
-                ...styles.title,
-              }}
-            >
-              {t("Blood-Donation")}
-            </Text>
-            <Text
-              style={[
-                styles.subtitle,
-                {
-                  color:
-                    darkTheme === true ? themes.dark.color : themes.light.color,
-                },
-              ]}
-            >
-              {t("Saves-Lives,")}
-              <Trans i18nKey="Blood-Donation">
-                <Text></Text>
-              </Trans>
-            </Text>
-            <View style={styles.tagContainer}>
-              <Text style={[styles.tag]}>{t("Together we are stronger")}</Text>
-            </View>
-            <Text
-              style={[
-                styles.description,
-                {
-                  color:
-                    darkTheme === true ? themes.dark.color : themes.light.color,
-                },
-              ]}
-            >
-              {t("Find-blood-donors")}
-            </Text>
-
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigate(routes.Selection)}
-            >
-              <Text style={styles.buttonText}>{t("Donate Now")}</Text>
-            </TouchableOpacity>
+      <View style={styles.landingContent}>
+        <View style={styles.textContainer}>
+          <Text
+            style={{
+              ...styles.title,
+            }}
+          >
+            {t("Blood-Donation")}
+          </Text>
+          <Text
+            style={[
+              styles.subtitle,
+              {
+                color:
+                  darkTheme === true ? themes.dark.color : themes.light.color,
+              },
+            ]}
+          >
+            {t("Saves-Lives,")}
+            <Trans i18nKey="Blood-Donation">
+              <Text></Text>
+            </Trans>
+          </Text>
+          <View style={styles.tagContainer}>
+            <Text style={[styles.tag]}>{t("Together we are stronger")}</Text>
           </View>
+          <Text
+            style={[
+              styles.description,
+              {
+                color:
+                  darkTheme === true ? themes.dark.color : themes.light.color,
+              },
+            ]}
+          >
+            {t("Find-blood-donors")}
+          </Text>
 
-          {/* {isSelectionActive && (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigate(routes.Selection)}
+          >
+            <Text style={styles.buttonText}>{t("Donate Now")}</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* {isSelectionActive && (
             <Selection onSelection={setIsSelectionActive} />
           )} */}
-        </View>
       </View>
       <View style={styles.infoContainer}>{/* <InfoHome /> */}</View>
       <ScrollView contentContainerStyle={styles.textCenter}>
@@ -123,10 +111,30 @@ export default function Home() {
             },
           ]}
         >
-          {t("Join-our-cause")}
+          {t("Join The Cause")}
+        </Text>
+        <Text
+          className="text-muted"
+          style={[
+            styles.description,
+            {
+              color:
+                darkTheme === true ? themes.dark.color : themes.light.color,
+            },
+          ]}
+        >
+          {t(
+            "Join our cause and help us save more lives. Everyone should have the right to get a blood transfusion."
+          )}
         </Text>
       </ScrollView>
-      <ChangeLang></ChangeLang>
+      {/* <TouchableOpacity style={styles.drawerLogoContainer}>
+        <Image
+          source={require("../../../assets/images/stock-vector-1.png")}
+          style={styles.hamLogo}
+        />
+      </TouchableOpacity> */}
+      {/* <Switch value={darkTheme} onValueChange={handlDark}></Switch> */}
     </ScrollView>
   );
 }
@@ -155,32 +163,31 @@ const styles = StyleSheet.create({
     height: 100,
     resizeMode: "contain",
   },
-  landing: {
-    justifyContent: "center",
-    alignItems: "flex-start",
-  },
   landingContent: {
     padding: 20,
     alignItems: "center",
   },
   textContainer: {
     alignItems: "center",
+    textAlign: "center",
+
     // marginTop: "3rem",
     marginBottom: 0,
   },
   title: {
     letterSpacing: 4,
-    fontSize: 30,
+    fontSize: 35,
     fontFamily: "MontsBold",
     color: "#ff4951",
-    marginBottom: 5,
+    marginBottom: 10,
     textAlign: "center",
+    justifyContent: "center",
   },
   subtitle: {
     letterSpacing: 4,
     fontSize: 20,
     fontFamily: "MontsItalic",
-    marginBottom: 5,
+    marginBottom: 20,
     textAlign: "center",
   },
   tagContainer: {
@@ -188,7 +195,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderRadius: 20,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   tag: {
     letterSpacing: 4,
@@ -201,10 +208,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "MontsSemiBold",
     maxWidth: 500,
-    marginBottom: 10,
+    marginBottom: 20,
     textAlign: "center",
   },
   button: {
+    marginTop: 10,
     backgroundColor: "red",
     borderRadius: 5,
     paddingVertical: 10,

@@ -10,22 +10,21 @@ const ChangeLang = () => {
     i18n.changeLanguage("ar");
   };
 
-  const {supportedLngs} = i18n.services.resourceStore.data
+  const { supportedLngs } = i18n.services.resourceStore.data;
 
-    return (
-
-        <View style={styles.container}>
-          <Text>{t("Change Language")}</Text>
-            <FlatList data={supportedLngs} renderItem={({item}) => (
-
-                <TouchableOpacity onPress={() => i18n.changeLanguage(item.code)} >
-                    <Text>{item.locale}</Text>
-                </TouchableOpacity>
-
-            )}/>  
-        </View>
-
-    );
+  return (
+    <View>
+      {/* <Text>{t("Change Language")}</Text> */}
+      <FlatList
+        data={supportedLngs}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => i18n.changeLanguage(item.code)}>
+            <Text>{item.locale}</Text>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
+  );
   // return (
   //   <View
   //     style={{
